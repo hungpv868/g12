@@ -71,5 +71,21 @@ const ogUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
       <slot />
     </main>
     <Footer variant={footerVariant} />
+
+    <script>
+      // Hiện các khối .reveal một lần khi vào viewport
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in-view');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -8% 0px' },
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
   </body>
 </html>

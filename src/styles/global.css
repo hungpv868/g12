@@ -178,24 +178,19 @@
    Hiệu ứng
    --------------------------------------------------------------- */
 
-/* Scroll reveal: dùng scroll-driven animation của CSS, tự thoái lui
-   về trạng thái hiện sẵn nếu trình duyệt không hỗ trợ. */
+/* Scroll reveal: hiện MỘT LẦN khi vào viewport (IntersectionObserver trong
+   BaseLayout thêm .in-view). Chỉ ẩn khi html.js — không có JS thì mọi thứ
+   hiện sẵn. Trước đây dùng animation-timeline: view() nhưng nó chạy hai
+   chiều: cuộn ngược làm nội dung biến mất trở lại. */
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal-in linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 55%;
-    }
-  }
-}
-
-@keyframes reveal-in {
-  from {
+  html.js .reveal {
     opacity: 0;
     transform: translateY(2.5rem);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
   }
-  to {
+  html.js .reveal.in-view {
     opacity: 1;
     transform: none;
   }
