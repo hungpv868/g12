@@ -27,7 +27,8 @@ Website cho G12 Media — đơn vị cung cấp giải pháp quảng cáo, truy�
 
 ## Tài liệu thiết kế
 
-- **Figma:** https://www.figma.com/design/9UBc9vpQhm3fw0pcj4y5m4/G12?node-id=14-1384
+- **Figma (bản làm việc, account technical@glamira.de):** https://www.figma.com/design/T4KnuJUyeShK0SaBbQq04Y/
+- **Figma (bản gốc designer):** https://www.figma.com/design/9UBc9vpQhm3fw0pcj4y5m4/G12?node-id=14-1384
 - **Drive (mockup + nội dung + assets):** https://drive.google.com/drive/folders/1-EAI3qyKKhgWSwZ30IiexF-E8H9iLpq8
   - `Hình Ảnh/Website/` — 12 mockup Desktop (1440px)
   - `Hình Ảnh/Hình ảnh/` — assets theo trang
