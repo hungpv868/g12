@@ -1,10 +1,8 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import Marquee from '../Marquee.astro';
 import CallUs from '../CallUs.astro';
 import Hero from './Hero.astro';
-import Services from './Services.astro';
-import Projects from './Projects.astro';
+import ServicesProjects from './ServicesProjects.astro';
 import WhoWeAre from './WhoWeAre.astro';
 import Mission from './Mission.astro';
 import Philosophy from './Philosophy.astro';
@@ -20,11 +18,10 @@ const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
 <BaseLayout title={t('home.meta.title')} description={t('home.meta.description')}>
+  {/* Trang chủ trong Figma KHÔNG có dải marquee — dải "…Solution ✦" chỉ
+      xuất hiện ở About Us. Đừng thêm vào đây. */}
   <Hero />
-  <Marquee />
-  <Services />
-  <Projects />
-  <Marquee />
+  <ServicesProjects />
   <WhoWeAre />
   <Mission />
   <Philosophy />

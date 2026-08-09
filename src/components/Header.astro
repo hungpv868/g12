@@ -40,17 +40,21 @@ const links = nav.map((item) => {
       </span>
     </a>
 
-    <!-- Nav desktop: pill bo tròn như thiết kế -->
+    <!-- Nav desktop — Figma: pill 654×52, mục active là viên thuốc cam,
+         giữa các mục có gạch dọc mảnh -->
     <nav class="hidden lg:block" aria-label="Chính">
-      <ul class="flex items-center gap-1 rounded-full bg-surface p-1.5 shadow-inner">
+      <ul
+        class="flex h-[52px] items-center rounded-full bg-surface-raised px-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.08)]"
+      >
         {
-          links.map(({ href, label, active }) => (
-            <li>
+          links.map(({ href, label, active }, i) => (
+            <li class="flex items-center">
+              {i > 0 && <span class="h-5 w-px bg-brand-accent/25" aria-hidden="true" />}
               <a
                 href={href}
                 aria-current={active ? 'page' : undefined}
                 class:list={[
-                  'block rounded-full px-4 py-2 text-sm font-medium transition',
+                  'mx-1.5 block rounded-full px-4 py-1.5 text-sm font-medium whitespace-nowrap transition',
                   active
                     ? 'bg-brand-gradient text-white shadow'
                     : 'text-brand-accent hover:bg-brand-yellow/15',

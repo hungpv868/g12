@@ -10,8 +10,9 @@ const t = useTranslations(lang);
 const points = [t('home.who.i1'), t('home.who.i2'), t('home.who.i3')];
 ---
 
-<section class="py-14 md:py-20">
-  <div class="container-g12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+{/* Figma: khối y ~2206→2850 (644px), tiêu đề ở 2348, logo 445×248 bên phải */}
+<section class="py-14 md:py-[120px]">
+  <div class="container-g12 grid items-center gap-10 lg:grid-cols-[529fr_445fr] lg:gap-16">
     <div class="reveal">
       <h2 class="text-2xl font-bold text-brand-accent uppercase sm:text-3xl md:text-[2rem]">
         {t('home.who.title')}

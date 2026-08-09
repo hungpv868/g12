@@ -1,42 +1,40 @@
 ---
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
+/**
+ * Figma: tiêu đề + đoạn văn bên trái (x 156, rộng 609px), khối trích dẫn
+ * 449×259 bên phải (x 780, y 3465) có đuôi nhọn chỉ xuống dưới-phải.
+ */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const points = [t('home.philosophy.i1'), t('home.philosophy.i2'), t('home.philosophy.i3')];
 ---
 
-<section class="py-14 md:py-20">
-  <div class="container-g12 grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+<section class="py-12 md:py-16">
+  <div class="container-g12 grid items-center gap-10 lg:grid-cols-[609fr_449fr] lg:gap-12">
     <div class="reveal">
-      <h2 class="text-2xl font-bold text-ink-strong uppercase sm:text-3xl md:text-[2rem]">
+      <h2
+        class="text-2xl leading-tight font-bold text-ink-strong uppercase sm:text-3xl md:text-[2.5rem]"
+      >
         {t('home.philosophy.title')}
       </h2>
-      <p class="mt-4 text-sm leading-relaxed md:text-base">{t('home.philosophy.desc')}</p>
-      <ul class="mt-5 flex flex-col gap-2.5">
-        {
-          points.map((p) => (
-            <li class="flex items-start gap-2.5 text-sm font-medium">
-              <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-orange" />
-              {p}
-            </li>
-          ))
-        }
+      <p class="mt-5 text-sm leading-relaxed md:text-base">{t('home.philosophy.desc')}</p>
+      <ul class="mt-4 flex list-disc flex-col gap-2 ps-5 text-sm marker:text-brand-orange">
+        {points.map((p) => <li>{p}</li>)}
       </ul>
     </div>
 
-    <!-- Khối trích dẫn có đuôi nhọn, mô phỏng bong bóng thoại trong thiết kế -->
     <div class="reveal relative">
       <div
-        class="rounded-3xl bg-surface-sunken px-8 py-10 text-center shadow-[var(--shadow-card)] md:py-14"
+        class="grid min-h-[180px] place-items-center rounded-[24px] bg-surface-sunken px-8 py-10 text-center shadow-[var(--shadow-card)] md:min-h-[259px]"
       >
-        <p class="text-xl font-bold text-ink-strong md:text-2xl">
+        <p class="text-xl leading-snug font-bold text-ink-strong md:text-[26px]">
           {t('home.philosophy.badge')}
         </p>
       </div>
       <span
-        class="absolute -bottom-3 left-10 size-7 rotate-45 rounded-br-md bg-surface-sunken md:left-16"
+        class="absolute -bottom-4 right-16 size-9 rotate-45 rounded-br-lg bg-surface-sunken"
         aria-hidden="true"></span>
     </div>
   </div>

@@ -6,11 +6,13 @@ import chois from '~/assets/clients/chois.png';
 import jinFitness from '~/assets/clients/jin-fitness.png';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
+/**
+ * Figma: ảnh nền tràn viền (y 3912→4655), tiêu đề x102 y4023 rộng 788px,
+ * 3 thẻ logo 196×131 tại x = 102 / 328 / 561.
+ */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Logo Jin Fitness bản gốc từ Figma là chữ trắng — đã đảo sang đen sẵn
-// trong file PNG để hiện được trên thẻ nền trắng.
 const clients = [
   { img: matilia, name: 'Matilia Mommy' },
   { img: chois, name: "Choi's Pilates" },
@@ -27,25 +29,27 @@ const clients = [
     loading="lazy"
     class="absolute inset-0 size-full object-cover object-right"
   />
-  <div class="absolute inset-0 bg-linear-to-r from-black/85 via-black/65 to-black/25"></div>
+  <div class="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-black/20"></div>
 
-  <div class="container-g12 relative py-16 md:py-24">
+  {/* Figma: khối cao 744px (y 3912→4656) — nội dung dồn lên nửa trên,
+      phần dưới để trống cho ảnh người thở */}
+  <div class="container-g12 relative py-14 md:pt-[111px] md:pb-[300px]">
     <h2
-      class="reveal max-w-lg text-2xl font-bold text-brand-yellow uppercase sm:text-3xl md:text-[2rem]"
+      class="reveal max-w-[788px] text-2xl leading-[1.35] font-bold text-brand-yellow uppercase sm:text-3xl md:text-[2.5rem]"
       style="text-shadow: var(--shadow-text)"
     >
       {t('home.trust.title1')}<br class="hidden sm:block" />
       {t('home.trust.title2')}
     </h2>
 
-    <ul class="reveal mt-8 flex flex-wrap gap-3 md:mt-12 md:gap-5">
+    <ul class="reveal mt-8 flex flex-wrap gap-4 md:mt-[70px] md:gap-[30px]">
       {
         clients.map((c) => (
-          <li class="h-20 w-32 rounded-2xl bg-white p-4 shadow-xl md:h-24 md:w-40">
+          <li class="h-[92px] w-[140px] rounded-[14px] bg-white p-4 shadow-xl md:h-[131px] md:w-[196px] md:p-6">
             <Image
               src={c.img}
               alt={c.name}
-              width={160}
+              width={196}
               densities={[1, 2]}
               loading="lazy"
               class="size-full object-contain"

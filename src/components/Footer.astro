@@ -32,10 +32,12 @@ const contacts = [
 ---
 
 <footer class="bg-brand-gradient text-white">
-  <div class="container-g12 py-10 md:py-14">
+  {/* Figma: khối footer y 5857→6522. Tiêu đề "Let's Connect" cách mép trên
+      91px, Line 5 ở 6045, nội dung 6090→6320, Line 20 ở 6396 */}
+  <div class="container-g12 py-10 md:pt-[91px] md:pb-0">
     {
       variant === 'full' && (
-        <div class="flex flex-col gap-5 border-b border-white/25 pb-8 sm:flex-row sm:items-center sm:justify-between md:pb-10">
+        <div class="flex flex-col gap-5 border-b border-white/25 pb-8 sm:flex-row sm:items-center sm:justify-between md:pb-[52px]">
           <h2 class="text-3xl font-bold md:text-5xl">
             {t('footer.connect1')} <span class="text-white/60">{t('footer.connect2')}</span>{' '}
             {t('footer.connect3')}
@@ -55,17 +57,18 @@ const contacts = [
       class:list={[
         'grid gap-8',
         variant === 'full'
-          ? 'pt-8 md:grid-cols-3 md:gap-10 md:pt-10'
-          : 'md:grid-cols-[auto_1fr_auto] md:items-center',
+          ? 'pt-8 md:grid-cols-3 md:gap-10 md:pt-[45px] md:pb-[76px]'
+          : 'md:grid-cols-[auto_1fr_auto] md:items-center md:pb-10',
       ]}
     >
       <div class="flex flex-col gap-4">
+        {/* Figma: logo footer 302×165 */}
         <Image
           src={logoWhite}
           alt="G12 Media"
-          width={160}
+          width={302}
           densities={[1, 2]}
-          class="h-14 w-auto md:h-20"
+          class="h-16 w-auto md:h-[165px]"
         />
         <div class="flex gap-3">
           {
@@ -149,7 +152,7 @@ const contacts = [
 
   <div class="border-t border-white/25">
     <div
-      class="container-g12 flex flex-col gap-3 py-4 text-xs sm:flex-row sm:items-center sm:justify-between"
+      class="container-g12 flex flex-col gap-3 py-4 text-xs sm:flex-row sm:items-center sm:justify-between md:py-[38px]"
     >
       <p>Copyright © {year} {t('footer.rights')}</p>
       <div class="flex gap-6">

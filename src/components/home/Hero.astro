@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from '../Icon.astro';
-import Button from '../Button.astro';
 import logoGradient from '~/assets/logo/g12-gradient.png';
 import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
@@ -16,59 +15,70 @@ const checks = [
 ] as const;
 ---
 
-<section
-  class="relative overflow-hidden bg-linear-160 from-surface-peach via-surface to-surface-peach-end"
->
-  <!-- Vệt sáng nền, ẩn với screen reader -->
+{/* Figma: nền gradient dọc #FFD9B5 -> #FFE5C4, cao 747px ở khung 1440 */}
+<section class="bg-linear-to-b from-[#ffd9b5] to-[#ffe5c4] dark:from-[#2a1d12] dark:to-[#1d1610]">
   <div
-    class="pointer-events-none absolute -top-24 -right-24 size-80 rounded-full bg-brand-yellow/20 blur-3xl md:size-[32rem]"
-    aria-hidden="true"
-  >
-  </div>
-
-  <div
-    class="container-g12 relative grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-6 lg:py-24"
+    class="container-g12 grid items-center gap-8 py-12 md:py-16 lg:grid-cols-[1fr_411px] lg:gap-6 lg:py-0 lg:min-h-[660px]"
   >
     <div class="reveal">
+      {/* H1 44px, 2 dòng — Figma */}
       <h1
-        class="text-3xl leading-tight font-bold text-ink-strong sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl"
+        class="text-[2rem] leading-[1.22] font-bold text-ink-strong sm:text-[2.5rem] lg:text-[2.75rem]"
       >
         {t('home.hero.title1')}<br />
         {t('home.hero.title2')}{' '}
         <span class="text-brand-accent">{t('home.hero.title3')}</span>
       </h1>
 
-      <p class="mt-5 max-w-xl border-l-2 border-brand-orange/40 pl-4 text-sm leading-relaxed md:text-base">
+      {/* Gạch ngắn 154px phía trên đoạn mô tả, không phải viền trái */}
+      <hr class="mt-7 w-[154px] border-0 border-t-2 border-ink-strong/70" />
+
+      <p class="mt-4 max-w-[520px] text-sm leading-[1.65] text-ink-strong">
         {t('home.hero.desc')}
       </p>
 
-      <ul class="mt-6 flex flex-col gap-3">
+      <ul class="mt-5 flex flex-col gap-[0.6rem]">
         {
           checks.map((label) => (
-            <li class="flex items-start gap-3 text-sm font-medium text-ink-strong md:text-base">
-              <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-orange text-white">
-                <Icon name="check" size={12} strokeWidth={3} />
-              </span>
+            <li class="flex items-start gap-2.5 text-sm font-semibold text-ink-strong">
+              {/* Dấu tick trần màu cam, không có nền tròn */}
+              <Icon
+                name="check"
+                size={17}
+                strokeWidth={3}
+                class="mt-px shrink-0 text-brand-accent"
+              />
               {label}
             </li>
           ))
         }
       </ul>
 
-      <Button href={localizePath(routes.contact, lang)} class="mt-8">
-        {t('cta.consult')}
-      </Button>
+      {/* Nút 248x62 với vòng tròn mũi tên đè lên mép phải */}
+      <a
+        href={localizePath(routes.contact, lang)}
+        class="group mt-8 inline-flex h-[52px] w-[248px] max-w-full items-center rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange pr-14 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px]"
+      >
+        <span class="relative">
+          {t('cta.consult')}
+          <span
+            class="absolute top-1/2 -right-12 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-surface-raised text-ink-strong shadow-md transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1/2 md:size-12"
+          >
+            <Icon name="arrowRight" size={18} />
+          </span>
+        </span>
+      </a>
     </div>
 
-    <!-- Logo: mobile nằm dưới và nhỏ lại, desktop mới thành khối lớn bên phải -->
+    {/* Logo 411px ở desktop; mobile lên trên và nhỏ lại */}
     <div class="reveal order-first flex justify-center lg:order-none lg:justify-end">
       <Image
         src={logoGradient}
         alt="G12 Media"
-        width={520}
+        width={411}
         densities={[1, 2]}
         loading="eager"
-        class="w-48 max-w-full drop-shadow-2xl sm:w-64 md:w-80 lg:w-full"
+        class="w-44 max-w-full sm:w-56 md:w-72 lg:w-[411px]"
       />
     </div>
   </div>

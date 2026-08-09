@@ -4,9 +4,11 @@
 @import '@fontsource/be-vietnam-pro/vietnamese-400.css';
 @import '@fontsource/be-vietnam-pro/vietnamese-500.css';
 @import '@fontsource/be-vietnam-pro/vietnamese-700.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-800.css';
 @import '@fontsource/be-vietnam-pro/latin-400.css';
 @import '@fontsource/be-vietnam-pro/latin-500.css';
 @import '@fontsource/be-vietnam-pro/latin-700.css';
+@import '@fontsource/be-vietnam-pro/latin-800.css';
 @import '@fontsource/corinthia/vietnamese-400.css';
 @import '@fontsource/corinthia/latin-400.css';
 
@@ -127,21 +129,40 @@
     );
   }
 
-  /* Khối nội dung chuẩn: mobile-first, nới dần theo breakpoint */
+  /* Khối nội dung chuẩn — bám đúng Figma: ở khung 1440px nội dung rộng
+     1196px (lề 122px mỗi bên). Mobile thu về padding 20px. */
   .container-g12 {
     width: 100%;
+    max-width: 1196px;
     margin-inline: auto;
     padding-inline: 1.25rem;
-    max-width: 90rem;
   }
   @media (min-width: 768px) {
     .container-g12 {
-      padding-inline: 2.5rem;
+      padding-inline: 2rem;
     }
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1440px) {
     .container-g12 {
-      padding-inline: 4rem;
+      padding-inline: 0;
+    }
+  }
+
+  /* Khối hẹp hơn dùng cho phần Dự Án tiêu biểu (Figma: 958px) */
+  .container-narrow {
+    width: 100%;
+    max-width: 958px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-narrow {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-narrow {
+      padding-inline: 0;
     }
   }
 }
