@@ -1,4 +1,5 @@
 ---
+import Glow from '../Glow.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
@@ -11,7 +12,10 @@ const t = useTranslations(lang);
 const points = [t('home.philosophy.i1'), t('home.philosophy.i2'), t('home.philosophy.i3')];
 ---
 
-<section class="py-12 md:py-16">
+{/* Ellipse 3634/3635/3638 gom thành quầng sáng lớn bên phải */}
+<section class="relative overflow-hidden py-12 md:py-16">
+  <Glow side="right" top="-10%" size="740px" strong />
+
   <div class="container-g12 grid items-center gap-10 lg:grid-cols-[609fr_449fr] lg:gap-12">
     <div class="reveal">
       <h2

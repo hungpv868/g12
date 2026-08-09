@@ -15,10 +15,14 @@ const checks = [
 ] as const;
 ---
 
-{/* Figma: nền gradient dọc #FFD9B5 -> #FFE5C4, cao 747px ở khung 1440 */}
-<section class="bg-linear-to-b from-[#ffd9b5] to-[#ffe5c4] dark:from-[#2a1d12] dark:to-[#1d1610]">
+{/* Figma: nền gradient dọc #FFD9B5 → #FFE5C4, trải lên tận đỉnh trang phía
+    sau header trong suốt. Margin âm kéo section lên dưới header sticky, rồi
+    padding đẩy nội dung xuống lại. */}
+<section
+  class="-mt-16 bg-linear-to-b/srgb from-[#ffd9b5] to-[#ffe5c4] pt-16 md:-mt-20 md:pt-20 dark:from-[#2a1d12] dark:to-[#1d1610]"
+>
   <div
-    class="container-g12 grid items-center gap-8 py-12 md:py-16 lg:grid-cols-[1fr_411px] lg:gap-6 lg:py-0 lg:min-h-[660px]"
+    class="container-g12 grid items-center gap-8 py-12 md:py-16 lg:grid-cols-[1fr_411px] lg:gap-6 lg:py-0 lg:min-h-[580px]"
   >
     <div class="reveal">
       {/* H1 44px, 2 dòng — Figma */}

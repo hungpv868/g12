@@ -1,0 +1,39 @@
+---
+/**
+ * Quầng sáng trang trí — Figma rải nhiều ellipse mờ cỡ lớn phía sau nội dung
+ * (Ellipse 20/21/3630/3632/3634/3635/3637/3638) để nền kem không bị phẳng.
+ * Đo được: quầng bên trái ~#FFF5D7, bên phải đậm hơn ~#FFE4B4, trên nền #FFFBEE.
+ *
+ * Đặt trong một section có `relative` (và thường là `overflow-hidden`).
+ */
+interface Props {
+  /** Vị trí neo theo mép section */
+  side: 'left' | 'right';
+  /** Khoảng cách từ mép trên section, ví dụ '10%' hoặc '120px' */
+  top: string;
+  /** Đường kính, ví dụ '660px' */
+  size: string;
+  /** Đậm hơn cho các quầng bên phải */
+  strong?: boolean;
+  class?: string;
+}
+
+const { side, top, size, strong = false, class: className = '' } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    'pointer-events-none absolute -z-10 rounded-full blur-[70px]',
+    strong ? 'opacity-70 dark:opacity-[0.13]' : 'opacity-60 dark:opacity-[0.10]',
+    className,
+  ]}
+  style={`
+    ${side}: -8%;
+    top: ${top};
+    width: ${size};
+    height: ${size};
+    background: radial-gradient(circle, ${strong ? '#ffd9a0' : '#fff0c8'} 0%, transparent 70%);
+  `}
+>
+</div>

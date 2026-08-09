@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from '../Icon.astro';
+import Glow from '../Glow.astro';
 import logoGradient from '~/assets/logo/g12-gradient.png';
 import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
@@ -10,8 +11,12 @@ const t = useTranslations(lang);
 const points = [t('home.who.i1'), t('home.who.i2'), t('home.who.i3')];
 ---
 
-{/* Figma: khối y ~2206→2850 (644px), tiêu đề ở 2348, logo 445×248 bên phải */}
-<section class="py-14 md:py-[120px]">
+{/* Figma: khối y ~2206→2850 (644px), tiêu đề ở 2348, logo 445×248 bên phải.
+    Ellipse 20 (trái) và Ellipse 21 (phải) tạo quầng sáng nền. */}
+<section class="relative overflow-hidden py-14 md:py-[120px]">
+  <Glow side="left" top="6%" size="360px" />
+  <Glow side="right" top="20%" size="700px" strong />
+
   <div class="container-g12 grid items-center gap-10 lg:grid-cols-[529fr_445fr] lg:gap-16">
     <div class="reveal">
       <h2 class="text-2xl font-bold text-brand-accent uppercase sm:text-3xl md:text-[2rem]">
