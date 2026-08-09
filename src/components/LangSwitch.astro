@@ -1,0 +1,36 @@
+---
+import { alternatePath, getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { languages, type Lang } from '~/i18n/ui';
+
+const current = getLangFromUrl(Astro.url);
+const t = useTranslations(current);
+const entries = (Object.keys(languages) as Lang[]).map((code) => ({
+  code,
+  href: alternatePath(Astro.url, code),
+  active: code === current,
+}));
+---
+
+<div
+  class="flex shrink-0 items-center rounded-full border border-line p-0.5 text-xs font-bold"
+  role="group"
+  aria-label={t('a11y.switchLang')}
+>
+  {
+    entries.map(({ code, href, active }) => (
+      <a
+        href={href}
+        hreflang={code}
+        aria-current={active ? 'true' : undefined}
+        class:list={[
+          'rounded-full px-2.5 py-1.5 uppercase transition',
+          active
+            ? 'bg-brand-gradient text-white shadow-sm'
+            : 'text-ink-muted hover:text-brand-orange',
+        ]}
+      >
+        {code}
+      </a>
+    ))
+  }
+</div>

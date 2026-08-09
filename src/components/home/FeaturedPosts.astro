@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import choisImg from '~/assets/posts/chois-glow-up.jpg';
+import matiliaImg from '~/assets/posts/matilia-mommy.jpg';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// TODO: thay bằng dữ liệu từ content collection khi dựng trang Blog.
+const posts = [
+  {
+    img: choisImg,
+    category: 'Case Study',
+    title:
+      lang === 'vi'
+        ? 'BẬT MÍ CÔNG THỨC "GLOW-UP" HÌNH ẢNH THƯƠNG HIỆU CHO CHOI\'S PILATES'
+        : 'THE BRAND IMAGE "GLOW-UP" FORMULA FOR CHOI\'S PILATES',
+    slug: 'bat-mi-cong-thuc-glow-up-choi-s-pilates',
+  },
+  {
+    img: matiliaImg,
+    category: 'Case Study',
+    title:
+      lang === 'vi'
+        ? 'ĐỊNH HÌNH VỊ THẾ SỮA BẦU CAO CẤP CHO MATILIA MOMMY'
+        : 'POSITIONING MATILIA MOMMY AS A PREMIUM PRENATAL MILK BRAND',
+    slug: 'dinh-hinh-vi-the-sua-bau-cao-cap-matilia-mommy',
+  },
+];
+---
+
+<section class="py-14 md:py-20">
+  <div class="container-g12">
+    <h2 class="reveal text-lg font-bold text-ink-strong uppercase md:text-2xl">
+      {t('home.posts.title')}
+    </h2>
+
+    <ul class="mt-6 grid gap-5 md:mt-8 md:grid-cols-2">
+      {
+        posts.map((post) => (
+          <li class="reveal flex flex-col gap-4 rounded-3xl bg-surface-sunken p-4 shadow-[var(--shadow-card)] transition duration-300 hover:-translate-y-1 sm:flex-row sm:items-center">
+            <Image
+              src={post.img}
+              alt=""
+              widths={[240, 480]}
+              sizes="(min-width: 640px) 12rem, 100vw"
+              loading="lazy"
+              class="aspect-[4/3] w-full shrink-0 rounded-2xl object-cover sm:w-44"
+            />
+            <div class="flex flex-col items-start gap-2">
+              <span class="text-xs font-bold text-brand-accent">{post.category}</span>
+              <h3 class="line-clamp-3 text-sm leading-snug font-bold text-ink-strong">
+                {post.title}
+              </h3>
+              <a
+                href={`${localizePath(routes.blog, lang)}/${post.slug}`}
+                class="mt-1 inline-flex items-center gap-2 rounded-full bg-brand-gradient px-4 py-2 text-xs font-bold text-white transition hover:gap-3"
+              >
+                {t('cta.learnMore')}
+                <Icon name="arrowRight" size={13} />
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

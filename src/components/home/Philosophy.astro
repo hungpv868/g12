@@ -1,0 +1,43 @@
+---
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const points = [t('home.philosophy.i1'), t('home.philosophy.i2'), t('home.philosophy.i3')];
+---
+
+<section class="py-14 md:py-20">
+  <div class="container-g12 grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+    <div class="reveal">
+      <h2 class="text-2xl font-bold text-ink-strong uppercase sm:text-3xl md:text-[2rem]">
+        {t('home.philosophy.title')}
+      </h2>
+      <p class="mt-4 text-sm leading-relaxed md:text-base">{t('home.philosophy.desc')}</p>
+      <ul class="mt-5 flex flex-col gap-2.5">
+        {
+          points.map((p) => (
+            <li class="flex items-start gap-2.5 text-sm font-medium">
+              <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-orange" />
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Khối trích dẫn có đuôi nhọn, mô phỏng bong bóng thoại trong thiết kế -->
+    <div class="reveal relative">
+      <div
+        class="rounded-3xl bg-surface-sunken px-8 py-10 text-center shadow-[var(--shadow-card)] md:py-14"
+      >
+        <p class="text-xl font-bold text-ink-strong md:text-2xl">
+          {t('home.philosophy.badge')}
+        </p>
+      </div>
+      <span
+        class="absolute -bottom-3 left-10 size-7 rotate-45 rounded-br-md bg-surface-sunken md:left-16"
+        aria-hidden="true"></span>
+    </div>
+  </div>
+</section>

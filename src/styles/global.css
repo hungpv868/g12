@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+
+/* Font self-host, chỉ nạp subset cần dùng */
+@import '@fontsource/be-vietnam-pro/vietnamese-400.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-500.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-700.css';
+@import '@fontsource/be-vietnam-pro/latin-400.css';
+@import '@fontsource/be-vietnam-pro/latin-500.css';
+@import '@fontsource/be-vietnam-pro/latin-700.css';
+@import '@fontsource/corinthia/vietnamese-400.css';
+@import '@fontsource/corinthia/latin-400.css';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------------------------------------------------------------
+   Design tokens
+   Màu light lấy từ Figma (file T4KnuJUyeShK0SaBbQq04Y).
+   Màu dark tự thiết kế: giữ nguyên cam/vàng thương hiệu, đổi nền
+   kem sang nâu-đen ấm để không làm lệch nhiệt độ màu của brand.
+   --------------------------------------------------------------- */
+@theme {
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-script: 'Corinthia', cursive;
+
+  /* Màu thương hiệu — không đổi giữa 2 theme */
+  --color-brand-yellow: #ffba03;
+  --color-brand-orange: #ff812a;
+  --color-brand-accent: #ff842a;
+  --color-brand-deep: #e94b23;
+  --color-brand-ember: #ef754a;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root,
+[data-theme='light'] {
+  --color-surface: #fffbee; /* nền body kem */
+  --color-surface-raised: #fffcf4; /* nav pill, card nổi */
+  --color-surface-sunken: #fff0bd; /* card vàng nhạt */
+  --color-surface-peach: #ffeaca; /* hero gradient đầu */
+  --color-surface-peach-end: #ffdcb8; /* hero gradient cuối */
+  --color-surface-inverse: #1a1512;
+
+  --color-ink: #020763; /* body text navy (theo Figma) */
+  --color-ink-strong: #000000; /* heading */
+  --color-ink-muted: #4a4f7a;
+  --color-ink-on-brand: #ffffff;
+
+  --color-line: #00076312;
+  --shadow-card: 0 4px 24px #ff812a1a;
+  --shadow-text: 0 4px 4px rgb(0 0 0 / 0.25);
+}
+
+[data-theme='dark'] {
+  --color-surface: #16110d;
+  --color-surface-raised: #221b15;
+  --color-surface-sunken: #2c2118;
+  --color-surface-peach: #2a1d12;
+  --color-surface-peach-end: #1d1610;
+  --color-surface-inverse: #fffbee;
+
+  --color-ink: #ede4d3;
+  --color-ink-strong: #fff8ea;
+  --color-ink-muted: #b3a692;
+  --color-ink-on-brand: #16110d;
+
+  --color-line: #ffba0322;
+  --shadow-card: 0 4px 24px #00000066;
+  --shadow-text: 0 4px 12px rgb(0 0 0 / 0.5);
+}
+
+/* Cho Tailwind nhìn thấy các biến theo theme dưới dạng utility */
+@theme inline {
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-surface-sunken: var(--color-surface-sunken);
+  --color-surface-peach: var(--color-surface-peach);
+  --color-surface-peach-end: var(--color-surface-peach-end);
+  --color-surface-inverse: var(--color-surface-inverse);
+  --color-ink: var(--color-ink);
+  --color-ink-strong: var(--color-ink-strong);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-on-brand: var(--color-ink-on-brand);
+  --color-line: var(--color-line);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    transition:
+      background-color 0.3s var(--ease-out-soft),
+      color 0.3s var(--ease-out-soft);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Chữ gradient thương hiệu — dùng cho logo text, số liệu lớn */
+  .text-brand-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-brand-yellow),
+      var(--color-brand-orange)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-brand-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-brand-yellow),
+      var(--color-brand-orange)
+    );
+  }
+
+  /* Khối nội dung chuẩn: mobile-first, nới dần theo breakpoint */
+  .container-g12 {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+    max-width: 90rem;
+  }
+  @media (min-width: 768px) {
+    .container-g12 {
+      padding-inline: 2.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-g12 {
+      padding-inline: 4rem;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------
+   Hiệu ứng
+   --------------------------------------------------------------- */
+
+/* Scroll reveal: dùng scroll-driven animation của CSS, tự thoái lui
+   về trạng thái hiện sẵn nếu trình duyệt không hỗ trợ. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Marquee chạy ngang, dừng khi người dùng tắt chuyển động */
+.marquee-track {
+  animation: marquee-scroll 32s linear infinite;
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

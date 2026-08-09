@@ -34,6 +34,52 @@ Website cho G12 Media — đơn vị cung cấp giải pháp quảng cáo, truy�
   - `Hình Ảnh/Hình ảnh/` — assets theo trang
   - `Nội dung/` — nội dung text toàn site
 
+## Stack
+
+- **Astro 7** — build tĩnh, không JS thừa (trang chủ hiện xuất 0 file JS ngoài)
+- **Tailwind CSS 4** — design token khai báo bằng CSS variables trong `src/styles/global.css`
+- **i18n** — routing sẵn có của Astro: tiếng Việt ở `/`, tiếng Anh ở `/en/`
+- **Light/dark** — đổi giá trị CSS variable theo `data-theme`, script inline chống nháy màu
+- **Font** — Be Vietnam Pro + Corinthia self-host qua `@fontsource`, chỉ nạp subset `latin` + `vietnamese`
+- **Deploy** — Netlify (`netlify.toml`); form liên hệ và nhận tin dùng Netlify Forms, không cần backend
+
+## Chạy
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # xuất ra dist/
+npm run check    # kiểm tra kiểu
+```
+
+## Cấu trúc
+
+```
+src/
+├── layouts/BaseLayout.astro   # Header + Footer + SEO — MỌI trang kế thừa từ đây
+├── components/
+│   ├── Header.astro           # pill nav desktop + drawer mobile (dùng chung)
+│   ├── Footer.astro           # 2 biến thể: full | compact (dùng chung)
+│   ├── Icon.astro             # icon inline theo currentColor, tự hợp dark mode
+│   ├── Marquee.astro  Button.astro  SectionTitle.astro  CallUs.astro
+│   └── home/                  # các section riêng của trang chủ
+├── i18n/                      # ui.ts (chuỗi dịch) + utils.ts (helper route)
+├── config/site.ts             # thông tin liên hệ dùng chung
+├── styles/global.css          # design token light/dark + hiệu ứng
+└── assets/                    # ảnh, Astro tự nén sang WebP khi build
+```
+
+Header và Footer **chỉ khai báo trong `BaseLayout`** — trang con không tự dựng lại, chỉ chọn biến thể footer qua prop `footerVariant`.
+
 ## Trạng thái
 
-Khởi tạo dự án. Chưa chọn stack.
+Xong: khung dự án, design system light/dark, i18n VI/EN, header/footer dùng chung, **trang chủ** (10 section, mobile-first).
+
+Còn lại: About Us, Dự Án, Dịch Vụ, Blog (listing + detail), Liên Hệ.
+
+### Cần G12 cung cấp
+
+- Số điện thoại thật (`src/config/site.ts` đang để `091.xxxx.xxx` theo mockup)
+- Bản dịch tiếng Anh chuẩn — bản hiện tại trong `src/i18n/ui.ts` là bản nháp, cần duyệt lại
+- Nội dung ~12 bài blog đã có thumbnail nhưng chưa có bài viết
+- Link Facebook/TikTok thật (`src/config/site.ts`)

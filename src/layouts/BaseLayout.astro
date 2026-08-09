@@ -1,0 +1,75 @@
+---
+import '~/styles/global.css';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import ThemeScript from '~/components/ThemeScript.astro';
+import { alternatePath, getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { languages, type Lang } from '~/i18n/ui';
+import { site } from '~/config/site';
+
+/**
+ * Layout gốc cho MỌI trang. Header và Footer chỉ khai báo ở đây —
+ * trang con không được tự dựng lại, chỉ chọn biến thể footer qua prop.
+ */
+interface Props {
+  title: string;
+  description: string;
+  footerVariant?: 'full' | 'compact';
+  /** Ảnh OG riêng cho trang, mặc định dùng ảnh chung */
+  ogImage?: string;
+}
+
+const { title, description, footerVariant = 'full', ogImage } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+---
+
+<!doctype html>
+<html lang={lang} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+
+    {
+      (Object.keys(languages) as Lang[]).map((code) => (
+        <link
+          rel="alternate"
+          hreflang={code}
+          href={new URL(alternatePath(Astro.url, code), Astro.site).href}
+        />
+      ))
+    }
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    {ogUrl && <meta property="og:image" content={ogUrl} />}
+    <meta name="twitter:card" content={ogUrl ? 'summary_large_image' : 'summary'} />
+
+    <ThemeScript />
+  </head>
+
+  <body class="min-h-screen overflow-x-hidden">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-surface-raised focus:px-5 focus:py-2.5 focus:font-bold focus:text-brand-orange"
+    >
+      {t('a11y.skipToContent')}
+    </a>
+
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer variant={footerVariant} />
+  </body>
+</html>

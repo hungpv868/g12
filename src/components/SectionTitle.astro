@@ -1,0 +1,54 @@
+---
+/**
+ * Tiêu đề section kiểu G12: chữ hoa, hai màu — phần sau đổi màu nhấn.
+ * Thiết kế dùng pattern này ở mọi trang (DỊCH VỤ *NỔI BẬT*, DỰ ÁN *TIÊU BIỂU*...).
+ */
+interface Props {
+  lead: string;
+  accent?: string;
+  desc?: string;
+  /** Đặt `true` khi tiêu đề nằm trên nền gradient cam */
+  onBrand?: boolean;
+  align?: 'center' | 'left';
+  class?: string;
+}
+
+const {
+  lead,
+  accent,
+  desc,
+  onBrand = false,
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'reveal',
+    align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl',
+    className,
+  ]}
+>
+  <h2
+    class:list={[
+      'text-2xl font-bold tracking-tight uppercase sm:text-3xl md:text-[2.375rem]',
+      onBrand ? 'text-white' : 'text-ink-strong',
+    ]}
+  >
+    {lead}
+    {accent && <span class={onBrand ? 'text-brand-deep' : 'text-brand-accent'}>{accent}</span>}
+  </h2>
+  {
+    desc && (
+      <p
+        class:list={[
+          'mt-3 text-sm leading-relaxed md:mt-4 md:text-base',
+          onBrand ? 'text-white/90' : 'text-ink-muted',
+        ]}
+      >
+        {desc}
+      </p>
+    )
+  }
+</div>

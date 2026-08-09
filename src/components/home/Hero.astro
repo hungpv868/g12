@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import Button from '../Button.astro';
+import logoGradient from '~/assets/logo/g12-gradient.png';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const checks = [
+  t('home.hero.check1'),
+  t('home.hero.check2'),
+  t('home.hero.check3'),
+  t('home.hero.check4'),
+] as const;
+---
+
+<section
+  class="relative overflow-hidden bg-linear-160 from-surface-peach via-surface to-surface-peach-end"
+>
+  <!-- Vệt sáng nền, ẩn với screen reader -->
+  <div
+    class="pointer-events-none absolute -top-24 -right-24 size-80 rounded-full bg-brand-yellow/20 blur-3xl md:size-[32rem]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="container-g12 relative grid items-center gap-10 py-14 md:py-20 lg:grid-cols-[1.1fr_1fr] lg:gap-6 lg:py-24"
+  >
+    <div class="reveal">
+      <h1
+        class="text-3xl leading-tight font-bold text-ink-strong sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl"
+      >
+        {t('home.hero.title1')}<br />
+        {t('home.hero.title2')}{' '}
+        <span class="text-brand-accent">{t('home.hero.title3')}</span>
+      </h1>
+
+      <p class="mt-5 max-w-xl border-l-2 border-brand-orange/40 pl-4 text-sm leading-relaxed md:text-base">
+        {t('home.hero.desc')}
+      </p>
+
+      <ul class="mt-6 flex flex-col gap-3">
+        {
+          checks.map((label) => (
+            <li class="flex items-start gap-3 text-sm font-medium text-ink-strong md:text-base">
+              <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-brand-orange text-white">
+                <Icon name="check" size={12} strokeWidth={3} />
+              </span>
+              {label}
+            </li>
+          ))
+        }
+      </ul>
+
+      <Button href={localizePath(routes.contact, lang)} class="mt-8">
+        {t('cta.consult')}
+      </Button>
+    </div>
+
+    <!-- Logo: mobile nằm dưới và nhỏ lại, desktop mới thành khối lớn bên phải -->
+    <div class="reveal order-first flex justify-center lg:order-none lg:justify-end">
+      <Image
+        src={logoGradient}
+        alt="G12 Media"
+        width={520}
+        densities={[1, 2]}
+        loading="eager"
+        class="w-48 max-w-full drop-shadow-2xl sm:w-64 md:w-80 lg:w-full"
+      />
+    </div>
+  </div>
+</section>

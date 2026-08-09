@@ -1,0 +1,226 @@
+export const languages = {
+  vi: 'Tiếng Việt',
+  en: 'English',
+} as const;
+
+export const defaultLang = 'vi' as const;
+
+export type Lang = keyof typeof languages;
+
+/**
+ * Bản dịch EN hiện là bản nháp do Claude dịch — G12 cần duyệt lại
+ * trước khi lên production. Bản VI là nội dung gốc từ Figma/Doc.
+ */
+export const ui = {
+  vi: {
+    'nav.home': 'Home',
+    'nav.about': 'About Us',
+    'nav.projects': 'Dự Án',
+    'nav.services': 'Dịch Vụ',
+    'nav.blog': 'Blog',
+    'nav.contact': 'Liên Hệ',
+    'nav.menu': 'Mở menu',
+    'nav.close': 'Đóng menu',
+
+    'a11y.toggleTheme': 'Chuyển giao diện sáng/tối',
+    'a11y.switchLang': 'Chuyển ngôn ngữ',
+    'a11y.skipToContent': 'Bỏ qua, tới nội dung chính',
+
+    'cta.consult': 'Liên Hệ Tư Vấn',
+    'cta.learnMore': 'Tìm hiểu',
+    'cta.learnNow': 'Tìm hiểu ngay',
+    'cta.readMore': 'Đọc thêm',
+    'cta.seeMore': 'Xem thêm',
+
+    'marquee.marketing': 'Marketing Solution',
+    'marquee.digital': 'Digital Media Solution',
+    'marquee.advertising': 'Advertising Solution',
+    'marquee.creative': 'Creative Solution',
+
+    'home.meta.title': 'G12 Media — Đối tác Marketing giúp doanh nghiệp phát triển bền vững',
+    'home.meta.description':
+      'G12 Media cung cấp giải pháp Marketing trọn gói: quản trị Fanpage & quảng cáo, content social & TikTok, thiết kế và sản xuất media cho doanh nghiệp Việt.',
+
+    'home.hero.title1': 'Đối tác Marketing giúp',
+    'home.hero.title2': 'doanh nghiệp',
+    'home.hero.title3': 'phát triển bền vững',
+    'home.hero.desc':
+      'Từ chiến lược thương hiệu, quản lý Fanpage đến sản xuất Media và Livestream, G12 cung cấp giải pháp toàn diện giúp doanh nghiệp tối ưu chi phí và tối đa hiệu quả kinh doanh.',
+    'home.hero.check1': 'Quản trị Fanpage & Quảng cáo',
+    'home.hero.check2': 'Thiết kế sáng tạo & Sản xuất Media',
+    'home.hero.check3': 'Tư vấn chiến lược thương hiệu & Marketing',
+    'home.hero.check4': 'Content Social Media & Video TikTok/Reels',
+
+    'home.services.title1': 'DỊCH VỤ',
+    'home.services.title2': 'NỔI BẬT',
+    'home.services.desc':
+      'G12 Media triển khai giải pháp Marketing trọn gói, giúp doanh nghiệp xây dựng thương hiệu, tiếp cận khách hàng và tạo ra tăng trưởng doanh thu bền vững.',
+    'home.services.s1.title': 'MARKETING TỔNG THỂ',
+    'home.services.s1.i1': 'Tư vấn chiến lược thương hiệu',
+    'home.services.s1.i2': 'Lập kế hoạch Marketing',
+    'home.services.s1.i3': 'Định vị sản phẩm & khách hàng mục tiêu',
+    'home.services.s2.title': 'CONTENT SOCIAL & TIKTOK',
+    'home.services.s2.i1': 'Xây dựng concept kênh',
+    'home.services.s2.i2': 'Sản xuất video TikTok/Reels',
+    'home.services.s2.i3': 'Kịch bản, quay dựng, tối ưu xu hướng',
+    'home.services.s3.title': 'QUẢN LÝ FANPAGE & QUẢNG CÁO',
+    'home.services.s3.i1': 'Vận hành Fanpage trọn gói',
+    'home.services.s3.i2': 'Chạy Facebook Ads / TikTok Ads',
+    'home.services.s3.i3': 'Tối ưu chi phí – tăng đơn hàng',
+    'home.services.s4.title': 'THIẾT KẾ & SẢN XUẤT MEDIA',
+    'home.services.s4.i1': 'Chụp ảnh, quay TVC, viral video',
+    'home.services.s4.i2': 'Livestream bán hàng',
+    'home.services.s4.i3': 'Thiết kế ấn phẩm truyền thông',
+
+    'home.projects.title1': 'DỰ ÁN',
+    'home.projects.title2': 'TIÊU BIỂU',
+    'home.projects.desc':
+      'Chúng tôi đã đồng hành cùng nhiều doanh nghiệp ở đa dạng lĩnh vực, giúp họ nâng cao hình ảnh thương hiệu và tăng trưởng khách hàng rõ rệt.',
+
+    'home.who.title': 'G12 MEDIA LÀ AI?',
+    'home.who.lead': 'G12 Media',
+    'home.who.desc':
+      'là đơn vị Truyền thông & Marketing tổng thể, chuyên xây dựng chiến lược thương hiệu, sản xuất nội dung và tối ưu chi phí quảng cáo — giúp doanh nghiệp tăng nhận diện, tăng khách hàng và tăng doanh thu bền vững.',
+    'home.who.sub': 'Chúng tôi tập trung trọng vào:',
+    'home.who.i1': 'Tư duy chiến lược rõ ràng',
+    'home.who.i2': 'Hiệu quả đo lường được',
+    'home.who.i3': 'Triển khai nhanh — đa lượng minh bạch',
+
+    'home.mission.title': 'SỨ MỆNH CỦA CHÚNG TÔI',
+    'home.mission.m1': 'Giúp doanh nghiệp Việt xây dựng thương hiệu bài bản',
+    'home.mission.m2': 'Tối ưu chi phí marketing – tối đa hiệu quả bán hàng',
+    'home.mission.m3': 'Đồng hành từ chiến lược đến triển khai thực tế',
+
+    'home.philosophy.title': 'TRIẾT LÝ HOẠT ĐỘNG',
+    'home.philosophy.desc':
+      'Chúng tôi chỉ thành công khi khách hàng tăng trưởng. Mọi quyết định được triển khai với tinh thần:',
+    'home.philosophy.i1': 'Thấu hiểu trước khi đề xuất',
+    'home.philosophy.i2': 'Cam kết hiệu quả bằng kết quả thực tế',
+    'home.philosophy.i3': 'Đồng hành phát triển bền vững cùng khách hàng',
+    'home.philosophy.badge': 'G12 – GROW TOGETHER',
+
+    'home.trust.title1': 'NHIỀU KHÁCH HÀNG TIN TƯỞNG',
+    'home.trust.title2': 'VÀ SỬ DỤNG DỊCH VỤ',
+
+    'home.posts.title': 'BÀI VIẾT NỔI BẬT',
+    'home.callus.title': 'Call us if you need',
+
+    'footer.connect1': "Let's",
+    'footer.connect2': 'Connect',
+    'footer.connect3': 'There',
+    'footer.contact': 'Contact',
+    'footer.newsletter': 'Get the latest information',
+    'footer.emailPlaceholder': 'Email address',
+    'footer.subscribe': 'Đăng ký nhận tin',
+    'footer.rights': 'G12 Media. All Rights Reserved',
+    'footer.terms': 'Terms of use',
+    'footer.privacy': 'Privacy policy',
+  },
+
+  en: {
+    'nav.home': 'Home',
+    'nav.about': 'About Us',
+    'nav.projects': 'Projects',
+    'nav.services': 'Services',
+    'nav.blog': 'Blog',
+    'nav.contact': 'Contact',
+    'nav.menu': 'Open menu',
+    'nav.close': 'Close menu',
+
+    'a11y.toggleTheme': 'Toggle light/dark theme',
+    'a11y.switchLang': 'Switch language',
+    'a11y.skipToContent': 'Skip to main content',
+
+    'cta.consult': 'Get a Consultation',
+    'cta.learnMore': 'Learn more',
+    'cta.learnNow': 'Learn more',
+    'cta.readMore': 'Read more',
+    'cta.seeMore': 'See more',
+
+    'marquee.marketing': 'Marketing Solution',
+    'marquee.digital': 'Digital Media Solution',
+    'marquee.advertising': 'Advertising Solution',
+    'marquee.creative': 'Creative Solution',
+
+    'home.meta.title': 'G12 Media — The marketing partner for sustainable business growth',
+    'home.meta.description':
+      'G12 Media delivers all-in-one marketing: fanpage management and ads, social and TikTok content, media design and production for Vietnamese businesses.',
+
+    'home.hero.title1': 'The marketing partner for',
+    'home.hero.title2': 'sustainable',
+    'home.hero.title3': 'business growth',
+    'home.hero.desc':
+      'From brand strategy and fanpage management to media production and livestreaming, G12 delivers end-to-end solutions that cut costs and maximise business results.',
+    'home.hero.check1': 'Fanpage management & advertising',
+    'home.hero.check2': 'Creative design & media production',
+    'home.hero.check3': 'Brand & marketing strategy consulting',
+    'home.hero.check4': 'Social content & TikTok/Reels video',
+
+    'home.services.title1': 'FEATURED',
+    'home.services.title2': 'SERVICES',
+    'home.services.desc':
+      'G12 Media delivers all-in-one marketing solutions that help businesses build their brand, reach customers and grow revenue sustainably.',
+    'home.services.s1.title': 'FULL-SERVICE MARKETING',
+    'home.services.s1.i1': 'Brand strategy consulting',
+    'home.services.s1.i2': 'Marketing planning',
+    'home.services.s1.i3': 'Product & target audience positioning',
+    'home.services.s2.title': 'SOCIAL CONTENT & TIKTOK',
+    'home.services.s2.i1': 'Channel concept development',
+    'home.services.s2.i2': 'TikTok/Reels video production',
+    'home.services.s2.i3': 'Scripting, filming, trend optimisation',
+    'home.services.s3.title': 'FANPAGE & ADS MANAGEMENT',
+    'home.services.s3.i1': 'End-to-end fanpage operations',
+    'home.services.s3.i2': 'Facebook Ads / TikTok Ads',
+    'home.services.s3.i3': 'Lower cost — more orders',
+    'home.services.s4.title': 'DESIGN & MEDIA PRODUCTION',
+    'home.services.s4.i1': 'Photography, TVC, viral video',
+    'home.services.s4.i2': 'Livestream selling',
+    'home.services.s4.i3': 'Communication collateral design',
+
+    'home.projects.title1': 'FEATURED',
+    'home.projects.title2': 'PROJECTS',
+    'home.projects.desc':
+      'We have partnered with businesses across many industries, lifting their brand image and driving measurable customer growth.',
+
+    'home.who.title': 'WHO IS G12 MEDIA?',
+    'home.who.lead': 'G12 Media',
+    'home.who.desc':
+      'is a full-service communications and marketing agency specialising in brand strategy, content production and ad cost optimisation — helping businesses grow awareness, customers and revenue sustainably.',
+    'home.who.sub': 'We focus on:',
+    'home.who.i1': 'Clear strategic thinking',
+    'home.who.i2': 'Measurable results',
+    'home.who.i3': 'Fast execution — transparent reporting',
+
+    'home.mission.title': 'OUR MISSION',
+    'home.mission.m1': 'Help Vietnamese businesses build brands methodically',
+    'home.mission.m2': 'Cut marketing cost — maximise sales performance',
+    'home.mission.m3': 'Walk with you from strategy to real execution',
+
+    'home.philosophy.title': 'HOW WE WORK',
+    'home.philosophy.desc':
+      'We only succeed when our clients grow. Every decision we make follows three principles:',
+    'home.philosophy.i1': 'Understand before proposing',
+    'home.philosophy.i2': 'Commit to results, proven by numbers',
+    'home.philosophy.i3': 'Grow sustainably alongside our clients',
+    'home.philosophy.badge': 'G12 – GROW TOGETHER',
+
+    'home.trust.title1': 'TRUSTED BY MANY CLIENTS',
+    'home.trust.title2': 'WHO USE OUR SERVICES',
+
+    'home.posts.title': 'FEATURED ARTICLES',
+    'home.callus.title': 'Call us if you need',
+
+    'footer.connect1': "Let's",
+    'footer.connect2': 'Connect',
+    'footer.connect3': 'There',
+    'footer.contact': 'Contact',
+    'footer.newsletter': 'Get the latest information',
+    'footer.emailPlaceholder': 'Email address',
+    'footer.subscribe': 'Subscribe',
+    'footer.rights': 'G12 Media. All Rights Reserved',
+    'footer.terms': 'Terms of use',
+    'footer.privacy': 'Privacy policy',
+  },
+} as const;
+
+export type UIKey = keyof (typeof ui)['vi'];

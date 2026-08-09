@@ -1,0 +1,33 @@
+---
+import Icon from '../Icon.astro';
+import SectionTitle from '../SectionTitle.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items = [
+  { icon: 'chart' as const, text: t('home.mission.m1') },
+  { icon: 'target' as const, text: t('home.mission.m2') },
+  { icon: 'users' as const, text: t('home.mission.m3') },
+];
+---
+
+<section class="py-14 md:py-20">
+  <div class="container-g12">
+    <SectionTitle lead={t('home.mission.title')} />
+
+    <ul class="mt-10 grid gap-8 sm:grid-cols-3 md:mt-14 md:gap-6">
+      {
+        items.map((item) => (
+          <li class="reveal flex flex-col items-center gap-4 text-center">
+            <span class="bg-brand-gradient grid size-16 place-items-center rounded-2xl text-white shadow-lg shadow-brand-orange/20 md:size-20">
+              <Icon name={item.icon} size={34} strokeWidth={2} />
+            </span>
+            <p class="max-w-[15rem] text-sm leading-relaxed">{item.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

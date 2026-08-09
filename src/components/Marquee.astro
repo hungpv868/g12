@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+interface Props {
+  /** Lặp lại một chuỗi cố định thay vì 4 solution mặc định */
+  items?: string[];
+  class?: string;
+}
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+const { items, class: className = '' } = Astro.props;
+
+const labels = items ?? [
+  t('marquee.marketing'),
+  t('marquee.digital'),
+  t('marquee.advertising'),
+  t('marquee.creative'),
+];
+
+// Nhân đôi để vòng lặp translateX(-50%) nối liền không hụt
+const track = [...labels, ...labels];
+---
+
+<div
+  class:list={['bg-brand-gradient overflow-hidden py-3 md:py-4', className]}
+  role="presentation"
+>
+  <div class="marquee-track flex w-max items-center gap-6 md:gap-10">
+    {
+      track.map((label) => (
+        <>
+          <span
+            class="text-base font-bold whitespace-nowrap text-white md:text-2xl lg:text-[2rem]"
+            style="text-shadow: var(--shadow-text)"
+          >
+            {label}
+          </span>
+          <Icon name="sparkle" size={18} class="shrink-0 fill-white text-white" strokeWidth={1} />
+        </>
+      ))
+    }
+  </div>
+</div>

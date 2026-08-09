@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import logoGradient from '~/assets/logo/g12-gradient.png';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const points = [t('home.who.i1'), t('home.who.i2'), t('home.who.i3')];
+---
+
+<section class="py-14 md:py-20">
+  <div class="container-g12 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div class="reveal">
+      <h2 class="text-2xl font-bold text-brand-accent uppercase sm:text-3xl md:text-[2rem]">
+        {t('home.who.title')}
+      </h2>
+
+      <p class="mt-4 text-sm leading-relaxed md:text-base">
+        <strong class="font-bold text-ink-strong">{t('home.who.lead')}</strong>
+        {' '}{t('home.who.desc')}
+      </p>
+
+      <p class="mt-5 text-sm font-semibold text-ink-strong">{t('home.who.sub')}</p>
+      <ul class="mt-3 flex flex-col gap-2.5">
+        {
+          points.map((p) => (
+            <li class="flex items-start gap-2.5 text-sm">
+              <span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-orange" />
+              {p}
+            </li>
+          ))
+        }
+      </ul>
+
+      <a
+        href={localizePath(routes.about, lang)}
+        class="mt-7 inline-flex items-center gap-2 text-sm font-bold text-brand-orange transition hover:gap-3"
+      >
+        {t('cta.learnNow')}
+        <Icon name="arrowRight" size={15} />
+      </a>
+    </div>
+
+    <div class="reveal flex justify-center">
+      <Image
+        src={logoGradient}
+        alt=""
+        width={460}
+        densities={[1, 2]}
+        loading="lazy"
+        class="w-52 max-w-full drop-shadow-2xl sm:w-72 lg:w-full"
+      />
+    </div>
+  </div>
+</section>

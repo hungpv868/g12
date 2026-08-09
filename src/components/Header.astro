@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import LangSwitch from './LangSwitch.astro';
+import logoGradient from '~/assets/logo/g12-gradient.png';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const nav = [
+  { key: 'nav.home', path: routes.home },
+  { key: 'nav.about', path: routes.about },
+  { key: 'nav.projects', path: routes.projects },
+  { key: 'nav.services', path: routes.services },
+  { key: 'nav.blog', path: routes.blog },
+  { key: 'nav.contact', path: routes.contact },
+] as const;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = nav.map((item) => {
+  const href = localizePath(item.path, lang);
+  const normalized = href.replace(/\/$/, '') || '/';
+  return {
+    href,
+    label: t(item.key),
+    active: item.path === '/' ? currentPath === normalized : currentPath.startsWith(normalized),
+  };
+});
+---
+
+<header class="sticky top-0 z-50 bg-surface-raised/90 shadow-sm backdrop-blur-md">
+  <div class="container-g12 flex h-16 items-center justify-between gap-4 md:h-20">
+    <a href={localizePath(routes.home, lang)} class="flex shrink-0 items-center gap-2.5">
+      <Image src={logoGradient} alt="G12 Media" width={54} densities={[1, 2]} class="h-8 w-auto" />
+      <span class="hidden leading-tight sm:block">
+        <span class="block text-sm font-bold text-ink-strong">G12 MEDIA</span>
+        <span class="block text-[0.65rem] text-ink-muted">Grow together</span>
+      </span>
+    </a>
+
+    <!-- Nav desktop: pill bo tròn như thiết kế -->
+    <nav class="hidden lg:block" aria-label="Chính">
+      <ul class="flex items-center gap-1 rounded-full bg-surface p-1.5 shadow-inner">
+        {
+          links.map(({ href, label, active }) => (
+            <li>
+              <a
+                href={href}
+                aria-current={active ? 'page' : undefined}
+                class:list={[
+                  'block rounded-full px-4 py-2 text-sm font-medium transition',
+                  active
+                    ? 'bg-brand-gradient text-white shadow'
+                    : 'text-brand-accent hover:bg-brand-yellow/15',
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-2">
+      <LangSwitch />
+      <ThemeToggle />
+      <button
+        type="button"
+        data-drawer-open
+        class="grid size-10 place-items-center rounded-full border border-line text-ink-strong transition hover:bg-brand-yellow/15 lg:hidden"
+        aria-label={t('nav.menu')}
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+      >
+        <Icon name="menu" size={20} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Drawer mobile -->
+<div
+  id="mobile-drawer"
+  data-drawer
+  class="invisible fixed inset-0 z-60 opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"
+>
+  <div data-drawer-close class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <nav
+    data-drawer-panel
+    class="absolute inset-y-0 right-0 flex w-[min(20rem,85vw)] translate-x-full flex-col bg-surface-raised shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    aria-label={t('nav.menu')}
+  >
+    <div class="flex h-16 items-center justify-between px-5">
+      <span class="text-sm font-bold text-ink-strong">G12 MEDIA</span>
+      <button
+        type="button"
+        data-drawer-close
+        class="grid size-10 place-items-center rounded-full border border-line text-ink-strong"
+        aria-label={t('nav.close')}
+      >
+        <Icon name="close" size={20} />
+      </button>
+    </div>
+    <ul class="flex flex-col gap-1 px-4 py-4">
+      {
+        links.map(({ href, label, active }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'block rounded-2xl px-4 py-3.5 text-base font-semibold transition',
+                active
+                  ? 'bg-brand-gradient text-white'
+                  : 'text-ink-strong hover:bg-brand-yellow/15',
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a
+      href={localizePath(routes.contact, lang)}
+      class="bg-brand-gradient mx-4 mt-auto mb-6 flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-bold text-white"
+    >
+      {t('cta.consult')}
+      <Icon name="arrowRight" size={18} />
+    </a>
+  </nav>
+</div>
+
+<script>
+  const drawer = document.querySelector<HTMLElement>('[data-drawer]');
+  const panel = document.querySelector<HTMLElement>('[data-drawer-panel]');
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-drawer-open]');
+
+  const setOpen = (open: boolean) => {
+    if (!drawer || !panel || !openBtn) return;
+    drawer.classList.toggle('invisible', !open);
+    drawer.classList.toggle('opacity-0', !open);
+    panel.classList.toggle('translate-x-full', !open);
+    openBtn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  openBtn?.addEventListener('click', () => setOpen(true));
+  document
+    .querySelectorAll('[data-drawer-close]')
+    .forEach((el) => el.addEventListener('click', () => setOpen(false)));
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>

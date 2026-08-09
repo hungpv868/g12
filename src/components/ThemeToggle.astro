@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="grid size-10 shrink-0 place-items-center rounded-full border border-line text-ink-strong transition hover:bg-brand-yellow/15 hover:text-brand-orange"
+  aria-label={t('a11y.toggleTheme')}
+>
+  <Icon name="sun" size={18} class="hidden dark:block" />
+  <Icon name="moon" size={18} class="block dark:hidden" />
+</button>
+
+<script>
+  document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const root = document.documentElement;
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      root.style.colorScheme = next;
+      localStorage.setItem('g12-theme', next);
+    });
+  });
+</script>

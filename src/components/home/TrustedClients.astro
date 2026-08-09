@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import photo from '~/assets/misc/trusted-clients.jpg';
+import matilia from '~/assets/clients/matilia.png';
+import chois from '~/assets/clients/chois.png';
+import jinFitness from '~/assets/clients/jin-fitness.png';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Logo Jin Fitness bản gốc từ Figma là chữ trắng — đã đảo sang đen sẵn
+// trong file PNG để hiện được trên thẻ nền trắng.
+const clients = [
+  { img: matilia, name: 'Matilia Mommy' },
+  { img: chois, name: "Choi's Pilates" },
+  { img: jinFitness, name: 'Jin Fitness' },
+];
+---
+
+<section class="relative overflow-hidden">
+  <Image
+    src={photo}
+    alt=""
+    widths={[512, 1024]}
+    sizes="100vw"
+    loading="lazy"
+    class="absolute inset-0 size-full object-cover object-right"
+  />
+  <div class="absolute inset-0 bg-linear-to-r from-black/85 via-black/65 to-black/25"></div>
+
+  <div class="container-g12 relative py-16 md:py-24">
+    <h2
+      class="reveal max-w-lg text-2xl font-bold text-brand-yellow uppercase sm:text-3xl md:text-[2rem]"
+      style="text-shadow: var(--shadow-text)"
+    >
+      {t('home.trust.title1')}<br class="hidden sm:block" />
+      {t('home.trust.title2')}
+    </h2>
+
+    <ul class="reveal mt-8 flex flex-wrap gap-3 md:mt-12 md:gap-5">
+      {
+        clients.map((c) => (
+          <li class="h-20 w-32 rounded-2xl bg-white p-4 shadow-xl md:h-24 md:w-40">
+            <Image
+              src={c.img}
+              alt={c.name}
+              width={160}
+              densities={[1, 2]}
+              loading="lazy"
+              class="size-full object-contain"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

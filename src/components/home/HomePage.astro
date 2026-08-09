@@ -1,0 +1,34 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Marquee from '../Marquee.astro';
+import CallUs from '../CallUs.astro';
+import Hero from './Hero.astro';
+import Services from './Services.astro';
+import Projects from './Projects.astro';
+import WhoWeAre from './WhoWeAre.astro';
+import Mission from './Mission.astro';
+import Philosophy from './Philosophy.astro';
+import TrustedClients from './TrustedClients.astro';
+import FeaturedPosts from './FeaturedPosts.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+/**
+ * Nội dung trang chủ dùng chung cho cả `/` (vi) và `/en/`.
+ * Ngôn ngữ tự suy ra từ URL nên không cần truyền prop.
+ */
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<BaseLayout title={t('home.meta.title')} description={t('home.meta.description')}>
+  <Hero />
+  <Marquee />
+  <Services />
+  <Projects />
+  <Marquee />
+  <WhoWeAre />
+  <Mission />
+  <Philosophy />
+  <TrustedClients />
+  <FeaturedPosts />
+  <CallUs />
+</BaseLayout>

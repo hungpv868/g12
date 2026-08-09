@@ -1,0 +1,49 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'gradient' | 'solid' | 'ghost';
+  size?: 'sm' | 'md';
+  arrow?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'gradient',
+  size = 'md',
+  arrow = true,
+  class: className = '',
+} = Astro.props;
+
+const variants = {
+  gradient: 'bg-brand-gradient text-white shadow-lg shadow-brand-orange/25',
+  solid: 'bg-surface-raised text-brand-orange shadow-lg',
+  ghost: 'border border-brand-orange/40 text-brand-orange hover:bg-brand-yellow/10',
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-xs gap-1.5',
+  md: 'px-6 py-3 text-sm gap-2.5',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'group inline-flex w-fit items-center justify-center rounded-full font-bold transition duration-300 hover:-translate-y-0.5 hover:brightness-105',
+    variants[variant],
+    sizes[size],
+    className,
+  ]}
+>
+  <slot />
+  {
+    arrow && (
+      <span class="grid size-6 shrink-0 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
+        <Icon name="arrowRight" size={14} />
+      </span>
+    )
+  }
+</a>

@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import SectionTitle from '../SectionTitle.astro';
+import jinFitness from '~/assets/projects/jin-fitness.jpg';
+import chois from '~/assets/projects/chois.jpg';
+import matilia from '~/assets/projects/matilia.jpg';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const href = localizePath(routes.projects, lang);
+
+// Thiết kế desktop: 2 banner vuông trên một hàng, Matilia chạy full-width bên dưới.
+const projects = [
+  { img: jinFitness, name: 'Jin Fitness', wide: false },
+  { img: chois, name: "Choi's Pilates", wide: false },
+  { img: matilia, name: 'Matilia Mommy', wide: true },
+];
+---
+
+<section class="py-14 md:py-20">
+  <div class="container-g12">
+    <SectionTitle
+      lead={`${t('home.projects.title1')} `}
+      accent={t('home.projects.title2')}
+      desc={t('home.projects.desc')}
+    />
+
+    <ul class="mt-10 grid gap-5 md:mt-14 md:grid-cols-2">
+      {
+        projects.map((p) => (
+          <li
+            class:list={[
+              'reveal group relative overflow-hidden rounded-3xl shadow-[var(--shadow-card)]',
+              p.wide && 'md:col-span-2',
+            ]}
+          >
+            <Image
+              src={p.img}
+              alt={`Dự án ${p.name}`}
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              class:list={[
+                'w-full object-cover transition duration-500 group-hover:scale-105',
+                p.wide ? 'aspect-[16/9] md:aspect-[2200/814]' : 'aspect-square',
+              ]}
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+            <a
+              href={href}
+              class="absolute bottom-4 left-1/2 inline-flex -translate-x-1/2 items-center gap-2 rounded-full bg-brand-gradient px-5 py-2 text-xs font-bold text-white shadow-lg transition hover:gap-3"
+            >
+              {t('cta.learnMore')}
+              <Icon name="arrowRight" size={13} />
+              <span class="sr-only">— {p.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
