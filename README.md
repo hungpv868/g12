@@ -1,5 +1,7 @@
 # G12 Media — Website
 
+**Live:** https://g12media.netlify.app (production) · https://hungpv868.github.io/g12/ (preview)
+
 Website cho G12 Media — đơn vị cung cấp giải pháp quảng cáo, truyền thông và marketing all-in-one.
 
 ## Sitemap
