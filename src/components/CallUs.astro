@@ -6,13 +6,13 @@ import ticketCream from '~/assets/misc/ticket-cream.png';
 import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
 /**
- * Figma (Group 1244830931, 1238×507): 4 vé xếp 2×2, nghiêng nhẹ và gối lên nhau.
- * Hai biến thể nền lấy từ Figma:
- *  - ticket-orange: cam bên trái → kem bên phải, chữ trắng
- *  - ticket-cream : kem bên trái → cam bên phải, chữ #E94B23
- * Cuống vé bên phải có nút "Liên hệ" chữ xoay dọc.
+ * Figma (Group 1244830931, 1238×507): 4 tickets in a 2×2 stack, slightly tilted and overlapping.
+ * Two background variants taken from Figma:
+ *  - ticket-orange: orange on the left → cream on the right, white text
+ *  - ticket-cream : cream on the left → orange on the right, #E94B23 text
+ * The right ticket stub has a "Liên hệ" button with vertical text.
  *
- * Dùng chung ở trang chủ, About Us và Dịch Vụ.
+ * Shared by the home page, About Us and Services.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -27,7 +27,7 @@ const tickets = [
 ];
 ---
 
-{/* Ellipse 3632 (trái) và Ellipse 3637 (phải) tạo quầng sáng nền */}
+{/* Ellipse 3632 (left) and Ellipse 3637 (right) form the background glow */}
 <section class="relative overflow-hidden py-12 md:py-16">
   <Glow side="left" top="8%" size="540px" />
   <Glow side="right" top="30%" size="740px" strong />
@@ -43,7 +43,7 @@ const tickets = [
           <li
             class:list={[
               'reveal',
-              /* hàng dưới thụt vào và gối lên hàng trên như bản thiết kế */
+              /* bottom row is inset and overlaps the top row, as in the design */
               i >= 2 && 'md:-mt-6 md:translate-x-6',
             ]}
             style={`--tilt:${item.tilt}`}
@@ -61,7 +61,7 @@ const tickets = [
                 class="w-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.18)]"
               />
 
-              {/* Nhãn dịch vụ — canh giữa phần thân vé (72% bên trái) */}
+              {/* Service label — centered in the ticket body (left 72%) */}
               <span
                 class:list={[
                   'absolute inset-y-0 left-0 grid w-[72%] place-items-center px-[8%] text-center text-xs leading-tight font-bold uppercase sm:text-sm md:text-base',
@@ -71,7 +71,7 @@ const tickets = [
                 {item.label}
               </span>
 
-              {/* Nút trên cuống vé */}
+              {/* Button on the ticket stub */}
               <span
                 class="absolute top-1/2 right-[9.5%] grid h-[46%] w-[7%] -translate-y-1/2 place-items-center rounded-full bg-linear-to-b from-[#ffd23f] to-[#ff9f17] shadow-md transition group-hover:brightness-110"
               >

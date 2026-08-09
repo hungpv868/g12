@@ -5,14 +5,14 @@ import matiliaImg from '~/assets/posts/matilia-mommy.jpg';
 import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
 /**
- * Figma: tiêu đề x122 y4722 kèm Line 19 rộng 124px ngay dưới.
- * 2 thẻ 581×266 (x 123 và 750, khe 46px); trong thẻ có ảnh ~268×226 bên trái,
- * nhãn chuyên mục + tiêu đề + nút 195×47 bên phải.
+ * Figma: title at x122 y4722 with a 124px-wide Line 19 right below.
+ * 2 cards 581×266 (x 123 and 750, 46px gap); each card has a ~268×226 image on
+ * the left, category label + title + 195×47 button on the right.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// TODO: thay bằng content collection khi dựng trang Blog
+// TODO: replace with the content collection once the Blog page is built
 const posts = [
   {
     img: choisImg,

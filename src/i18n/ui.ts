@@ -8,8 +8,8 @@ export const defaultLang = 'vi' as const;
 export type Lang = keyof typeof languages;
 
 /**
- * Bản dịch EN hiện là bản nháp do Claude dịch — G12 cần duyệt lại
- * trước khi lên production. Bản VI là nội dung gốc từ Figma/Doc.
+ * The EN translations are a draft by Claude — G12 needs to review them
+ * before production. The VI copy is the original content from Figma/Doc.
  */
 export const ui = {
   vi: {

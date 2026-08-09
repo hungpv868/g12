@@ -30,8 +30,8 @@ const links = nav.map((item) => {
 });
 ---
 
-{/* Figma không có thanh header đặc: header trong suốt nằm trên gradient hero,
-    chỉ riêng pill điều hướng có nền. Khi cuộn mới thêm nền mờ cho dễ đọc. */}
+{/* Figma has no solid header bar: the header is transparent over the hero gradient,
+    only the nav pill has a background. A blurred background is added on scroll for readability. */}
 <header data-header class="sticky top-0 z-50 transition-colors duration-300">
   <div class="container-g12 flex h-16 items-center justify-between gap-4 md:h-20">
     <a href={localizePath(routes.home, lang)} class="flex shrink-0 items-center gap-2.5">
@@ -42,9 +42,9 @@ const links = nav.map((item) => {
       </span>
     </a>
 
-    <!-- Nav desktop — Figma: pill 654×52, mục active là viên thuốc cam,
-         giữa các mục có gạch dọc mảnh -->
-    <nav class="hidden lg:block" aria-label="Chính">
+    <!-- Desktop nav — Figma: pill 654×52, active item is an orange pill,
+         thin vertical dividers between items -->
+    <nav class="hidden lg:block" aria-label="Main">
       <ul
         class="flex h-[52px] items-center rounded-full bg-surface-raised px-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.08)]"
       >
@@ -141,7 +141,7 @@ const links = nav.map((item) => {
 </div>
 
 <script>
-  // Header trong suốt ở đầu trang, có nền mờ khi đã cuộn
+  // Header is transparent at the top of the page, gets a blurred background once scrolled
   const header = document.querySelector<HTMLElement>('[data-header]');
   const onScroll = () => {
     header?.classList.toggle('is-stuck', window.scrollY > 24);

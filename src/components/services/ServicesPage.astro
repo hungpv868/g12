@@ -11,9 +11,9 @@ import { serviceBlocks } from '~/data/services';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
- * Dịch Vụ — Figma frame 1:1430 (Desktop-12, 1440×4087), geo/services.txt.
- * 4 khối text+ảnh vuông (~490px) xen kẽ phải/trái, ngăn nhau bằng marquee
- * vàng. Ảnh crop từ bản export Figma (Drive không có bộ này).
+ * Services — Figma frame 1:1430 (Desktop-12, 1440×4087), geo/services.txt.
+ * 4 text + square image (~490px) blocks alternating right/left, separated by
+ * yellow marquees. Images cropped from the Figma export (Drive lacks this set).
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

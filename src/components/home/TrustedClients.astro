@@ -7,8 +7,8 @@ import jinFitness from '~/assets/clients/jin-fitness.png';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
- * Figma: ảnh nền tràn viền (y 3912→4655), tiêu đề x102 y4023 rộng 788px,
- * 3 thẻ logo 196×131 tại x = 102 / 328 / 561.
+ * Figma: full-bleed background photo (y 3912→4655), title x102 y4023 788px wide,
+ * 3 logo cards 196×131 at x = 102 / 328 / 561.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -31,8 +31,8 @@ const clients = [
   />
   <div class="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-black/20"></div>
 
-  {/* Figma: khối cao 744px (y 3912→4656) — nội dung dồn lên nửa trên,
-      phần dưới để trống cho ảnh người thở */}
+  {/* Figma: 744px-tall block (y 3912→4656) — content packed into the top half,
+      the bottom left empty to let the photo of the person breathe */}
   <div class="container-g12 relative py-14 md:pt-[111px] md:pb-[300px]">
     <h2
       class="reveal max-w-[788px] text-2xl leading-[1.35] font-bold text-brand-yellow uppercase sm:text-3xl md:text-[2.5rem]"

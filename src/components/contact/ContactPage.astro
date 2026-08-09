@@ -7,12 +7,12 @@ import banner from '~/assets/contact/banner.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
- * Liên Hệ — Figma frame 1:1314 (Desktop-10, 1440×1103), geo/contact.txt.
- * Trái: H1 + form 4 field bo tròn (input 611×54, textarea 611×120).
- * Phải: banner 538×538. Footer gọn.
+ * Contact — Figma frame 1:1314 (Desktop-10, 1440×1103), geo/contact.txt.
+ * Left: H1 + form with 4 rounded fields (input 611×54, textarea 611×120).
+ * Right: 538×538 banner. Compact footer.
  *
- * Mockup KHÔNG có nút submit — đã bổ sung (form không nút thì không gửi
- * được); cần G12 xác nhận lại thiết kế nút. Gửi qua Netlify Forms.
+ * The mockup has NO submit button — one was added (a form without a button
+ * can't submit); G12 needs to confirm the button design. Submits via Netlify Forms.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -46,7 +46,7 @@ const inputCls =
         >
           <input type="hidden" name="form-name" value="contact" />
           <p class="hidden">
-            <label>Không điền vào ô này: <input name="bot-field" /></label>
+            <label>Do not fill this in: <input name="bot-field" /></label>
           </p>
 
           <div>
@@ -130,7 +130,7 @@ const inputCls =
   </section>
 
   <script>
-    // Netlify redirect về ?sent=1 — hiện thông báo thành công
+    // Netlify redirects back to ?sent=1 — show the success message
     if (new URLSearchParams(location.search).has('sent')) {
       document.querySelector('[data-sent-note]')?.removeAttribute('hidden');
     }

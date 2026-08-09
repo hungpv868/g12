@@ -26,13 +26,13 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # Bản GitHub Pages phục vụ dưới /g12/ — Netlify/domain thật không
-          # đặt env này nên vẫn build ở gốc.
+          # The GitHub Pages build is served under /g12/ — Netlify/the real
+          # domain don't set these env vars, so they still build at the root.
           SITE: https://hungpv868.github.io
           BASE: /g12
       - uses: actions/configure-pages@v5
         with:
-          # Tự bật GitHub Pages lần chạy đầu, khỏi phải bật tay trong Settings
+          # Auto-enables GitHub Pages on the first run, no manual toggle in Settings
           enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:

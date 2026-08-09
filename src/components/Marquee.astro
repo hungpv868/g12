@@ -3,11 +3,11 @@ import Icon from './Icon.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 interface Props {
-  /** Lặp lại một chuỗi cố định thay vì 4 solution mặc định */
+  /** Repeat a fixed string instead of the 4 default solutions */
   items?: string[];
   /**
-   * `brand` — gradient cam đậm (mặc định).
-   * `gold` — gradient vàng nhạt #FEE8A3→#FFD24C dùng ở trang About Us.
+   * `brand` — deep orange gradient (default).
+   * `gold` — pale yellow gradient #FEE8A3→#FFD24C used on the About Us page.
    */
   variant?: 'brand' | 'gold';
   class?: string;
@@ -23,7 +23,7 @@ const labels = items ?? [
   t('marquee.creative'),
 ];
 
-// Nhân đôi để vòng lặp translateX(-50%) nối liền không hụt
+// Doubled so the translateX(-50%) loop connects seamlessly
 const track = [...labels, ...labels];
 ---
 

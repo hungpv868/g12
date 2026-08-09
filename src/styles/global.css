@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-/* Font self-host, chỉ nạp subset cần dùng */
+/* Self-hosted fonts, loading only the subsets we use */
 @import '@fontsource/be-vietnam-pro/vietnamese-400.css';
 @import '@fontsource/be-vietnam-pro/vietnamese-500.css';
 @import '@fontsource/be-vietnam-pro/vietnamese-700.css';
@@ -16,15 +16,16 @@
 
 /* ---------------------------------------------------------------
    Design tokens
-   Màu light lấy từ Figma (file T4KnuJUyeShK0SaBbQq04Y).
-   Màu dark tự thiết kế: giữ nguyên cam/vàng thương hiệu, đổi nền
-   kem sang nâu-đen ấm để không làm lệch nhiệt độ màu của brand.
+   Light colors come from Figma (file T4KnuJUyeShK0SaBbQq04Y).
+   Dark colors are our own design: keep the brand orange/yellow, swap
+   the cream background for a warm brown-black so the brand's color
+   temperature stays intact.
    --------------------------------------------------------------- */
 @theme {
   --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
   --font-script: 'Corinthia', cursive;
 
-  /* Màu thương hiệu — không đổi giữa 2 theme */
+  /* Brand colors — identical across both themes */
   --color-brand-yellow: #ffba03;
   --color-brand-orange: #ff812a;
   --color-brand-accent: #ff842a;
@@ -36,14 +37,14 @@
 
 :root,
 [data-theme='light'] {
-  --color-surface: #fffbee; /* nền body kem */
-  --color-surface-raised: #fffcf4; /* nav pill, card nổi */
-  --color-surface-sunken: #fff0bd; /* card vàng nhạt */
-  --color-surface-peach: #ffeaca; /* hero gradient đầu */
-  --color-surface-peach-end: #ffdcb8; /* hero gradient cuối */
+  --color-surface: #fffbee; /* cream body background */
+  --color-surface-raised: #fffcf4; /* nav pill, raised cards */
+  --color-surface-sunken: #fff0bd; /* pale yellow card */
+  --color-surface-peach: #ffeaca; /* hero gradient start */
+  --color-surface-peach-end: #ffdcb8; /* hero gradient end */
   --color-surface-inverse: #1a1512;
 
-  --color-ink: #020763; /* body text navy (theo Figma) */
+  --color-ink: #020763; /* navy body text (per Figma) */
   --color-ink-strong: #000000; /* heading */
   --color-ink-muted: #4a4f7a;
   --color-ink-on-brand: #ffffff;
@@ -71,7 +72,7 @@
   --shadow-text: 0 4px 12px rgb(0 0 0 / 0.5);
 }
 
-/* Cho Tailwind nhìn thấy các biến theo theme dưới dạng utility */
+/* Expose the theme variables to Tailwind as utilities */
 @theme inline {
   --color-surface: var(--color-surface);
   --color-surface-raised: var(--color-surface-raised);
@@ -109,14 +110,14 @@
 }
 
 @layer components {
-  /* Header chỉ có nền sau khi cuộn khỏi đỉnh trang */
+  /* Header only gets a background after scrolling away from the top of the page */
   [data-header].is-stuck {
     background-color: color-mix(in srgb, var(--color-surface-raised) 88%, transparent);
     backdrop-filter: blur(12px);
     box-shadow: 0 1px 12px rgb(0 0 0 / 0.06);
   }
 
-  /* Chữ gradient thương hiệu — dùng cho logo text, số liệu lớn */
+  /* Brand gradient text — used for the logo text and big stats */
   .text-brand-gradient {
     background-image: linear-gradient(
       100deg,
@@ -136,8 +137,8 @@
     );
   }
 
-  /* Khối nội dung chuẩn — bám đúng Figma: ở khung 1440px nội dung rộng
-     1196px (lề 122px mỗi bên). Mobile thu về padding 20px. */
+  /* Standard content block — matches Figma: in the 1440px frame the content
+     is 1196px wide (122px margin each side). Mobile shrinks to 20px padding. */
   .container-g12 {
     width: 100%;
     max-width: 1196px;
@@ -155,7 +156,7 @@
     }
   }
 
-  /* Khối hẹp hơn dùng cho phần Dự Án tiêu biểu (Figma: 958px) */
+  /* Narrower block used for the Featured Projects section (Figma: 958px) */
   .container-narrow {
     width: 100%;
     max-width: 958px;
@@ -175,13 +176,13 @@
 }
 
 /* ---------------------------------------------------------------
-   Hiệu ứng
+   Effects
    --------------------------------------------------------------- */
 
-/* Scroll reveal: hiện MỘT LẦN khi vào viewport (IntersectionObserver trong
-   BaseLayout thêm .in-view). Chỉ ẩn khi html.js — không có JS thì mọi thứ
-   hiện sẵn. Trước đây dùng animation-timeline: view() nhưng nó chạy hai
-   chiều: cuộn ngược làm nội dung biến mất trở lại. */
+/* Scroll reveal: shows ONCE when entering the viewport (the IntersectionObserver
+   in BaseLayout adds .in-view). Only hidden under html.js — without JS everything
+   is visible up front. Previously used animation-timeline: view() but it runs both
+   ways: scrolling back up made content disappear again. */
 @media (prefers-reduced-motion: no-preference) {
   html.js .reveal {
     opacity: 0;
@@ -196,7 +197,7 @@
   }
 }
 
-/* Marquee chạy ngang, dừng khi người dùng tắt chuyển động */
+/* Horizontal marquee, paused when the user disables motion */
 .marquee-track {
   animation: marquee-scroll 32s linear infinite;
 }

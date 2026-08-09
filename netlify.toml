@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Astro sinh sẵn file tĩnh nên chỉ cần cache asset có hash
+# Astro pre-generates static files, so only hashed assets need caching
 [[headers]]
   for = "/_astro/*"
   [headers.values]

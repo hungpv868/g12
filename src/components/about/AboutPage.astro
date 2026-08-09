@@ -15,10 +15,10 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
  * About Us — Figma frame 1:433 (Desktop-1, 1440×6048), geo/aboutus.txt.
- * Cấu trúc: hero ảnh mosaic 1023px → marquee vàng → Our Story → Our Vision
- * (khối #FEF1C5) → marquee ALL-IN-ONE → 4 card khác biệt (285×335, HUMAN
- * nổi bật gradient #FFECB9→#EA4F26) → Commitment (khối cam #FF812C) →
- * marquee → Call us → footer đầy đủ.
+ * Structure: 1023px mosaic photo hero → yellow marquee → Our Story → Our Vision
+ * (#FEF1C5 block) → ALL-IN-ONE marquee → 4 differentiator cards (285×335, HUMAN
+ * highlighted with the #FFECB9→#EA4F26 gradient) → Commitment (orange #FF812C
+ * block) → marquee → Call us → full footer.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -38,7 +38,7 @@ const commits = [
 ---
 
 <BaseLayout title={t('about.meta.title')} description={t('about.meta.description')}>
-  <!-- Hero: ảnh bìa mosaic đã chứa logo + định vị, kéo lên sau header -->
+  <!-- Hero: the mosaic cover image already contains the logo + positioning, pulled up behind the header -->
   <section class="-mt-16 md:-mt-20">
     <Image
       src={hero}
@@ -75,7 +75,7 @@ const commits = [
             sizes="(min-width: 1024px) 560px, 100vw"
             class="w-full"
           />
-          <!-- Bệ ellipse cam + nhãn Since 2016 (Figma: Ellipse 3621/3622) -->
+          <!-- Orange ellipse base + Since 2016 label (Figma: Ellipse 3621/3622) -->
           <div
             class="absolute bottom-1 left-1/2 -z-10 h-[38%] w-[92%] -translate-x-1/2 rounded-[50%] bg-linear-to-b from-brand-yellow to-brand-orange"
             aria-hidden="true"
@@ -94,7 +94,7 @@ const commits = [
           <p>{t('about.story.p2')}</p>
           <p>{t('about.story.p3')}</p>
 
-          <!-- Nút 214×62 kiểu hero: pill gradient + vòng mũi tên đè mép -->
+          <!-- Hero-style 214×62 button: gradient pill + arrow circle overlapping the edge -->
           <a
             href="#story"
             class="group mt-4 inline-flex h-[52px] w-[214px] items-center rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange pr-12 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px]"
@@ -113,7 +113,7 @@ const commits = [
     </div>
   </section>
 
-  <!-- Our Vision: khối vàng kem full-width -->
+  <!-- Our Vision: full-width cream-yellow block -->
   <section class="bg-[#fef1c5] py-12 md:py-16 dark:bg-[#2c2118]">
     <div class="container-g12">
       <h2 class="reveal text-2xl font-bold text-ink-strong md:text-[2rem]">
@@ -154,7 +154,7 @@ const commits = [
         {t('about.diff.title3')}
       </h2>
 
-      <!-- Figma: 4 card 285×335 tại x 114/421/724/1028 -->
+      <!-- Figma: 4 cards 285×335 at x 114/421/724/1028 -->
       <ul class="mt-10 grid gap-5 sm:grid-cols-2 md:mt-[102px] xl:grid-cols-4">
         {
           diffs.map((d) => (
@@ -189,7 +189,7 @@ const commits = [
     </div>
   </section>
 
-  <!-- Our Commitment: khối cam đặc -->
+  <!-- Our Commitment: solid orange block -->
   <section class="bg-[#ff812c] py-12 md:py-16 dark:bg-[#7a3c12]">
     <div class="container-g12">
       <h2 class="reveal text-center text-2xl font-bold text-white md:text-[2rem]">

@@ -1,6 +1,6 @@
 /**
- * Thông tin liên hệ dùng chung toàn site.
- * TODO: `phone` đang là placeholder trong thiết kế Figma — cần số thật từ G12.
+ * Contact info shared across the whole site.
+ * TODO: `phone` is a placeholder from the Figma design — needs the real number from G12.
  */
 export const site = {
   name: 'G12 Media',

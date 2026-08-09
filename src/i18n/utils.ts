@@ -1,6 +1,6 @@
 import { defaultLang, ui, type Lang, type UIKey } from './ui';
 
-/** Base path khi deploy dưới thư mục con (GitHub Pages: '/g12'). Rỗng ở gốc. */
+/** Base path when deployed under a subdirectory (GitHub Pages: '/g12'). Empty at the root. */
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function stripBase(pathname: string): string {
@@ -21,8 +21,8 @@ export function useTranslations(lang: Lang) {
 }
 
 /**
- * Dựng đường dẫn theo ngôn ngữ, kèm base path nếu có.
- * Tiếng Việt ở gốc (`/du-an`), tiếng Anh có tiền tố (`/en/du-an`).
+ * Builds a language-aware path, including the base path if any.
+ * Vietnamese lives at the root (`/du-an`), English is prefixed (`/en/du-an`).
  */
 export function localizePath(path: string, lang: Lang): string {
   const clean = `/${path.replace(/^\/+|\/+$/g, '')}`;
@@ -31,7 +31,7 @@ export function localizePath(path: string, lang: Lang): string {
   return `${BASE}${localized}` || '/';
 }
 
-/** Đường dẫn tương đương ở ngôn ngữ kia — dùng cho nút chuyển ngôn ngữ. */
+/** Equivalent path in the other language — used by the language switcher. */
 export function alternatePath(url: URL, target: Lang): string {
   const current = getLangFromUrl(url);
   const noBase = stripBase(url.pathname);
@@ -39,7 +39,7 @@ export function alternatePath(url: URL, target: Lang): string {
   return localizePath(stripped || '/', target);
 }
 
-/** Slug điều hướng dùng chung cho cả 2 ngôn ngữ (giữ tiếng Việt cho SEO nội địa). */
+/** Navigation slugs shared by both languages (kept in Vietnamese for local SEO). */
 export const routes = {
   home: '/',
   about: '/about-us',

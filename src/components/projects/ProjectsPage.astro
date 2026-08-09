@@ -23,13 +23,13 @@ import b13 from '~/assets/projects-page/b13.jpg';
 import b14 from '~/assets/projects-page/b14.jpg';
 
 /**
- * Dự Án — Figma frame 1:1351 (Desktop-11, 1440×9522), geo/projects.txt.
+ * Projects — Figma frame 1:1351 (Desktop-11, 1440×9522), geo/projects.txt.
  *
- * Trong Figma toàn bộ 3 case study là artwork ghép sẵn (node "10 1"…"23 1"),
- * không phải layout text — nên trang này hiển thị đúng các artwork đó, crop
- * nguyên khối từ bản export. Alt text mang nội dung để giữ SEO/a11y.
- * Cấu trúc: 3 case (Matilia → Choi's → Jin), mỗi case: intro → BEFORE →
- * AFTER → hàng số liệu; ngăn nhau bằng marquee.
+ * In Figma all 3 case studies are pre-composed artwork (node "10 1"…"23 1"),
+ * not text layouts — so this page shows those exact artworks, cropped
+ * whole from the export. Alt text carries the content for SEO/a11y.
+ * Structure: 3 cases (Matilia → Choi's → Jin), each case: intro → BEFORE →
+ * AFTER → stats row; separated by marquees.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -96,7 +96,7 @@ const cases: CaseStudy[] = [
       {t('home.projects.desc')}
     </p>
 
-    <!-- Film strip nghiêng chạy hết khổ -->
+    <!-- Tilted film strip running full width -->
     <Image
       src={strip}
       alt=""

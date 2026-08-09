@@ -9,16 +9,16 @@ import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/ut
 
 /**
  * Blog listing — Figma frame 1:582 (Desktop-2, 1440×1620), geo/bloglist.txt.
- * Filter pill 8 chuyên mục + grid 2 cột card (thumbnail trái + badge + tiêu
- * đề + nút "Đọc thêm"). Hiện chỉ có 6 bài nên phân trang chưa cần hiện.
- * Filter chạy client-side (site tĩnh, số bài nhỏ).
+ * 8-category filter pills + 2-column card grid (thumbnail left + badge + title
+ * + "Đọc thêm" button). Only 6 posts exist so pagination isn't shown yet.
+ * The filter runs client-side (static site, small post count).
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Figma xếp bài theo tay (không theo ngày): Choi's + Matilia → Brief + Recap
-// → Brand + News. Bài mới sau này không có trong danh sách sẽ xếp lên đầu
-// theo ngày giảm dần.
+// Figma orders posts by hand (not by date): Choi's + Matilia → Brief + Recap
+// → Brand + News. Future posts not in this list sort to the top
+// by descending date.
 const designOrder = [
   'bat-mi-cong-thuc-glow-up-choi-s-pilates',
   'dinh-hinh-vi-the-sua-bau-cao-cap-matilia-mommy',

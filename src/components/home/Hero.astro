@@ -15,9 +15,9 @@ const checks = [
 ] as const;
 ---
 
-{/* Figma: nền gradient dọc #FFD9B5 → #FFE5C4, trải lên tận đỉnh trang phía
-    sau header trong suốt. Margin âm kéo section lên dưới header sticky, rồi
-    padding đẩy nội dung xuống lại. */}
+{/* Figma: vertical gradient background #FFD9B5 → #FFE5C4, extending up to the
+    top of the page behind the transparent header. Negative margin pulls the
+    section under the sticky header, then padding pushes the content back down. */}
 <section
   class="-mt-16 bg-linear-to-b/srgb from-[#ffd9b5] to-[#ffe5c4] pt-16 md:-mt-20 md:pt-20 dark:from-[#2a1d12] dark:to-[#1d1610]"
 >
@@ -25,7 +25,7 @@ const checks = [
     class="container-g12 grid items-center gap-8 py-12 md:py-16 lg:grid-cols-[1fr_411px] lg:gap-6 lg:py-0 lg:min-h-[580px]"
   >
     <div class="reveal">
-      {/* H1 44px, 2 dòng — Figma */}
+      {/* H1 44px, 2 lines — Figma */}
       <h1
         class="text-[2rem] leading-[1.22] font-bold text-ink-strong sm:text-[2.5rem] lg:text-[2.75rem]"
       >
@@ -34,7 +34,7 @@ const checks = [
         <span class="text-brand-accent">{t('home.hero.title3')}</span>
       </h1>
 
-      {/* Gạch ngắn 154px phía trên đoạn mô tả, không phải viền trái */}
+      {/* Short 154px rule above the description, not a left border */}
       <hr class="mt-7 w-[154px] border-0 border-t-2 border-ink-strong/70" />
 
       <p class="mt-4 max-w-[520px] text-sm leading-[1.65] text-ink-strong">
@@ -45,7 +45,7 @@ const checks = [
         {
           checks.map((label) => (
             <li class="flex items-start gap-2.5 text-sm font-semibold text-ink-strong">
-              {/* Dấu tick trần màu cam, không có nền tròn */}
+              {/* Bare orange tick, no circular background */}
               <Icon
                 name="check"
                 size={17}
@@ -58,7 +58,7 @@ const checks = [
         }
       </ul>
 
-      {/* Nút 248x62 với vòng tròn mũi tên đè lên mép phải */}
+      {/* 248x62 button with an arrow circle overlapping the right edge */}
       <a
         href={localizePath(routes.contact, lang)}
         class="group mt-8 inline-flex h-[52px] w-[248px] max-w-full items-center rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange pr-14 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px]"
@@ -74,7 +74,7 @@ const checks = [
       </a>
     </div>
 
-    {/* Logo 411px ở desktop; mobile lên trên và nhỏ lại */}
+    {/* Logo 411px on desktop; on mobile it moves up top and shrinks */}
     <div class="reveal order-first flex justify-center lg:order-none lg:justify-end">
       <Image
         src={logoGradient}

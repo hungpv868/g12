@@ -11,15 +11,15 @@ import FeaturedPosts from './FeaturedPosts.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
- * Nội dung trang chủ dùng chung cho cả `/` (vi) và `/en/`.
- * Ngôn ngữ tự suy ra từ URL nên không cần truyền prop.
+ * Home page content shared by both `/` (vi) and `/en/`.
+ * Language is inferred from the URL, so no prop is needed.
  */
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
 <BaseLayout title={t('home.meta.title')} description={t('home.meta.description')}>
-  {/* Trang chủ trong Figma KHÔNG có dải marquee — dải "…Solution ✦" chỉ
-      xuất hiện ở About Us. Đừng thêm vào đây. */}
+  {/* The home page in Figma has NO marquee strip — the "…Solution ✦" strip
+      only appears on About Us. Do not add it here. */}
   <Hero />
   <ServicesProjects />
   <WhoWeAre />

@@ -2,8 +2,8 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * Bài blog nằm ở src/content/blog/<lang>/<slug>.md — id dạng "vi/choi-s-pilates".
- * Ảnh dùng chung để trong src/content/blog/_assets/ và tham chiếu tương đối.
+ * Blog posts live at src/content/blog/<lang>/<slug>.md — ids look like "vi/choi-s-pilates".
+ * Shared images go in src/content/blog/_assets/ and are referenced relatively.
  */
 const blog = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/blog' }),

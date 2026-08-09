@@ -19,7 +19,7 @@ import coverRecap from '~/content/blog/_assets/cover-recap.jpg';
 
 export type CategoryKey = 'casestudy' | 'noibo' | 'vanhoa' | 'daotao' | 'life' | 'ketnoi' | 'news';
 
-/** Chuyên mục theo doc nội dung; màu chấm lấy theo mockup blog detail. */
+/** Categories per the content doc; dot colors taken from the blog detail mockup. */
 export const categories: Record<CategoryKey, { label: Record<Lang, string>; dot: string }> = {
   casestudy: { label: { vi: 'CASESTUDY', en: 'CASE STUDY' }, dot: '#38bdf8' },
   noibo: { label: { vi: 'TRUYỀN THÔNG NỘI BỘ', en: 'INTERNAL COMMS' }, dot: '#fb923c' },
@@ -37,9 +37,9 @@ export interface GhostPost {
 }
 
 /**
- * Widget "Bài viết mới" — theo doc nội dung, cả 6 bài dùng chung đúng 4 mục
- * này (widget tĩnh có chủ đích, không phải danh sách động). Các bài chưa có
- * nội dung nên không có link.
+ * "Recent posts" widget — per the content doc, all 6 posts share exactly these
+ * 4 entries (the widget is intentionally static, not a dynamic list). Entries
+ * without content yet have no link.
  */
 export const recentWidget: GhostPost[] = [
   {
@@ -77,8 +77,8 @@ export const recentWidget: GhostPost[] = [
 ];
 
 /**
- * "Bài viết liên quan" theo chuyên mục — đúng bộ 3 mà thiết kế đặt cho từng
- * nhóm bài. Mục nào trùng bài thật thì trang detail sẽ tự thay bằng link thật.
+ * "Related posts" by category — the exact trio the design assigns to each
+ * post group. Entries matching a real post get swapped for the real link on the detail page.
  */
 export const relatedByCategory: Record<string, GhostPost[]> = {
   casestudy: [

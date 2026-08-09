@@ -6,15 +6,16 @@ import matilia from '~/assets/projects/matilia.jpg';
 import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
 /**
- * Figma gộp "Dịch vụ nổi bật" và "Dự án tiêu biểu" trong CÙNG một khối nền
- * gradient liền mạch (Frame 4: y 747→2206, #FFB326 → #FFFAEC), ngăn nhau
- * bằng Line 15. Vì vậy hai phần dựng chung ở đây thay vì tách section.
+ * Figma combines "Dịch vụ nổi bật" (featured services) and "Dự án tiêu biểu"
+ * (featured projects) in the SAME seamless gradient block (Frame 4: y 747→2206,
+ * #FFB326 → #FFFAEC), separated by Line 15. So both parts are built together
+ * here instead of as separate sections.
  *
- * Số đo gốc (khung 1440):
- *  - Card dịch vụ 285×383, x = 123 / 425 / 728 / 1032 (khe ~18px)
- *  - Tiêu đề card 22px ExtraBold #E94B23, canh giữa; nội dung 14px Medium
- *  - Nút 145×43 bo 30px, gradient #FFBE02 → #FF9F17 → #FF842A, viền #D4D4D4
- *  - Dự án: card 422×216 + 505×213 (khe 24px), banner 951×226
+ * Original measurements (1440 frame):
+ *  - Service cards 285×383, x = 123 / 425 / 728 / 1032 (~18px gap)
+ *  - Card title 22px ExtraBold #E94B23, centered; body 14px Medium
+ *  - Button 145×43, 30px radius, gradient #FFBE02 → #FF9F17 → #FF842A, #D4D4D4 border
+ *  - Projects: cards 422×216 + 505×213 (24px gap), banner 951×226
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -55,7 +56,7 @@ const btn =
 ---
 
 <section class="bg-linear-to-b/srgb from-[#ffb326] to-[#fffaec] dark:from-[#4d3111] dark:to-[#16110d]">
-  <!-- ══════ Dịch vụ nổi bật ══════ -->
+  <!-- ══════ Featured services ══════ -->
   <div class="container-g12 pt-13 md:pt-[52px]">
     <h2
       class="reveal text-center text-2xl leading-tight font-bold text-ink-strong uppercase sm:text-3xl md:text-[2.375rem]"
@@ -112,12 +113,12 @@ const btn =
     </ul>
   </div>
 
-  <!-- Line 15: đường ngăn hai phần, rộng 1137px -->
+  <!-- Line 15: divider between the two parts, 1137px wide -->
   <div class="container-g12 pt-14 pb-12 md:pt-[124px] md:pb-[52px]">
     <hr class="mx-auto max-w-[1137px] border-0 border-t border-ink-strong/20" />
   </div>
 
-  <!-- ══════ Dự án tiêu biểu ══════ -->
+  <!-- ══════ Featured projects ══════ -->
   <div class="container-narrow pb-14 md:pb-20">
     <h2
       class="reveal text-center text-2xl leading-tight font-bold text-ink-strong uppercase sm:text-3xl md:text-[2.375rem]"

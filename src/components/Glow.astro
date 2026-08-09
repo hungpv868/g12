@@ -1,19 +1,19 @@
 ---
 /**
- * Quầng sáng trang trí — Figma rải nhiều ellipse mờ cỡ lớn phía sau nội dung
- * (Ellipse 20/21/3630/3632/3634/3635/3637/3638) để nền kem không bị phẳng.
- * Đo được: quầng bên trái ~#FFF5D7, bên phải đậm hơn ~#FFE4B4, trên nền #FFFBEE.
+ * Decorative glow — Figma scatters several large blurred ellipses behind the content
+ * (Ellipse 20/21/3630/3632/3634/3635/3637/3638) so the cream background isn't flat.
+ * Measured: left glow ~#FFF5D7, right one darker ~#FFE4B4, on the #FFFBEE background.
  *
- * Đặt trong một section có `relative` (và thường là `overflow-hidden`).
+ * Place inside a section with `relative` (and usually `overflow-hidden`).
  */
 interface Props {
-  /** Vị trí neo theo mép section */
+  /** Which section edge to anchor to */
   side: 'left' | 'right';
-  /** Khoảng cách từ mép trên section, ví dụ '10%' hoặc '120px' */
+  /** Distance from the section's top edge, e.g. '10%' or '120px' */
   top: string;
-  /** Đường kính, ví dụ '660px' */
+  /** Diameter, e.g. '660px' */
   size: string;
-  /** Đậm hơn cho các quầng bên phải */
+  /** Darker variant for the right-side glows */
   strong?: boolean;
   class?: string;
 }

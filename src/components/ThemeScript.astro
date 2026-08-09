@@ -1,7 +1,7 @@
 ---
 /**
- * Chạy đồng bộ trước khi vẽ để tránh nháy trắng khi vào site ở chế độ tối.
- * Không dùng module/defer — cố ý chặn render một nhịp cực ngắn.
+ * Runs synchronously before paint to avoid a white flash when entering the site in dark mode.
+ * Not module/defer — deliberately blocks render for a very short beat.
  */
 ---
 
@@ -12,7 +12,7 @@
     const theme = stored ?? (prefersDark ? 'dark' : 'light');
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    // Gate cho hiệu ứng reveal: không có JS thì nội dung hiện sẵn
+    // Gate for the reveal effect: without JS the content is visible up front
     document.documentElement.classList.add('js');
   })();
 </script>

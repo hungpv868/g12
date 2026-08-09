@@ -1,8 +1,8 @@
 import type { Lang } from '~/i18n/ui';
 
 /**
- * Nội dung 4 khối trang Dịch Vụ — chép nguyên văn từ Figma frame 1:1430.
- * Bản EN là bản nháp do Claude dịch, cần G12 duyệt trước khi lên production.
+ * Content for the 4 blocks on the Services page — copied verbatim from Figma frame 1:1430.
+ * The EN version is a draft by Claude; G12 must review it before production.
  */
 export interface ServiceBlock {
   title: string;

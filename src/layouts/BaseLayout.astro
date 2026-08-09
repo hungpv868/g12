@@ -8,14 +8,14 @@ import { languages, type Lang } from '~/i18n/ui';
 import { site } from '~/config/site';
 
 /**
- * Layout gốc cho MỌI trang. Header và Footer chỉ khai báo ở đây —
- * trang con không được tự dựng lại, chỉ chọn biến thể footer qua prop.
+ * Root layout for EVERY page. Header and Footer are declared only here —
+ * child pages must not rebuild them, they only pick the footer variant via prop.
  */
 interface Props {
   title: string;
   description: string;
   footerVariant?: 'full' | 'compact';
-  /** Ảnh OG riêng cho trang, mặc định dùng ảnh chung */
+  /** Page-specific OG image, falls back to the shared one */
   ogImage?: string;
 }
 
@@ -73,7 +73,7 @@ const ogUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
     <Footer variant={footerVariant} />
 
     <script>
-      // Hiện các khối .reveal một lần khi vào viewport
+      // Reveal .reveal blocks once when they enter the viewport
       const io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {

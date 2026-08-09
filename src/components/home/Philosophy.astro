@@ -3,8 +3,8 @@ import Glow from '../Glow.astro';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
- * Figma: tiêu đề + đoạn văn bên trái (x 156, rộng 609px), khối trích dẫn
- * 449×259 bên phải (x 780, y 3465) có đuôi nhọn chỉ xuống dưới-phải.
+ * Figma: title + paragraph on the left (x 156, 609px wide), 449×259 quote
+ * block on the right (x 780, y 3465) with a pointed tail toward bottom-right.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 const points = [t('home.philosophy.i1'), t('home.philosophy.i2'), t('home.philosophy.i3')];
 ---
 
-{/* Ellipse 3634/3635/3638 gom thành quầng sáng lớn bên phải */}
+{/* Ellipse 3634/3635/3638 merge into a large glow on the right */}
 <section class="relative overflow-hidden py-12 md:py-16">
   <Glow side="right" top="-10%" size="740px" strong />
 
