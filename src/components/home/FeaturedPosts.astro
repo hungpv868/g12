@@ -42,7 +42,9 @@ const posts = [
     </h2>
     <hr class="mt-2 w-[124px] border-0 border-t-2 border-brand-orange" />
 
-    <ul class="mt-7 grid gap-6 md:mt-9 md:grid-cols-2 md:gap-[46px]">
+    {/* 2 columns only from lg: at 768–1023px the fixed 268px image doesn't
+        fit half the container and the card contents overflow */}
+    <ul class="mt-7 grid gap-6 md:mt-9 lg:grid-cols-2 lg:gap-[46px]">
       {
         posts.map((post) => (
           <li class="reveal flex flex-col gap-5 rounded-[20px] bg-surface-sunken p-6 shadow-[var(--shadow-card)] transition duration-300 hover:-translate-y-1 sm:flex-row md:min-h-[266px]">
@@ -54,7 +56,7 @@ const posts = [
               loading="lazy"
               class="aspect-[268/226] w-full shrink-0 rounded-[14px] object-cover sm:w-[268px]"
             />
-            <div class="flex flex-col items-start">
+            <div class="flex min-w-0 flex-col items-start">
               <span class="text-base font-bold text-ink-strong">{post.category}</span>
               <h3 class="mt-2 line-clamp-4 text-sm leading-snug font-bold text-brand-deep">
                 {post.title}

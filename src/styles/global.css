@@ -91,6 +91,11 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Hard-stop any page-level sideways drag: inner scrollers (the services
+       slider) can leak scroll width up to <html>, letting touch users drag
+       the whole page askew. `clip` kills that without creating a new scroll
+       container (unlike `hidden`, it can't break position: sticky). */
+    overflow-x: clip;
   }
 
   body {

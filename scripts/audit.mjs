@@ -1,5 +1,5 @@
-// Two Playwright tabs: "desktop" (1440×900) and "test mobile" (390×844).
-// Sweeps every page, takes full-page screenshots, collects console/layout errors.
+// Hai tab Playwright: "desktop" (1440×900) và "test mobile" (390×844).
+// Quét mọi trang, chụp full-page, thu thập lỗi console/layout.
 import { chromium } from 'playwright-core';
 import { mkdirSync } from 'node:fs';
 
@@ -49,7 +49,7 @@ for (const { name, page } of tabs) {
     consoleErrs.length = 0;
     const resp = await page.goto(BASE + path, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForTimeout(600);
-    // scroll through the whole page so scroll-reveal completes, then back to top
+    // cuộn qua toàn trang cho scroll-reveal hoàn tất rồi về đầu
     await page.evaluate(async () => {
       const step = window.innerHeight * 0.8;
       for (let y = 0; y < document.body.scrollHeight; y += step) {
@@ -63,10 +63,10 @@ for (const { name, page } of tabs) {
     const audit = await page.evaluate(() => {
       const issues = [];
       const de = document.documentElement;
-      // horizontal overflow
+      // tràn ngang
       if (de.scrollWidth > de.clientWidth + 1)
         issues.push(`hscroll: scrollWidth ${de.scrollWidth} > viewport ${de.clientWidth}`);
-      // elements spilling past the right edge of the viewport
+      // phần tử tràn khỏi viewport phải
       document.querySelectorAll('body *').forEach((el) => {
         const r = el.getBoundingClientRect();
         if (r.width > 0 && r.right > de.clientWidth + 8 && getComputedStyle(el).position !== 'fixed') {
@@ -76,12 +76,12 @@ for (const { name, page } of tabs) {
             issues.push(`overflow-right: ${tag}.${cls} right=${Math.round(r.right)}`);
         }
       });
-      // broken images
+      // ảnh vỡ
       document.querySelectorAll('img').forEach((img) => {
         if (img.complete && img.naturalWidth === 0)
           issues.push(`broken-img: ${img.getAttribute('src')?.slice(0, 80)}`);
       });
-      // glued heading text (two words run together with no space) — a bug we've hit before
+      // heading dính chữ (hai chữ hoa liền không cách) — bug đã từng gặp
       document.querySelectorAll('h1,h2,h3').forEach((h) => {
         const t = h.textContent || '';
         const m = t.match(/[a-zàáạãảâăậ][A-ZĐ]|[?!.][A-ZĐ]/);
@@ -101,8 +101,9 @@ for (const { name, page } of tabs) {
   }
 }
 
-// quick interaction test on the mobile tab: drawer + theme + blog filter
+// test tương tác nhanh trên tab mobile: drawer + theme + filter blog
 const mp = tabs[1].page;
+try {
 await mp.goto(BASE + '/', { waitUntil: 'networkidle' });
 await mp.click('[data-drawer-open]');
 await mp.waitForTimeout(500);
@@ -110,7 +111,7 @@ const drawerVisible = await mp.evaluate(() => {
   const d = document.querySelector('[data-drawer]');
   return d && !d.classList.contains('invisible');
 });
-await mp.click('[data-drawer-panel] [data-drawer-close]');
+await mp.click('[data-drawer-panel] [data-drawer-close]', { force: true });
 await mp.waitForTimeout(400);
 await mp.click('[data-theme-toggle]');
 const theme = await mp.evaluate(() => document.documentElement.dataset.theme);
@@ -130,6 +131,10 @@ report.push({
     visibleCards === 2 ? null : `filter casestudy ra ${visibleCards} bài (kỳ vọng 2)`,
   ].filter(Boolean),
 });
+
+} catch (e) {
+  report.push({ tab: 'mobile-interact', page: 'ERROR', status: 0, console: [String(e).slice(0, 120)], issues: [] });
+}
 
 console.log(JSON.stringify(report, null, 1));
 await browser.close();

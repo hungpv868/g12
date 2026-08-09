@@ -88,10 +88,15 @@ const links = nav.map((item) => {
 </header>
 
 <!-- Drawer mobile -->
+{/* `hidden` while closed is load-bearing: the closed panel sitting off-screen
+    (translate-x-full) makes mobile Chrome widen the layout viewport to ~1066px
+    and the whole page becomes horizontally pannable — overflow clipping does
+    NOT prevent that. display:none removes the overflow entirely; the toggle
+    script un-hides first, then animates on the next frame. */}
 <div
   id="mobile-drawer"
   data-drawer
-  class="invisible fixed inset-0 z-60 opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"
+  class="invisible fixed inset-0 z-60 hidden overflow-clip opacity-0 transition-[opacity,visibility] duration-300 lg:hidden"
 >
   <div data-drawer-close class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
   <nav
@@ -153,11 +158,26 @@ const links = nav.map((item) => {
   const panel = document.querySelector<HTMLElement>('[data-drawer-panel]');
   const openBtn = document.querySelector<HTMLButtonElement>('[data-drawer-open]');
 
+  let hideTimer: ReturnType<typeof setTimeout> | undefined;
   const setOpen = (open: boolean) => {
     if (!drawer || !panel || !openBtn) return;
-    drawer.classList.toggle('invisible', !open);
-    drawer.classList.toggle('opacity-0', !open);
-    panel.classList.toggle('translate-x-full', !open);
+    clearTimeout(hideTimer);
+    if (open) {
+      // un-hide first, animate on the next frame so the transition runs
+      drawer.classList.remove('hidden');
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          drawer.classList.remove('invisible', 'opacity-0');
+          panel.classList.remove('translate-x-full');
+        }),
+      );
+    } else {
+      drawer.classList.add('invisible', 'opacity-0');
+      panel.classList.add('translate-x-full');
+      // after the slide-out finishes, remove it from layout entirely —
+      // an off-screen panel would let mobile Chrome widen the viewport
+      hideTimer = setTimeout(() => drawer.classList.add('hidden'), 320);
+    }
     openBtn.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
   };

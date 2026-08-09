@@ -51,8 +51,12 @@ const projects = [
   { img: chois, name: "Choi's Pilates", ratio: '505/213', w: 505 },
 ];
 
+/* `relative` is load-bearing: each button holds an absolutely-positioned
+   sr-only span. Without a positioned ancestor the span escapes the slider's
+   scroll clipping, lands ~1066px out, and mobile Chrome widens the whole
+   layout viewport to fit it — the page becomes horizontally pannable. */
 const btn =
-  'inline-flex h-[43px] w-[145px] items-center justify-center rounded-[30px] border border-[#d4d4d4] bg-linear-to-r from-[#ffbe02] via-[#ff9f17] to-[#ff842a] text-base font-bold text-white shadow-[0_4px_10px_rgba(0,0,0,0.25)] transition hover:brightness-110';
+  'relative inline-flex h-[43px] w-[145px] items-center justify-center rounded-[30px] border border-[#d4d4d4] bg-linear-to-r from-[#ffbe02] via-[#ff9f17] to-[#ff842a] text-base font-bold text-white shadow-[0_4px_10px_rgba(0,0,0,0.25)] transition hover:brightness-110';
 ---
 
 <section class="bg-linear-to-b/srgb from-[#ffb326] to-[#fffaec] dark:from-[#4d3111] dark:to-[#16110d]">
@@ -71,7 +75,7 @@ const btn =
     </p>
 
     <ul
-      class="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:mt-14 md:grid md:grid-cols-2 md:gap-[18px] md:overflow-visible md:pb-0 xl:grid-cols-4"
+      class="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-4 md:mt-14 md:grid md:grid-cols-2 md:gap-[18px] md:overflow-visible md:pb-0 xl:grid-cols-4"
     >
       {
         services.map((s) => (
