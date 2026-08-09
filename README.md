@@ -73,9 +73,9 @@ Header và Footer **chỉ khai báo trong `BaseLayout`** — trang con không t�
 
 ## Trạng thái
 
-Xong: khung dự án, design system light/dark, i18n VI/EN, header/footer dùng chung, **trang chủ** (10 section, mobile-first).
+**Đã dựng đủ 7 trang × 2 ngôn ngữ = 24 trang tĩnh**: Trang chủ, About Us, Dự Án, Dịch Vụ, Blog listing, 6 bài blog detail (content collection Markdown ở `src/content/blog/`), Liên Hệ. Tất cả bám hình học Figma (toạ độ node), light/dark, mobile-first.
 
-Còn lại: About Us, Dự Án, Dịch Vụ, Blog (listing + detail), Liên Hệ.
+Blog: bài viết là file Markdown trong `src/content/blog/<vi|en>/<slug>.md` — thêm bài mới chỉ cần tạo file cùng frontmatter (title, category, date, cover, excerpt). Widget "Bài viết mới" và "Bài viết liên quan" cấu hình ở `src/data/blog.ts`.
 
 ### Cần G12 cung cấp
 

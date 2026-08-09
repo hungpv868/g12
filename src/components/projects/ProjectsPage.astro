@@ -1,0 +1,147 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Marquee from '../Marquee.astro';
+import Glow from '../Glow.astro';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+import strip from '~/assets/projects-page/strip.jpg';
+import b01 from '~/assets/projects-page/b01.jpg';
+import b02 from '~/assets/projects-page/b02.jpg';
+import b03 from '~/assets/projects-page/b03.jpg';
+import b04 from '~/assets/projects-page/b04.jpg';
+import b05 from '~/assets/projects-page/b05.jpg';
+import b06 from '~/assets/projects-page/b06.jpg';
+import b07 from '~/assets/projects-page/b07.jpg';
+import b08 from '~/assets/projects-page/b08.jpg';
+import b09 from '~/assets/projects-page/b09.jpg';
+import b10 from '~/assets/projects-page/b10.jpg';
+import b11 from '~/assets/projects-page/b11.jpg';
+import b12 from '~/assets/projects-page/b12.jpg';
+import b13 from '~/assets/projects-page/b13.jpg';
+import b14 from '~/assets/projects-page/b14.jpg';
+
+/**
+ * Dự Án — Figma frame 1:1351 (Desktop-11, 1440×9522), geo/projects.txt.
+ *
+ * Trong Figma toàn bộ 3 case study là artwork ghép sẵn (node "10 1"…"23 1"),
+ * không phải layout text — nên trang này hiển thị đúng các artwork đó, crop
+ * nguyên khối từ bản export. Alt text mang nội dung để giữ SEO/a11y.
+ * Cấu trúc: 3 case (Matilia → Choi's → Jin), mỗi case: intro → BEFORE →
+ * AFTER → hàng số liệu; ngăn nhau bằng marquee.
+ */
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Row {
+  imgs: { src: ImageMetadata; alt: string }[];
+}
+interface CaseStudy {
+  name: string;
+  rows: Row[];
+}
+
+const cases: CaseStudy[] = [
+  {
+    name: 'Matilia Mommy',
+    rows: [
+      { imgs: [{ src: b01, alt: '01. Matilia Mommy Project — FMCG, dinh dưỡng Mẹ và Bé. Nền tảng triển khai: Facebook, TikTok. Mong muốn: xây dựng hình ảnh dòng sữa bầu cao cấp, đáng tin cậy và thấu hiểu mẹ bầu.' }] },
+      { imgs: [{ src: b02, alt: 'BEFORE — Phân tích bối cảnh: nội dung mang tính chuyên môn cao, khô khan; hình ảnh chưa thể hiện rõ định vị cao cấp; trải nghiệm chưa nhất quán.' }] },
+      { imgs: [{ src: b03, alt: 'AFTER — Giải pháp: nội dung gần gũi theo hành trình làm mẹ; hình ảnh chuẩn hóa cao cấp từ Pháp; trải nghiệm nhất quán trên các nền tảng.' }] },
+      { imgs: [
+        { src: b04, alt: 'Kết quả: 4000+ đơn hàng chốt trong các phiên Megalive; hơn 3 triệu lượt xem trên TikTok và Facebook.' },
+        { src: b05, alt: 'Vận hành trơn chu: đội ngũ chuyên môn đầy đủ từ quảng cáo, media, thiết kế đến nội dung, đảm bảo chiến dịch diễn ra trơn chu và hiệu quả.' },
+      ] },
+    ],
+  },
+  {
+    name: "Choi's Pilates",
+    rows: [
+      { imgs: [{ src: b06, alt: "02. Choi's Pilates Project — Fitness, Pilates, chăm sóc sức khỏe. Nền tảng: Facebook, TikTok. Mong muốn: hình ảnh studio hiện đại hướng tới phụ nữ, tôn vinh vóc dáng và lối sống lành mạnh." }] },
+      { imgs: [{ src: b07, alt: 'BEFORE — Nội dung chưa nổi bật giá trị và lợi ích của Pilates; hình ảnh thương hiệu trên mạng xã hội chưa thể hiện không gian hiện đại; khách hàng tiềm năng chưa hiểu rõ trải nghiệm tập luyện.' }] },
+      { imgs: [{ src: b08, alt: 'AFTER — Nội dung chia sẻ về lợi ích của Pilates, cải thiện vóc dáng; hệ thống visual chuyên nghiệp, hiện đại, sang trọng; feedback học viên tạo dựng niềm tin.' }] },
+      { imgs: [
+        { src: b09, alt: 'Kết quả: 100+ học viên mới thông qua chiến dịch Marketing trên Facebook, TikTok và chạy quảng cáo; hơn 1 triệu lượt xem.' },
+        { src: b10, alt: "Có cộng đồng Pilates riêng: phát triển cộng đồng học viên Pilates, tăng sự gắn kết và giữ chân khách hàng thông qua các hoạt động tương tác và chương trình quà tặng." },
+      ] },
+    ],
+  },
+  {
+    name: 'Jin Fitness',
+    rows: [
+      { imgs: [{ src: b11, alt: '03. Jin Fitness Project — Gym, thể hình, chăm sóc sức khỏe. Nền tảng: Facebook, TikTok. Mong muốn: tăng nhận diện thương hiệu phòng gym, thu hút hội viên mới, hình ảnh phòng tập năng động có huấn luyện viên riêng.' }] },
+      { imgs: [{ src: b12, alt: 'BEFORE — Nội dung chưa thể hiện rõ thế mạnh và chương trình tập luyện; hình ảnh phòng tập chưa nổi bật so với đối thủ; cần gia tăng sự quan tâm và tương tác từ khách hàng mục tiêu.' }] },
+      { imgs: [{ src: b13, alt: 'AFTER — Nội dung về tập luyện, dinh dưỡng và hành trình thay đổi vóc dáng của học viên; hệ thống visual mạnh mẽ, năng động; quay chụp các buổi tập và hoạt động tại phòng gym nhằm tăng tính chân thật.' }] },
+      { imgs: [{ src: b14, alt: 'Kết quả: 100+ thành viên mới qua các chiến dịch Marketing trên Facebook, TikTok và chạy quảng cáo; hơn 1 triệu lượt xem trên TikTok và Facebook, gia tăng độ nhận diện đến khách hàng tiềm năng.' }] },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={`${t('nav.projects')} — G12 Media`}
+  description={t('home.projects.desc')}
+  footerVariant="compact"
+>
+  <section class="relative overflow-hidden pt-10 md:pt-16">
+    <Glow side="left" top="0%" size="420px" strong />
+    <h1
+      class="reveal container-g12 text-center text-3xl leading-tight font-bold text-ink-strong uppercase sm:text-4xl md:text-5xl"
+    >
+      {t('home.projects.title1')}{' '}
+      <span class="text-brand-accent">{t('home.projects.title2')}</span>
+    </h1>
+    <p class="reveal container-g12 mx-auto mt-4 max-w-[760px] text-center text-sm text-ink-muted md:text-base">
+      {t('home.projects.desc')}
+    </p>
+
+    <!-- Film strip nghiêng chạy hết khổ -->
+    <Image
+      src={strip}
+      alt=""
+      widths={[768, 1440, 2880]}
+      sizes="100vw"
+      loading="eager"
+      class="mt-6 w-full md:mt-10"
+    />
+  </section>
+
+  <Marquee variant="gold" />
+
+  {
+    cases.map((cs, ci) => (
+      <>
+        <section class="relative overflow-hidden py-8 md:py-12" aria-label={`Case study ${cs.name}`}>
+          <Glow side={ci % 2 ? 'right' : 'left'} top="10%" size="600px" />
+          <Glow side={ci % 2 ? 'left' : 'right'} top="60%" size="700px" strong />
+
+          <div class="container-g12 flex flex-col gap-6 md:gap-10">
+            {cs.rows.map((row) => (
+              <div
+                class:list={[
+                  row.imgs.length === 1
+                    ? 'reveal'
+                    : 'reveal grid items-start gap-6 sm:grid-cols-2 md:gap-8',
+                ]}
+              >
+                {row.imgs.map((img) => (
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    widths={[640, 1280]}
+                    sizes="(min-width: 1024px) 1196px, 100vw"
+                    loading={ci === 0 ? 'eager' : 'lazy'}
+                    class="w-full"
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {ci < cases.length - 1 && <Marquee variant="gold" />}
+      </>
+    ))
+  }
+</BaseLayout>

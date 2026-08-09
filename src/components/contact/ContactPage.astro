@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Glow from '../Glow.astro';
+import Icon from '../Icon.astro';
+import banner from '~/assets/contact/banner.jpg';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+/**
+ * Liên Hệ — Figma frame 1:1314 (Desktop-10, 1440×1103), geo/contact.txt.
+ * Trái: H1 + form 4 field bo tròn (input 611×54, textarea 611×120).
+ * Phải: banner 538×538. Footer gọn.
+ *
+ * Mockup KHÔNG có nút submit — đã bổ sung (form không nút thì không gửi
+ * được); cần G12 xác nhận lại thiết kế nút. Gửi qua Netlify Forms.
+ */
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const inputCls =
+  'w-full rounded-[27px] border border-line bg-surface-raised px-6 py-4 text-sm text-ink placeholder:text-ink-muted focus:border-brand-orange focus:outline-none transition';
+---
+
+<BaseLayout
+  title={t('contact.meta.title')}
+  description={t('contact.meta.description')}
+  footerVariant="compact"
+>
+  <section class="relative overflow-hidden py-12 md:py-[72px]">
+    <Glow side="left" top="20%" size="520px" />
+    <Glow side="right" top="45%" size="620px" strong />
+
+    <div class="container-g12 grid items-start gap-10 lg:grid-cols-[611fr_538fr] lg:gap-16">
+      <div class="reveal">
+        <h1 class="text-3xl font-bold text-brand-accent md:text-[2.5rem]">
+          {t('contact.title')}
+        </h1>
+
+        <form
+          name="contact"
+          method="POST"
+          action="?sent=1"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="mt-7 flex flex-col gap-4"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>Không điền vào ô này: <input name="bot-field" /></label>
+          </p>
+
+          <div>
+            <label for="c-name" class="sr-only">{t('contact.name')}</label>
+            <input
+              id="c-name"
+              name="name"
+              required
+              autocomplete="name"
+              placeholder={`${t('contact.name')} *`}
+              class={inputCls}
+            />
+          </div>
+          <div>
+            <label for="c-phone" class="sr-only">{t('contact.phone')}</label>
+            <input
+              id="c-phone"
+              name="phone"
+              type="tel"
+              required
+              autocomplete="tel"
+              placeholder={`${t('contact.phone')} *`}
+              class={inputCls}
+            />
+          </div>
+          <div>
+            <label for="c-email" class="sr-only">{t('contact.email')}</label>
+            <input
+              id="c-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder={`${t('contact.email')} *`}
+              class={inputCls}
+            />
+          </div>
+          <div>
+            <label for="c-message" class="sr-only">{t('contact.message')}</label>
+            <textarea
+              id="c-message"
+              name="message"
+              rows={4}
+              placeholder={t('contact.message')}
+              class:list={[inputCls, 'resize-none rounded-[27px]']}></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="group mt-2 inline-flex h-[54px] w-fit items-center gap-3 rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange px-8 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:-translate-y-0.5 hover:brightness-105"
+          >
+            {t('contact.submit')}
+            <span
+              class="grid size-8 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <Icon name="send" size={15} />
+            </span>
+          </button>
+
+          <p
+            data-sent-note
+            hidden
+            class="rounded-2xl bg-brand-yellow/15 px-5 py-3 text-sm font-semibold text-brand-deep"
+          >
+            {t('contact.success')}
+          </p>
+        </form>
+      </div>
+
+      <div class="reveal">
+        <Image
+          src={banner}
+          alt="Dịch vụ Marketing trọn gói từ G12 Media"
+          widths={[538, 1076]}
+          sizes="(min-width: 1024px) 538px, 100vw"
+          loading="eager"
+          class="mx-auto w-full max-w-[538px] rounded-[24px] shadow-[var(--shadow-card)]"
+        />
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Netlify redirect về ?sent=1 — hiện thông báo thành công
+    if (new URLSearchParams(location.search).has('sent')) {
+      document.querySelector('[data-sent-note]')?.removeAttribute('hidden');
+    }
+  </script>
+</BaseLayout>

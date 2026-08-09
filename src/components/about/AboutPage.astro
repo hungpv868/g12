@@ -1,0 +1,229 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Marquee from '../Marquee.astro';
+import CallUs from '../CallUs.astro';
+import Glow from '../Glow.astro';
+import Icon from '../Icon.astro';
+import hero from '~/assets/about/hero.jpg';
+import team from '~/assets/about/team.png';
+import quotes from '~/assets/about/quotes.png';
+import num1 from '~/assets/about/num-1.png';
+import num2 from '~/assets/about/num-2.png';
+import num3 from '~/assets/about/num-3.png';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+/**
+ * About Us — Figma frame 1:433 (Desktop-1, 1440×6048), geo/aboutus.txt.
+ * Cấu trúc: hero ảnh mosaic 1023px → marquee vàng → Our Story → Our Vision
+ * (khối #FEF1C5) → marquee ALL-IN-ONE → 4 card khác biệt (285×335, HUMAN
+ * nổi bật gradient #FFECB9→#EA4F26) → Commitment (khối cam #FF812C) →
+ * marquee → Call us → footer đầy đủ.
+ */
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const diffs = [
+  { title: t('about.diff.real'), desc: t('about.diff.realDesc'), featured: false },
+  { title: t('about.diff.human'), desc: t('about.diff.humanDesc'), featured: true },
+  { title: t('about.diff.expansion'), desc: t('about.diff.expansionDesc'), featured: false },
+  { title: t('about.diff.innovation'), desc: t('about.diff.innovationDesc'), featured: false },
+];
+
+const commits = [
+  { num: num1, title: t('about.commit.c1'), desc: t('about.commit.c1Desc') },
+  { num: num2, title: t('about.commit.c2'), desc: t('about.commit.c2Desc') },
+  { num: num3, title: t('about.commit.c3'), desc: t('about.commit.c3Desc') },
+];
+---
+
+<BaseLayout title={t('about.meta.title')} description={t('about.meta.description')}>
+  <!-- Hero: ảnh bìa mosaic đã chứa logo + định vị, kéo lên sau header -->
+  <section class="-mt-16 md:-mt-20">
+    <Image
+      src={hero}
+      alt="G12 Media — đơn vị tiên phong cung cấp giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam"
+      widths={[768, 1440, 2880]}
+      sizes="100vw"
+      loading="eager"
+      class="max-h-[70vh] w-full object-cover md:aspect-[1440/1023] md:max-h-none"
+    />
+  </section>
+
+  <Marquee variant="gold" />
+
+  <!-- Our Story -->
+  <section class="relative overflow-hidden py-12 md:py-16">
+    <Glow side="left" top="55%" size="620px" />
+    <div class="container-g12">
+      <h2 class="reveal text-2xl font-bold text-ink-strong md:text-[2rem]">
+        {t('about.story.title')}
+      </h2>
+      <p
+        class="reveal text-brand-gradient mt-4 text-center font-script text-5xl leading-tight sm:text-7xl md:text-[8rem]"
+        style="filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2))"
+      >
+        {t('about.story.script')}
+      </p>
+
+      <div class="mt-10 grid items-center gap-10 md:mt-14 lg:grid-cols-[757fr_560fr] lg:gap-14">
+        <figure class="reveal relative mx-auto w-full max-w-[560px]">
+          <Image
+            src={team}
+            alt="Đội ngũ G12 Media"
+            widths={[560, 1120]}
+            sizes="(min-width: 1024px) 560px, 100vw"
+            class="w-full"
+          />
+          <!-- Bệ ellipse cam + nhãn Since 2016 (Figma: Ellipse 3621/3622) -->
+          <div
+            class="absolute bottom-1 left-1/2 -z-10 h-[38%] w-[92%] -translate-x-1/2 rounded-[50%] bg-linear-to-b from-brand-yellow to-brand-orange"
+            aria-hidden="true"
+          >
+          </div>
+          <figcaption
+            class="absolute bottom-3 left-1/2 -translate-x-1/2 text-lg font-bold text-white md:text-2xl"
+            style="text-shadow: var(--shadow-text)"
+          >
+            {t('about.story.since')}
+          </figcaption>
+        </figure>
+
+        <div class="reveal flex flex-col gap-4 text-sm leading-relaxed md:text-[15px]">
+          <p>{t('about.story.p1')}</p>
+          <p>{t('about.story.p2')}</p>
+          <p>{t('about.story.p3')}</p>
+
+          <!-- Nút 214×62 kiểu hero: pill gradient + vòng mũi tên đè mép -->
+          <a
+            href="#story"
+            class="group mt-4 inline-flex h-[52px] w-[214px] items-center rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange pr-12 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px]"
+          >
+            <span class="relative">
+              {t('about.story.cta')}
+              <span
+                class="absolute top-1/2 -right-11 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-surface-raised text-ink-strong shadow-md transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1/2"
+              >
+                <Icon name="arrowRight" size={18} />
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Vision: khối vàng kem full-width -->
+  <section class="bg-[#fef1c5] py-12 md:py-16 dark:bg-[#2c2118]">
+    <div class="container-g12">
+      <h2 class="reveal text-2xl font-bold text-ink-strong md:text-[2rem]">
+        {t('about.vision.title')}
+      </h2>
+      <div class="mt-8 grid gap-6 md:mt-10 md:grid-cols-[145px_1fr] md:gap-10">
+        <Image
+          src={quotes}
+          alt=""
+          width={145}
+          densities={[1, 2]}
+          loading="lazy"
+          class="reveal w-20 md:w-[145px]"
+        />
+        <blockquote class="reveal">
+          <p class="max-w-[900px] text-lg leading-relaxed font-medium text-ink-strong md:text-2xl">
+            {t('about.vision.quote')}
+          </p>
+          <footer class="mt-8 text-right text-lg font-bold text-ink-strong md:text-2xl">
+            {t('about.vision.sign')}
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <Marquee variant="gold" items={[t('about.allinone')]} />
+
+  <!-- What make G12 different -->
+  <section class="relative overflow-hidden py-12 md:py-16">
+    <Glow side="right" top="10%" size="700px" strong />
+    <div class="container-g12">
+      <h2
+        class="reveal mx-auto max-w-[907px] text-center text-2xl leading-snug font-bold text-ink-strong md:text-[2rem]"
+      >
+        {t('about.diff.title1')}{' '}
+        <span class="text-brand-accent">{t('about.diff.title2')}</span>{' '}
+        {t('about.diff.title3')}
+      </h2>
+
+      <!-- Figma: 4 card 285×335 tại x 114/421/724/1028 -->
+      <ul class="mt-10 grid gap-5 sm:grid-cols-2 md:mt-[102px] xl:grid-cols-4">
+        {
+          diffs.map((d) => (
+            <li
+              class:list={[
+                'reveal flex min-h-[240px] flex-col rounded-[20px] p-7 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 xl:min-h-[335px]',
+                d.featured
+                  ? 'bg-linear-to-b/srgb from-[#ffecb9] to-[#ea4f26]'
+                  : 'bg-linear-to-b from-[#fef2c8] to-[#fef2c8]',
+              ]}
+            >
+              <h3
+                class:list={[
+                  'text-2xl font-extrabold uppercase',
+                  d.featured ? 'text-white' : 'text-brand-deep',
+                ]}
+              >
+                {d.title}
+              </h3>
+              <p
+                class:list={[
+                  'mt-4 text-sm leading-relaxed',
+                  d.featured ? 'text-white' : 'text-black dark:text-black',
+                ]}
+              >
+                {d.desc}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Our Commitment: khối cam đặc -->
+  <section class="bg-[#ff812c] py-12 md:py-16 dark:bg-[#7a3c12]">
+    <div class="container-g12">
+      <h2 class="reveal text-center text-2xl font-bold text-white md:text-[2rem]">
+        {t('about.commit.title1')}
+        <span class="rounded-lg bg-brand-yellow px-2 text-ink-strong">
+          {t('about.commit.title2')}
+        </span>
+      </h2>
+
+      <ul class="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-6 md:mt-[140px]">
+        {
+          commits.map((c) => (
+            <li class="reveal flex items-start gap-4">
+              <Image
+                src={c.num}
+                alt=""
+                width={68}
+                densities={[1, 2]}
+                loading="lazy"
+                class="mt-1 w-14 shrink-0 md:w-[68px]"
+              />
+              <div class="text-white">
+                <p class="text-sm">{t('about.commit.with')}</p>
+                <p class="text-2xl font-bold md:text-[28px]">{c.title}</p>
+                <p class="mt-1 text-sm text-white/90">{c.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Marquee variant="gold" />
+
+  <CallUs />
+</BaseLayout>

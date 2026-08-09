@@ -115,6 +115,70 @@ export const ui = {
     'footer.rights': 'G12 Media. All Rights Reserved',
     'footer.terms': 'Terms of use',
     'footer.privacy': 'Privacy policy',
+
+    'about.meta.title': 'About Us — G12 Media',
+    'about.meta.description':
+      'G12 Media — đơn vị tiên phong cung cấp các giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam.',
+    'about.story.title': 'Our Story',
+    'about.story.script': 'Hành trình bắt đầu từ đam mê',
+    'about.story.since': 'Since 2016',
+    'about.story.p1':
+      'Xuất phát điểm là một nhóm những người trẻ đam mê marketing, sáng tạo nội dung và am hiểu nền tảng số, G12 Media được thành lập với khát vọng trở thành một agency trẻ – sáng tạo – bắt kịp xu hướng.',
+    'about.story.p2':
+      'Trải qua quá trình phát triển đến nay, G12 Media luôn kiên định với phương châm hoạt động "lấy đam mê làm nền tảng, lấy chiến lược làm kim chỉ nam và lấy kết quả làm thước đo".',
+    'about.story.p3':
+      'Trong tương lai, chúng tôi tiếp tục hướng tới mục tiêu trở thành đối tác truyền thông tin cậy, đồng hành cùng doanh nghiệp trong việc xây dựng thương hiệu bền vững và kết nối hiệu quả với khách hàng trên môi trường số.',
+    'about.story.cta': 'XEM THÊM',
+    'about.vision.title': 'Our Vision',
+    'about.vision.quote':
+      'Chúng tôi tin rằng giải pháp Marketing toàn diện chỉ thực sự có ý nghĩa khi mang lại kết quả đo lường được và góp phần thúc đẩy sự phát triển tích cực của thương hiệu và cộng đồng.',
+    'about.vision.sign': '_ G12 MEDIA',
+    'about.allinone': 'ALL-IN-ONE SOLUTION',
+    'about.diff.title1': 'What Make G12 Media',
+    'about.diff.title2': 'Different',
+    'about.diff.title3': 'From Other?',
+    'about.diff.real': 'REAL',
+    'about.diff.realDesc':
+      'Chúng tôi cam kết mang lại kết quả có tác động thực tế, từ chiến lược đến thực thi.',
+    'about.diff.human': 'HUMAN',
+    'about.diff.humanDesc':
+      'Nâng cao năng lực chuyên môn nhằm mang đến chất lượng dịch vụ tốt nhất cho quý khách hàng',
+    'about.diff.expansion': 'EXPANSION',
+    'about.diff.expansionDesc':
+      'Mang đến giải pháp Digital Marketing toàn diện trên hành trình xây dựng và phát triển thương hiệu trong môi trường số.',
+    'about.diff.innovation': 'INNOVATION',
+    'about.diff.innovationDesc':
+      'Cập nhật xu hướng mới giúp thương hiệu thích ứng nhanh, giữ vững lợi thế cạnh tranh và không bị tụt lại phía sau',
+    'about.commit.title1': 'Our Commitment',
+    'about.commit.title2': '"GROW TOGETHER"',
+    'about.commit.with': 'cùng',
+    'about.commit.c1': 'khách hàng',
+    'about.commit.c1Desc': 'tăng trưởng thương hiệu',
+    'about.commit.c2': 'đội ngũ',
+    'about.commit.c2Desc': 'phát triển năng lực',
+    'about.commit.c3': 'cộng đồng',
+    'about.commit.c3Desc': 'lan tỏa giá trị',
+
+    'blog.meta.title': 'Blog — G12 Media',
+    'blog.meta.description':
+      'Case study, kiến thức đào tạo, tin tức marketing và câu chuyện nội bộ từ đội ngũ G12 Media.',
+    'blog.all': 'ALL',
+    'blog.recent': 'BÀI VIẾT MỚI',
+    'blog.categories': 'CHUYÊN MỤC',
+    'blog.related': 'BÀI VIẾT LIÊN QUAN',
+    'blog.by': 'G12 MEDIA',
+    'blog.comingSoon': 'Sắp ra mắt',
+
+    'contact.meta.title': 'Liên Hệ — G12 Media',
+    'contact.meta.description':
+      'Liên hệ G12 Media để được tư vấn giải pháp Marketing trọn gói cho doanh nghiệp của bạn.',
+    'contact.title': 'Liên Hệ Với Chúng Tôi',
+    'contact.name': 'Họ Và Tên',
+    'contact.phone': 'Điện Thoại',
+    'contact.email': 'E-mail',
+    'contact.message': 'Mô tả dự án của bạn',
+    'contact.submit': 'Gửi Liên Hệ',
+    'contact.success': 'Cảm ơn bạn! G12 Media sẽ liên hệ lại trong thời gian sớm nhất.',
   },
 
   en: {
@@ -220,6 +284,70 @@ export const ui = {
     'footer.rights': 'G12 Media. All Rights Reserved',
     'footer.terms': 'Terms of use',
     'footer.privacy': 'Privacy policy',
+
+    'about.meta.title': 'About Us — G12 Media',
+    'about.meta.description':
+      'G12 Media — a pioneering agency delivering all-in-one advertising, communications and marketing solutions in Vietnam.',
+    'about.story.title': 'Our Story',
+    'about.story.script': 'A journey that began with passion',
+    'about.story.since': 'Since 2016',
+    'about.story.p1':
+      'Starting out as a group of young people passionate about marketing, content creation and digital platforms, G12 Media was founded with the ambition of becoming a young, creative, trend-savvy agency.',
+    'about.story.p2':
+      'Throughout our growth, G12 Media has stayed true to one guiding principle: "passion as the foundation, strategy as the compass, results as the measure".',
+    'about.story.p3':
+      'Looking ahead, we aim to be a trusted communications partner, walking alongside businesses as they build lasting brands and connect effectively with customers in the digital world.',
+    'about.story.cta': 'SEE MORE',
+    'about.vision.title': 'Our Vision',
+    'about.vision.quote':
+      'We believe an all-in-one marketing solution is only truly meaningful when it delivers measurable results and contributes to the positive growth of both brands and the community.',
+    'about.vision.sign': '_ G12 MEDIA',
+    'about.allinone': 'ALL-IN-ONE SOLUTION',
+    'about.diff.title1': 'What Make G12 Media',
+    'about.diff.title2': 'Different',
+    'about.diff.title3': 'From Other?',
+    'about.diff.real': 'REAL',
+    'about.diff.realDesc':
+      'We commit to results with real-world impact, from strategy through to execution.',
+    'about.diff.human': 'HUMAN',
+    'about.diff.humanDesc':
+      'We continuously sharpen our expertise to deliver the best possible service quality to our clients.',
+    'about.diff.expansion': 'EXPANSION',
+    'about.diff.expansionDesc':
+      'We provide comprehensive digital marketing solutions throughout the journey of building and growing brands in the digital space.',
+    'about.diff.innovation': 'INNOVATION',
+    'about.diff.innovationDesc':
+      'We stay on top of new trends so brands adapt fast, keep their competitive edge and never fall behind.',
+    'about.commit.title1': 'Our Commitment',
+    'about.commit.title2': '"GROW TOGETHER"',
+    'about.commit.with': 'with our',
+    'about.commit.c1': 'clients',
+    'about.commit.c1Desc': 'growing their brands',
+    'about.commit.c2': 'team',
+    'about.commit.c2Desc': 'developing capabilities',
+    'about.commit.c3': 'community',
+    'about.commit.c3Desc': 'spreading value',
+
+    'blog.meta.title': 'Blog — G12 Media',
+    'blog.meta.description':
+      'Case studies, training know-how, marketing news and inside stories from the G12 Media team.',
+    'blog.all': 'ALL',
+    'blog.recent': 'RECENT POSTS',
+    'blog.categories': 'CATEGORIES',
+    'blog.related': 'RELATED POSTS',
+    'blog.by': 'G12 MEDIA',
+    'blog.comingSoon': 'Coming soon',
+
+    'contact.meta.title': 'Contact — G12 Media',
+    'contact.meta.description':
+      "Contact G12 Media for advice on the all-in-one marketing solution for your business.",
+    'contact.title': 'Contact Us',
+    'contact.name': 'Full Name',
+    'contact.phone': 'Phone',
+    'contact.email': 'E-mail',
+    'contact.message': 'Describe your project',
+    'contact.submit': 'Send Message',
+    'contact.success': 'Thank you! G12 Media will get back to you shortly.',
   },
 } as const;
 

@@ -5,11 +5,16 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 interface Props {
   /** Lặp lại một chuỗi cố định thay vì 4 solution mặc định */
   items?: string[];
+  /**
+   * `brand` — gradient cam đậm (mặc định).
+   * `gold` — gradient vàng nhạt #FEE8A3→#FFD24C dùng ở trang About Us.
+   */
+  variant?: 'brand' | 'gold';
   class?: string;
 }
 
 const t = useTranslations(getLangFromUrl(Astro.url));
-const { items, class: className = '' } = Astro.props;
+const { items, variant = 'brand', class: className = '' } = Astro.props;
 
 const labels = items ?? [
   t('marquee.marketing'),
@@ -23,7 +28,13 @@ const track = [...labels, ...labels];
 ---
 
 <div
-  class:list={['bg-brand-gradient overflow-hidden py-3 md:py-4', className]}
+  class:list={[
+    'overflow-hidden py-3 md:py-4',
+    variant === 'gold'
+      ? 'bg-linear-to-b/srgb from-[#fee8a3] to-[#ffd24c] dark:from-[#4a3a10] dark:to-[#3a2c0a]'
+      : 'bg-brand-gradient',
+    className,
+  ]}
   role="presentation"
 >
   <div class="marquee-track flex w-max items-center gap-6 md:gap-10">

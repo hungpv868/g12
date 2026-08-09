@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Glow from '../Glow.astro';
+import Icon from '../Icon.astro';
+import { categories, type CategoryKey } from '~/data/blog';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
+
+/**
+ * Blog listing — Figma frame 1:582 (Desktop-2, 1440×1620), geo/bloglist.txt.
+ * Filter pill 8 chuyên mục + grid 2 cột card (thumbnail trái + badge + tiêu
+ * đề + nút "Đọc thêm"). Hiện chỉ có 6 bài nên phân trang chưa cần hiện.
+ * Filter chạy client-side (site tĩnh, số bài nhỏ).
+ */
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Figma xếp bài theo tay (không theo ngày): Choi's + Matilia → Brief + Recap
+// → Brand + News. Bài mới sau này không có trong danh sách sẽ xếp lên đầu
+// theo ngày giảm dần.
+const designOrder = [
+  'bat-mi-cong-thuc-glow-up-choi-s-pilates',
+  'dinh-hinh-vi-the-sua-bau-cao-cap-matilia-mommy',
+  'tu-brief-den-thanh-qua-hanh-trinh-mot-y-tuong-tai-g12',
+  'recap-2025-nhung-khach-hang-da-dong-hanh-cung-g12-media',
+  'khi-thuong-hieu-lon-lam-truyen-thong-cho-cot-moc-quan-trong',
+  'dot-pha-doanh-thu-cung-dich-vu-marketing-tron-goi',
+];
+
+const posts = (await getCollection('blog', ({ id }) => id.startsWith(`${lang}/`))).sort((a, b) => {
+  const ia = designOrder.indexOf(a.id.replace(`${lang}/`, ''));
+  const ib = designOrder.indexOf(b.id.replace(`${lang}/`, ''));
+  if (ia === -1 && ib === -1) return b.data.date.valueOf() - a.data.date.valueOf();
+  if (ia === -1) return -1;
+  if (ib === -1) return 1;
+  return ia - ib;
+});
+
+const catKeys = Object.keys(categories) as CategoryKey[];
+const blogBase = localizePath(routes.blog, lang);
+---
+
+<BaseLayout
+  title={t('blog.meta.title')}
+  description={t('blog.meta.description')}
+  footerVariant="compact"
+>
+  <section class="relative overflow-hidden py-10 md:py-14">
+    <Glow side="right" top="0%" size="560px" strong />
+
+    <div class="container-g12">
+      <!-- Filter pills -->
+      <div class="flex flex-wrap gap-2.5" role="group" aria-label={t('blog.categories')}>
+        <button
+          type="button"
+          data-filter="all"
+          aria-pressed="true"
+          class="filter-pill rounded-full border border-line bg-brand-gradient px-5 py-2 text-xs font-bold text-white uppercase transition"
+        >
+          {t('blog.all')}
+        </button>
+        {
+          catKeys.map((key) => (
+            <button
+              type="button"
+              data-filter={key}
+              aria-pressed="false"
+              class="filter-pill rounded-full border border-line bg-surface-raised px-5 py-2 text-xs font-bold text-ink uppercase transition hover:border-brand-orange/50"
+            >
+              {categories[key].label[lang]}
+            </button>
+          ))
+        }
+      </div>
+
+      <!-- Grid card -->
+      <ul class="mt-8 grid gap-6 md:mt-10 md:grid-cols-2 md:gap-x-[46px] md:gap-y-8">
+        {
+          posts.map((post) => {
+            const slug = post.id.replace(`${lang}/`, '');
+            return (
+              <li
+                data-category={post.data.category}
+                class="post-card reveal flex flex-col gap-5 rounded-[20px] bg-surface-sunken p-6 shadow-[var(--shadow-card)] transition duration-300 hover:-translate-y-1 sm:flex-row"
+              >
+                <a href={`${blogBase}/${slug}`} class="shrink-0">
+                  <Image
+                    src={post.data.cover}
+                    alt=""
+                    widths={[268, 536]}
+                    sizes="(min-width: 640px) 220px, 100vw"
+                    class="aspect-[268/226] w-full rounded-[14px] object-cover sm:w-[220px]"
+                  />
+                </a>
+                <div class="flex min-w-0 flex-col items-start">
+                  <span class="flex items-center gap-2 text-sm font-bold text-ink-strong">
+                    <span
+                      class="size-2 rounded-full"
+                      style={`background:${categories[post.data.category].dot}`}
+                    />
+                    {categories[post.data.category].label[lang]}
+                  </span>
+                  <h2 class="mt-2 line-clamp-4 text-sm leading-snug font-bold text-brand-deep">
+                    <a href={`${blogBase}/${slug}`}>{post.data.title}</a>
+                  </h2>
+                  <a
+                    href={`${blogBase}/${slug}`}
+                    class="mt-auto inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 pt-2.5 text-xs font-bold text-white transition hover:gap-3 sm:mt-4"
+                  >
+                    {t('cta.readMore')}
+                    <Icon name="arrowRight" size={13} />
+                  </a>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <p data-empty hidden class="mt-10 text-center text-sm text-ink-muted">
+        {t('blog.comingSoon')}
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+    const cards = document.querySelectorAll<HTMLElement>('.post-card');
+    const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const filter = pill.dataset.filter;
+        pills.forEach((p) => {
+          const active = p === pill;
+          p.setAttribute('aria-pressed', String(active));
+          p.classList.toggle('bg-brand-gradient', active);
+          p.classList.toggle('text-white', active);
+          p.classList.toggle('bg-surface-raised', !active);
+          p.classList.toggle('text-ink', !active);
+        });
+        let shown = 0;
+        cards.forEach((card) => {
+          const show = filter === 'all' || card.dataset.category === filter;
+          card.toggleAttribute('hidden', !show);
+          if (show) shown++;
+        });
+        empty?.toggleAttribute('hidden', shown > 0);
+      });
+    });
+  </script>
+</BaseLayout>

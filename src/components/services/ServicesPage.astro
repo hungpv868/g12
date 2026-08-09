@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Marquee from '../Marquee.astro';
+import Glow from '../Glow.astro';
+import sv1 from '~/assets/services/sv-1.jpg';
+import sv2 from '~/assets/services/sv-2.jpg';
+import sv3 from '~/assets/services/sv-3.jpg';
+import sv4 from '~/assets/services/sv-4.jpg';
+import { serviceBlocks } from '~/data/services';
+import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+
+/**
+ * Dịch Vụ — Figma frame 1:1430 (Desktop-12, 1440×4087), geo/services.txt.
+ * 4 khối text+ảnh vuông (~490px) xen kẽ phải/trái, ngăn nhau bằng marquee
+ * vàng. Ảnh crop từ bản export Figma (Drive không có bộ này).
+ */
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const blocks = serviceBlocks[lang];
+const images = [sv1, sv2, sv3, sv4];
+---
+
+<BaseLayout title={`${t('nav.services')} — G12 Media`} description={t('home.services.desc')}>
+  <section class="container-g12 pt-10 pb-4 md:pt-[68px]">
+    <h1
+      class="reveal text-center text-3xl leading-tight font-bold text-ink-strong uppercase sm:text-4xl md:text-5xl"
+    >
+      {t('home.services.title1')}{' '}
+      <span class="text-brand-deep">{t('home.services.title2')}</span>
+    </h1>
+    <p class="reveal mx-auto mt-4 max-w-[760px] text-center text-sm text-ink-muted md:text-base">
+      {t('home.services.desc')}
+    </p>
+  </section>
+
+  {
+    blocks.map((block, i) => (
+      <>
+        <section class="relative overflow-hidden py-10 md:py-14">
+          <Glow side={i % 2 ? 'left' : 'right'} top="15%" size="640px" strong={i % 2 === 0} />
+
+          <div
+            class:list={[
+              'container-g12 grid items-center gap-8 lg:gap-16',
+              i % 2 === 0 ? 'lg:grid-cols-[653fr_494fr]' : 'lg:grid-cols-[494fr_653fr]',
+            ]}
+          >
+            <div class:list={['reveal', i % 2 === 1 && 'lg:order-2']}>
+              <h2 class="text-2xl leading-tight font-extrabold text-brand-accent uppercase sm:text-3xl md:text-[2.5rem]">
+                {block.title}
+              </h2>
+              <div class="mt-4 flex flex-col gap-1 text-sm leading-relaxed md:text-[15px]">
+                {block.intro.map((p) => (
+                  <p>{p}</p>
+                ))}
+              </div>
+              <ul class="mt-5 flex list-disc flex-col gap-2.5 ps-5 text-sm leading-relaxed marker:text-ink-strong md:text-[15px]">
+                {block.items.map((item) => (
+                  <li>
+                    <strong class="font-bold text-ink-strong">{item.label}</strong> {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class:list={['reveal', i % 2 === 1 && 'lg:order-1']}>
+              <Image
+                src={images[i]!}
+                alt={block.title}
+                widths={[494, 988]}
+                sizes="(min-width: 1024px) 494px, 100vw"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                class="mx-auto w-full max-w-[494px] rounded-[24px] shadow-[var(--shadow-card)]"
+              />
+            </div>
+          </div>
+        </section>
+
+        {i < blocks.length - 1 && <Marquee variant="gold" />}
+      </>
+    ))
+  }
+</BaseLayout>
