@@ -13,8 +13,8 @@ export type Lang = keyof typeof languages;
  */
 export const ui = {
   vi: {
-    'nav.home': 'Home',
-    'nav.about': 'About Us',
+    'nav.home': 'Trang Chủ',
+    'nav.about': 'Về Chúng Tôi',
     'nav.projects': 'Dự Án',
     'nav.services': 'Dịch Vụ',
     'nav.blog': 'Blog',
@@ -103,25 +103,25 @@ export const ui = {
     'home.trust.title2': 'VÀ SỬ DỤNG DỊCH VỤ',
 
     'home.posts.title': 'BÀI VIẾT NỔI BẬT',
-    'home.callus.title': 'Call us if you need',
+    'home.callus.title': 'Liên hệ khi bạn cần',
 
-    'footer.connect1': "Let's",
-    'footer.connect2': 'Connect',
-    'footer.connect3': 'There',
-    'footer.contact': 'Contact',
-    'footer.newsletter': 'Get the latest information',
-    'footer.emailPlaceholder': 'Email address',
+    'footer.connect1': 'Hãy',
+    'footer.connect2': 'Kết Nối',
+    'footer.connect3': 'Với Chúng Tôi',
+    'footer.contact': 'Liên Hệ',
+    'footer.newsletter': 'Nhận thông tin mới nhất',
+    'footer.emailPlaceholder': 'Địa chỉ email',
     'footer.subscribe': 'Đăng ký nhận tin',
-    'footer.rights': 'G12 Media. All Rights Reserved',
-    'footer.terms': 'Terms of use',
-    'footer.privacy': 'Privacy policy',
+    'footer.rights': 'G12 Media. Mọi quyền được bảo lưu',
+    'footer.terms': 'Điều khoản sử dụng',
+    'footer.privacy': 'Chính sách bảo mật',
 
     'about.meta.title': 'About Us — G12 Media',
     'about.meta.description':
       'G12 Media — đơn vị tiên phong cung cấp các giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam.',
-    'about.story.title': 'Our Story',
+    'about.story.title': 'Câu Chuyện Của Chúng Tôi',
     'about.story.script': 'Hành trình bắt đầu từ đam mê',
-    'about.story.since': 'Since 2016',
+    'about.story.since': 'Từ 2016',
     'about.story.p1':
       'Xuất phát điểm là một nhóm những người trẻ đam mê marketing, sáng tạo nội dung và am hiểu nền tảng số, G12 Media được thành lập với khát vọng trở thành một agency trẻ – sáng tạo – bắt kịp xu hướng.',
     'about.story.p2':
@@ -129,14 +129,14 @@ export const ui = {
     'about.story.p3':
       'Trong tương lai, chúng tôi tiếp tục hướng tới mục tiêu trở thành đối tác truyền thông tin cậy, đồng hành cùng doanh nghiệp trong việc xây dựng thương hiệu bền vững và kết nối hiệu quả với khách hàng trên môi trường số.',
     'about.story.cta': 'XEM THÊM',
-    'about.vision.title': 'Our Vision',
+    'about.vision.title': 'Tầm Nhìn Của Chúng Tôi',
     'about.vision.quote':
       'Chúng tôi tin rằng giải pháp Marketing toàn diện chỉ thực sự có ý nghĩa khi mang lại kết quả đo lường được và góp phần thúc đẩy sự phát triển tích cực của thương hiệu và cộng đồng.',
     'about.vision.sign': '_ G12 MEDIA',
-    'about.allinone': 'ALL-IN-ONE SOLUTION',
-    'about.diff.title1': 'What Make G12 Media',
-    'about.diff.title2': 'Different',
-    'about.diff.title3': 'From Other?',
+    'about.allinone': 'GIẢI PHÁP ALL-IN-ONE',
+    'about.diff.title1': 'Điều Gì Khiến G12 Media',
+    'about.diff.title2': 'Khác Biệt',
+    'about.diff.title3': 'So Với Phần Còn Lại?',
     'about.diff.real': 'REAL',
     'about.diff.realDesc':
       'Chúng tôi cam kết mang lại kết quả có tác động thực tế, từ chiến lược đến thực thi.',
@@ -149,7 +149,7 @@ export const ui = {
     'about.diff.innovation': 'INNOVATION',
     'about.diff.innovationDesc':
       'Cập nhật xu hướng mới giúp thương hiệu thích ứng nhanh, giữ vững lợi thế cạnh tranh và không bị tụt lại phía sau',
-    'about.commit.title1': 'Our Commitment',
+    'about.commit.title1': 'Cam Kết Của Chúng Tôi',
     'about.commit.title2': '"GROW TOGETHER"',
     'about.commit.with': 'cùng',
     'about.commit.c1': 'khách hàng',
@@ -162,7 +162,7 @@ export const ui = {
     'blog.meta.title': 'Blog — G12 Media',
     'blog.meta.description':
       'Case study, kiến thức đào tạo, tin tức marketing và câu chuyện nội bộ từ đội ngũ G12 Media.',
-    'blog.all': 'ALL',
+    'blog.all': 'TẤT CẢ',
     'blog.recent': 'BÀI VIẾT MỚI',
     'blog.categories': 'CHUYÊN MỤC',
     'blog.related': 'BÀI VIẾT LIÊN QUAN',
