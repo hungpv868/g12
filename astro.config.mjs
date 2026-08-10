@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Netlify/real domain: build without env → served at the root.
@@ -15,6 +16,14 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'vi',
+        locales: { vi: 'vi', en: 'en' },
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

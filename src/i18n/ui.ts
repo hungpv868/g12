@@ -37,10 +37,12 @@ export const ui = {
     'marquee.advertising': 'Advertising Solution',
     'marquee.creative': 'Creative Solution',
 
-    'home.meta.title': 'G12 Media — Đối tác Marketing giúp doanh nghiệp phát triển bền vững',
+    'home.meta.title': 'G12 Media — Đối tác Marketing phát triển bền vững',
     'home.meta.description':
       'G12 Media cung cấp giải pháp Marketing trọn gói: quản trị Fanpage & quảng cáo, content social & TikTok, thiết kế và sản xuất media cho doanh nghiệp Việt.',
 
+    'services.meta.title': 'Dịch Vụ Marketing Trọn Gói — G12 Media',
+    'projects.meta.title': 'Dự Án Tiêu Biểu — G12 Media',
     'home.hero.title1': 'Đối tác Marketing giúp',
     'home.hero.title2': 'doanh nghiệp',
     'home.hero.title3': 'phát triển bền vững',
@@ -84,7 +86,7 @@ export const ui = {
     'home.who.sub': 'Chúng tôi tập trung trọng vào:',
     'home.who.i1': 'Tư duy chiến lược rõ ràng',
     'home.who.i2': 'Hiệu quả đo lường được',
-    'home.who.i3': 'Triển khai nhanh — đa lượng minh bạch',
+    'home.who.i3': 'Triển khai nhanh — đo lường minh bạch',
 
     'home.mission.title': 'SỨ MỆNH CỦA CHÚNG TÔI',
     'home.mission.m1': 'Giúp doanh nghiệp Việt xây dựng thương hiệu bài bản',
@@ -116,7 +118,7 @@ export const ui = {
     'footer.terms': 'Điều khoản sử dụng',
     'footer.privacy': 'Chính sách bảo mật',
 
-    'about.meta.title': 'About Us — G12 Media',
+    'about.meta.title': 'Về Chúng Tôi — G12 Media',
     'about.meta.description':
       'G12 Media — đơn vị tiên phong cung cấp các giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam.',
     'about.story.title': 'Câu Chuyện Của Chúng Tôi',
@@ -159,7 +161,7 @@ export const ui = {
     'about.commit.c3': 'cộng đồng',
     'about.commit.c3Desc': 'lan tỏa giá trị',
 
-    'blog.meta.title': 'Blog — G12 Media',
+    'blog.meta.title': 'Blog Marketing & Case Study — G12 Media',
     'blog.meta.description':
       'Case study, kiến thức đào tạo, tin tức marketing và câu chuyện nội bộ từ đội ngũ G12 Media.',
     'blog.all': 'TẤT CẢ',
@@ -169,7 +171,7 @@ export const ui = {
     'blog.by': 'G12 MEDIA',
     'blog.comingSoon': 'Sắp ra mắt',
 
-    'contact.meta.title': 'Liên Hệ — G12 Media',
+    'contact.meta.title': 'Liên Hệ Tư Vấn Marketing — G12 Media',
     'contact.meta.description':
       'Liên hệ G12 Media để được tư vấn giải pháp Marketing trọn gói cho doanh nghiệp của bạn.',
     'contact.title': 'Liên Hệ Với Chúng Tôi',
@@ -206,10 +208,12 @@ export const ui = {
     'marquee.advertising': 'Advertising Solution',
     'marquee.creative': 'Creative Solution',
 
-    'home.meta.title': 'G12 Media — The marketing partner for sustainable business growth',
+    'home.meta.title': 'G12 Media — Marketing for sustainable growth',
     'home.meta.description':
       'G12 Media delivers all-in-one marketing: fanpage management and ads, social and TikTok content, media design and production for Vietnamese businesses.',
 
+    'services.meta.title': 'All-in-One Marketing Services — G12 Media',
+    'projects.meta.title': 'Featured Projects — G12 Media',
     'home.hero.title1': 'The marketing partner for',
     'home.hero.title2': 'sustainable',
     'home.hero.title3': 'business growth',
@@ -328,7 +332,7 @@ export const ui = {
     'about.commit.c3': 'community',
     'about.commit.c3Desc': 'spreading value',
 
-    'blog.meta.title': 'Blog — G12 Media',
+    'blog.meta.title': 'Marketing Blog & Case Studies — G12 Media',
     'blog.meta.description':
       'Case studies, training know-how, marketing news and inside stories from the G12 Media team.',
     'blog.all': 'ALL',
@@ -338,7 +342,7 @@ export const ui = {
     'blog.by': 'G12 MEDIA',
     'blog.comingSoon': 'Coming soon',
 
-    'contact.meta.title': 'Contact — G12 Media',
+    'contact.meta.title': 'Contact & Consultation — G12 Media',
     'contact.meta.description':
       "Contact G12 Media for advice on the all-in-one marketing solution for your business.",
     'contact.title': 'Contact Us',

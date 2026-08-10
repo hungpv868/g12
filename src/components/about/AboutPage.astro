@@ -40,9 +40,12 @@ const commits = [
 <BaseLayout title={t('about.meta.title')} description={t('about.meta.description')}>
   <!-- Hero: the mosaic cover image already contains the logo + positioning, pulled up behind the header -->
   <section class="-mt-16 md:-mt-20">
+    <h1 class="sr-only">{t('about.meta.title')}</h1>
     <Image
       src={hero}
-      alt="G12 Media — đơn vị tiên phong cung cấp giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam"
+      alt={lang === 'vi'
+        ? 'G12 Media — đơn vị tiên phong cung cấp giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam'
+        : 'G12 Media — a pioneering all-in-one advertising, communications and marketing agency in Vietnam'}
       widths={[768, 1440, 2880]}
       sizes="100vw"
       loading="eager"
@@ -70,7 +73,7 @@ const commits = [
         <figure class="reveal relative mx-auto w-full max-w-[560px]">
           <Image
             src={team}
-            alt="Đội ngũ G12 Media"
+            alt={lang === 'vi' ? 'Đội ngũ G12 Media' : 'The G12 Media team'}
             widths={[560, 1120]}
             sizes="(min-width: 1024px) 560px, 100vw"
             class="w-full"

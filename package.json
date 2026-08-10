@@ -13,6 +13,7 @@
     "audit": "node scripts/audit.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource/be-vietnam-pro": "^5.2.5",
     "@fontsource/corinthia": "^5.2.5",
     "astro": "^7.2.0",

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Button from '~/components/Button.astro';
+
+/**
+ * Single 404 for both languages (Netlify serves the root 404.html for every
+ * missing path, so the page carries both languages with lang-tagged sections).
+ */
+---
+
+<BaseLayout
+  title="404 — G12 Media"
+  description="Trang không tồn tại — Page not found."
+  footerVariant="compact"
+>
+  <section class="container-g12 flex min-h-[55vh] flex-col items-center justify-center py-16 text-center">
+    <p class="text-brand-gradient text-[6rem] leading-none font-extrabold md:text-[9rem]">404</p>
+    <h1 class="mt-4 text-xl font-bold text-ink-strong md:text-2xl" lang="vi">
+      Trang bạn tìm không tồn tại
+    </h1>
+    <p class="mt-1 text-sm text-ink-muted" lang="en">The page you're looking for doesn't exist.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <Button href="/">Trang Chủ</Button>
+      <Button href="/en/" variant="ghost">English Home</Button>
+    </div>
+  </section>
+</BaseLayout>

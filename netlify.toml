@@ -4,6 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # While the demo lives on netlify.app, canonical/hreflang/sitemap must point
+  # here — pointing them at the unregistered g12media.vn would hurt indexing.
+  # DELETE this line once the real domain is connected.
+  SITE = "https://g12media.netlify.app"
 
 # Astro pre-generates static files, so only hashed assets need caching
 [[headers]]

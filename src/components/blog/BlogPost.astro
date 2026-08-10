@@ -1,6 +1,6 @@
 ---
 import { render, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Glow from '../Glow.astro';
 import { categories, recentWidget, relatedByCategory } from '~/data/blog';
@@ -33,6 +33,9 @@ const dateStr = new Intl.DateTimeFormat(lang === 'vi' ? 'vi-VN' : 'en-GB', {
 }).format(post.data.date);
 const byline = `${dateStr.charAt(0).toUpperCase() + dateStr.slice(1)} - 20:00`;
 
+// og:image = the post cover, pre-rendered at the social-card size
+const ogCover = await getImage({ src: post.data.cover, width: 1200, format: 'jpeg' });
+
 // Drop the post being read from the related list (Figma: the Matilia post shows
 // Choi's first and vice versa), keep exactly 3 items
 const related = (relatedByCategory[post.data.category] ?? relatedByCategory.casestudy!)
@@ -44,6 +47,8 @@ const related = (relatedByCategory[post.data.category] ?? relatedByCategory.case
   title={`${post.data.title} — G12 Media`}
   description={post.data.excerpt}
   footerVariant="compact"
+  ogImage={ogCover.src}
+  article={{ published: post.data.date }}
 >
   <article class="relative overflow-hidden py-10 md:py-14">
     <Glow side="right" top="5%" size="520px" />
