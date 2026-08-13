@@ -134,6 +134,18 @@
     color: transparent;
   }
 
+  /* The build minifier strips -webkit-background-clip (its targets are
+     Chrome ≥ 120, where the unprefixed form is enough), but older Chrome only
+     understands the prefixed one — without it gradient text paints as a solid
+     box over invisible glyphs. An @supports block survives minification, so
+     the prefix is re-asserted here for both our class and the Tailwind utility. */
+  @supports (-webkit-background-clip: text) {
+    .text-brand-gradient,
+    .bg-clip-text {
+      -webkit-background-clip: text;
+    }
+  }
+
   .bg-brand-gradient {
     background-image: linear-gradient(
       100deg,

@@ -24,22 +24,18 @@ const services = [
   {
     title: t('home.services.s1.title'),
     items: [t('home.services.s1.i1'), t('home.services.s1.i2'), t('home.services.s1.i3')],
-    featured: false,
   },
   {
     title: t('home.services.s2.title'),
     items: [t('home.services.s2.i1'), t('home.services.s2.i2'), t('home.services.s2.i3')],
-    featured: true,
   },
   {
     title: t('home.services.s3.title'),
     items: [t('home.services.s3.i1'), t('home.services.s3.i2'), t('home.services.s3.i3')],
-    featured: false,
   },
   {
     title: t('home.services.s4.title'),
     items: [t('home.services.s4.i1'), t('home.services.s4.i2'), t('home.services.s4.i3')],
-    featured: false,
   },
 ];
 
@@ -80,27 +76,14 @@ const btn =
       {
         services.map((s) => (
           <li
-            class:list={[
-              'reveal flex w-[76vw] max-w-[285px] shrink-0 snap-center flex-col items-center rounded-[20px] px-[25px] pt-9 pb-[38px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 md:w-auto md:max-w-none xl:min-h-[383px]',
-              s.featured
-                ? 'bg-linear-to-b from-[#ff9d4e] to-[#f2703a]'
-                : 'bg-linear-to-b from-[#ffeeb6] to-[#fef2c9]',
-            ]}
+            class="reveal flex w-[76vw] max-w-[285px] shrink-0 snap-center flex-col items-center rounded-[20px] bg-linear-to-b from-[#ffeeb6] to-[#fef2c9] px-[25px] pt-9 pb-[38px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 md:w-auto md:max-w-none xl:min-h-[383px]"
           >
-            <h3
-              class:list={[
-                'text-center text-[22px] leading-[1.25] font-extrabold uppercase',
-                s.featured ? 'text-white' : 'text-brand-deep',
-              ]}
-            >
+            <h3 class="text-center text-[22px] leading-[1.25] font-extrabold text-brand-deep uppercase">
               {s.title}
             </h3>
 
             <ul
-              class:list={[
-                'mt-[26px] flex w-full flex-1 list-disc flex-col gap-4 ps-5 text-sm leading-snug font-medium',
-                s.featured ? 'text-white marker:text-white' : 'text-black marker:text-black',
-              ]}
+              class="mt-[26px] flex w-full flex-1 list-disc flex-col gap-4 ps-5 text-sm leading-snug font-medium text-black marker:text-black"
             >
               {s.items.map((item) => (
                 <li>{item}</li>

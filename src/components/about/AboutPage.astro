@@ -62,8 +62,10 @@ const commits = [
       <h2 class="reveal text-2xl font-bold text-ink-strong md:text-[2rem]">
         {t('about.story.title')}
       </h2>
+      {/* Darker orange→red gradient instead of the brand yellow→orange one:
+          the thin Corinthia strokes in yellow disappear into the cream page bg */}
       <p
-        class="reveal text-brand-gradient mt-4 text-center font-script text-5xl leading-tight sm:text-7xl md:text-[8rem]"
+        class="reveal mt-4 bg-linear-to-r from-brand-orange to-brand-deep bg-clip-text text-center font-script text-5xl leading-tight text-transparent sm:text-7xl md:text-[8rem]"
         style="filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2))"
       >
         {t('about.story.script')}
@@ -97,18 +99,16 @@ const commits = [
           <p>{t('about.story.p2')}</p>
           <p>{t('about.story.p3')}</p>
 
-          <!-- Hero-style 214×62 button: gradient pill + arrow circle overlapping the edge -->
+          <!-- Hero-style gradient pill with the arrow circle tucked against the right edge -->
           <a
             href="#story"
-            class="group mt-4 inline-flex h-[52px] w-[214px] items-center rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange pr-12 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px]"
+            class="group mt-4 inline-flex h-[52px] w-fit items-center gap-4 rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange py-1 pr-1 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px] md:pl-8"
           >
-            <span class="relative">
-              {t('about.story.cta')}
-              <span
-                class="absolute top-1/2 -right-11 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-surface-raised text-ink-strong shadow-md transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1/2"
-              >
-                <Icon name="arrowRight" size={18} />
-              </span>
+            {t('about.story.cta')}
+            <span
+              class="grid size-11 place-items-center rounded-full bg-surface-raised text-ink-strong shadow-md transition-transform duration-300 group-hover:translate-x-0.5 md:size-12"
+            >
+              <Icon name="arrowRight" size={18} />
             </span>
           </a>
         </div>

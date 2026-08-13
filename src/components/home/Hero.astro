@@ -58,18 +58,17 @@ const checks = [
         }
       </ul>
 
-      {/* 248x62 button with an arrow circle overlapping the right edge */}
+      {/* Gradient pill with the arrow circle tucked against the right edge.
+          Auto width — a fixed 248px left a dead stretch of gradient after the circle */}
       <a
         href={localizePath(routes.contact, lang)}
-        class="group mt-8 inline-flex h-[52px] w-[248px] max-w-full items-center rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange pr-14 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px]"
+        class="group mt-8 inline-flex h-[52px] items-center gap-4 rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange py-1 pr-1 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px] md:pl-8"
       >
-        <span class="relative">
-          {t('cta.consult')}
-          <span
-            class="absolute top-1/2 -right-12 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-surface-raised text-ink-strong shadow-md transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1/2 md:size-12"
-          >
-            <Icon name="arrowRight" size={18} />
-          </span>
+        {t('cta.consult')}
+        <span
+          class="grid size-11 place-items-center rounded-full bg-surface-raised text-ink-strong shadow-md transition-transform duration-300 group-hover:translate-x-0.5 md:size-12"
+        >
+          <Icon name="arrowRight" size={18} />
         </span>
       </a>
     </div>

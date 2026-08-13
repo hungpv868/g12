@@ -32,10 +32,10 @@ export const ui = {
     'cta.readMore': 'Đọc thêm',
     'cta.seeMore': 'Xem thêm',
 
-    'marquee.marketing': 'Marketing Solution',
-    'marquee.digital': 'Digital Media Solution',
-    'marquee.advertising': 'Advertising Solution',
-    'marquee.creative': 'Creative Solution',
+    'marquee.marketing': 'Giải Pháp Marketing',
+    'marquee.digital': 'Giải Pháp Truyền Thông Số',
+    'marquee.advertising': 'Giải Pháp Quảng Cáo',
+    'marquee.creative': 'Giải Pháp Sáng Tạo',
 
     'home.meta.title': 'G12 Media — Đối tác Marketing phát triển bền vững',
     'home.meta.description':

@@ -96,7 +96,10 @@ if (article) {
     <ThemeScript />
   </head>
 
-  <body class="min-h-screen overflow-x-hidden">
+  {/* overflow-x-clip, NOT -hidden: hidden turns <body> into a scroll container,
+    which silently breaks the sticky header. clip blocks sideways overflow the
+    same way without creating a scroll container. */}
+  <body class="min-h-screen overflow-x-clip">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-surface-raised focus:px-5 focus:py-2.5 focus:font-bold focus:text-brand-orange"
