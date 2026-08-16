@@ -21,13 +21,13 @@ export type CategoryKey = 'casestudy' | 'noibo' | 'vanhoa' | 'daotao' | 'life' |
 
 /** Categories per the content doc; dot colors taken from the blog detail mockup. */
 export const categories: Record<CategoryKey, { label: Record<Lang, string>; dot: string }> = {
-  casestudy: { label: { vi: 'CASESTUDY', en: 'CASE STUDY' }, dot: '#38bdf8' },
+  casestudy: { label: { vi: 'DỰ ÁN THỰC TẾ', en: 'CASE STUDY' }, dot: '#38bdf8' },
   noibo: { label: { vi: 'TRUYỀN THÔNG NỘI BỘ', en: 'INTERNAL COMMS' }, dot: '#fb923c' },
   vanhoa: { label: { vi: 'VĂN HÓA DOANH NGHIỆP', en: 'COMPANY CULTURE' }, dot: '#a78bfa' },
   daotao: { label: { vi: 'ĐÀO TẠO', en: 'TRAINING' }, dot: '#4ade80' },
-  life: { label: { vi: 'LIFE @G12MEDIA', en: 'LIFE @G12MEDIA' }, dot: '#f472b6' },
+  life: { label: { vi: 'CUỘC SỐNG @G12MEDIA', en: 'LIFE @G12MEDIA' }, dot: '#f472b6' },
   ketnoi: { label: { vi: 'KẾT NỐI VÀ PHÁT TRIỂN', en: 'CONNECT & GROW' }, dot: '#facc15' },
-  news: { label: { vi: 'NEWS', en: 'NEWS' }, dot: '#818cf8' },
+  news: { label: { vi: 'TIN TỨC', en: 'NEWS' }, dot: '#818cf8' },
 };
 
 export interface GhostPost {

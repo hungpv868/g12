@@ -39,7 +39,7 @@ export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
   vi: [
     {
       no: '2.1',
-      title: 'Brand Identity & Creative Design',
+      title: 'Nhận Diện Thương Hiệu & Thiết Kế Sáng Tạo',
       intro:
         'G12 Media đồng hành cùng doanh nghiệp trong việc xây dựng hình ảnh thương hiệu chuyên nghiệp và thống nhất trên mọi kênh truyền thông.',
       items: [
@@ -54,7 +54,7 @@ export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
     },
     {
       no: '2.2',
-      title: 'Digital Marketing',
+      title: 'Marketing Số',
       intro:
         'G12 Media tư vấn và triển khai các hoạt động quảng cáo trên nền tảng số, giúp doanh nghiệp tiếp cận đúng khách hàng, tăng hiệu quả truyền thông và tối ưu chi phí quảng cáo.',
       items: [
@@ -69,7 +69,7 @@ export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
     },
     {
       no: '2.3',
-      title: 'Social Media Management',
+      title: 'Quản Trị Mạng Xã Hội',
       intro:
         'G12 Media xây dựng và quản lý nội dung trên các nền tảng mạng xã hội, giúp doanh nghiệp duy trì hình ảnh thương hiệu và kết nối thường xuyên với khách hàng.',
       items: [
@@ -84,7 +84,7 @@ export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
     },
     {
       no: '2.4',
-      title: 'Media Production',
+      title: 'Sản Xuất Media',
       intro:
         'G12 Media sản xuất hình ảnh và video phục vụ hoạt động truyền thông, quảng bá thương hiệu và bán hàng.',
       items: [
@@ -100,7 +100,7 @@ export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
     },
     {
       no: '2.5',
-      title: 'Website & Landing Page',
+      title: 'Thiết Kế Website & Landing Page',
       intro:
         'G12 Media thiết kế và phát triển website, landing page đáp ứng nhu cầu giới thiệu doanh nghiệp, quảng bá sản phẩm và hỗ trợ bán hàng trực tuyến.',
       items: [
@@ -115,7 +115,7 @@ export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
     },
     {
       no: '2.6',
-      title: 'E-commerce Solutions',
+      title: 'Giải Pháp Thương Mại Điện Tử',
       intro:
         'G12 Media hỗ trợ doanh nghiệp xây dựng và phát triển hoạt động kinh doanh trên các sàn thương mại điện tử.',
       items: [

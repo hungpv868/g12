@@ -129,7 +129,7 @@ const btn =
           <a href={projectsHref} class="reveal group relative block overflow-hidden rounded-[18px]">
             <Image
               src={p.img}
-              alt={`Dự án ${p.name}`}
+              alt={lang === 'vi' ? `Dự án ${p.name}` : `${p.name} project`}
               widths={[p.w, p.w * 2]}
               sizes={`(min-width: 768px) ${p.w}px, 100vw`}
               class="w-full object-cover object-top transition duration-500 group-hover:scale-105"
@@ -147,7 +147,7 @@ const btn =
     <a href={projectsHref} class="reveal group relative mt-6 block overflow-hidden rounded-[18px]">
       <Image
         src={matilia}
-        alt="Dự án Matilia Mommy"
+        alt={lang === 'vi' ? 'Dự án Matilia Mommy' : 'Matilia Mommy project'}
         widths={[951, 1902]}
         sizes="(min-width: 1024px) 951px, 100vw"
         class="w-full object-cover transition duration-500 group-hover:scale-105"

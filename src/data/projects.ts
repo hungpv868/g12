@@ -139,7 +139,7 @@ export const caseStudies: Record<Lang, CaseStudy[]> = {
         columns: [
           {
             title: 'Nội Dung',
-            text: 'Xây dựng nội dung chia sẻ về lợi ích của Pilates, cải thiện vóc dáng before – after, sức khỏe và lối sống lành mạnh.',
+            text: 'Xây dựng nội dung chia sẻ về lợi ích của Pilates, cải thiện vóc dáng trước – sau, sức khỏe và lối sống lành mạnh.',
           },
           {
             title: 'Hình Ảnh',
@@ -394,8 +394,8 @@ export interface Industry {
 export const industryLabels: Record<Lang, { title: string; caseTitle: string; viewCase: string }> = {
   vi: {
     title: 'Dự Án Theo Ngành Hàng',
-    caseTitle: 'Case Study Nổi Bật',
-    viewCase: 'Xem case study',
+    caseTitle: 'Dự Án Nổi Bật',
+    viewCase: 'Xem chi tiết dự án',
   },
   en: {
     title: 'Projects by Industry',
@@ -415,21 +415,21 @@ export const industries: Record<Lang, Industry[]> = {
         {
           img: 'cgd-victory',
           name: 'CGD Victory School',
-          services: 'Brand Communications · Creative Design · Content Production',
+          services: 'Truyền thông thương hiệu · Thiết kế sáng tạo · Sản xuất nội dung',
           period: '2016 – 2021',
           desc: 'Đồng hành cùng CGD School trong xây dựng hình ảnh và truyền thông nhà trường: xây dựng nội dung, thiết kế ấn phẩm tuyển sinh và phát triển hình ảnh môi trường học tập, trải nghiệm của học sinh.',
         },
         {
           img: 'tieu-hoc-cngd',
           name: 'Trường Tiểu Học Công Nghệ Giáo Dục',
-          services: 'Brand Communications · Creative Design · Content Production',
+          services: 'Truyền thông thương hiệu · Thiết kế sáng tạo · Sản xuất nội dung',
           period: '2015 – 2017, 2024 – 2026',
           desc: 'Triển khai quảng cáo, truyền thông nhà trường — truyền tải thông tin rõ ràng, xây dựng hình ảnh chuyên nghiệp, gần gũi và tăng cường kết nối nhà trường – học sinh – phụ huynh.',
         },
         {
           img: 'vnen-srpp',
           name: 'Dự Án VNEN & SRPP',
-          services: 'Media Production · Project Communications',
+          services: 'Sản xuất media · Truyền thông dự án',
           period: '2015 – 2017',
           desc: 'Sản xuất nội dung truyền thông cho hai dự án thuộc Bộ Giáo dục & Đào tạo với sự hỗ trợ của Ngân hàng Thế giới: kịch bản, quay dựng chuỗi video phóng sự, tài liệu về mô hình giáo dục tại các địa phương.',
         },
@@ -444,24 +444,24 @@ export const industries: Record<Lang, Industry[]> = {
         {
           img: 'moroccanoil-tigi',
           name: 'Moroccanoil & TIGI Haircare',
-          services: 'Brand Communications · Product Content · Media Production',
+          services: 'Truyền thông thương hiệu · Nội dung sản phẩm · Sản xuất media',
           period: '2017 – 2018',
           desc: 'Đồng hành cùng hai thương hiệu chăm sóc tóc chuyên nghiệp toàn cầu trong phát triển nội dung số, quảng cáo và quảng bá thương hiệu đến đông đảo người tiêu dùng tại Việt Nam.',
         },
         {
           img: 'jin-fitness',
           name: 'Jin Fitness',
-          services: 'Integrated Marketing · Social Media · Media Production · Digital Ads',
+          services: 'Marketing tích hợp · Mạng xã hội · Sản xuất media · Quảng cáo số',
           period: '2025 – 2026',
-          desc: 'Đối tác chiến lược cung cấp giải pháp marketing tổng thể (Full-stack Marketing): hoạch định chiến lược, quản trị Fanpage, sản xuất nội dung đa phương tiện và tối ưu quảng cáo số.',
+          desc: 'Đối tác chiến lược cung cấp giải pháp marketing tổng thể: hoạch định chiến lược, quản trị Fanpage, sản xuất nội dung đa phương tiện và tối ưu quảng cáo số.',
           caseAnchor: 'case-jin',
         },
         {
           img: 'chois-pilates',
           name: "Choi's Pilates",
-          services: 'Integrated Marketing · Social Media · Media Production · Digital Ads',
+          services: 'Marketing tích hợp · Mạng xã hội · Sản xuất media · Quảng cáo số',
           period: '2025 – 2026',
-          desc: 'Đối tác marketing tổng thể, đồng thời tư vấn định hướng thông điệp báo chí và xử lý rủi ro truyền thông (Crisis Communications) cho thương hiệu.',
+          desc: 'Đối tác marketing tổng thể, đồng thời tư vấn định hướng thông điệp báo chí và xử lý rủi ro truyền thông cho thương hiệu.',
           caseAnchor: 'case-chois',
         },
       ],
@@ -475,21 +475,21 @@ export const industries: Record<Lang, Industry[]> = {
         {
           img: 'imou',
           name: 'IMOU Vietnam',
-          services: 'Digital Communications · Content Production',
+          services: 'Truyền thông số · Sản xuất nội dung',
           period: '2021 – 2023',
-          desc: 'Quảng cáo và hỗ trợ chiến dịch Digital Marketing: truyền thông giải pháp camera thông minh, làm nổi bật tính năng công nghệ và lan tỏa các chương trình khuyến mãi bán hàng.',
+          desc: 'Quảng cáo và hỗ trợ chiến dịch marketing số: truyền thông giải pháp camera thông minh, làm nổi bật tính năng công nghệ và lan tỏa các chương trình khuyến mãi bán hàng.',
         },
         {
           img: 'lockin',
           name: 'Lockin Việt Nam',
-          services: 'Brand Communications · Creative Design · Content Production',
+          services: 'Truyền thông thương hiệu · Thiết kế sáng tạo · Sản xuất nội dung',
           period: '2016 – 2021',
           desc: 'Phát triển và duy trì các kênh mạng xã hội của thương hiệu khóa thông minh: xây dựng nội dung, thiết kế hình ảnh, sản xuất video và vận hành truyền thông trên các nền tảng số.',
         },
         {
           img: 'mcredit',
           name: 'Mcredit',
-          services: 'Brand Communications · Content Production',
+          services: 'Truyền thông thương hiệu · Sản xuất nội dung',
           period: '2019 – 2021',
           desc: 'Đối tác thực thi truyền thông và marketing tích hợp đa kênh cho thương hiệu tài chính tiêu dùng: sản xuất nội dung, thiết kế ấn phẩm số và triển khai các chiến dịch quảng bá.',
         },
@@ -504,7 +504,7 @@ export const industries: Record<Lang, Industry[]> = {
         {
           img: 'five-star-garden',
           name: 'Five Star Garden',
-          services: 'Branding · Public Relations · Launch Event',
+          services: 'Xây dựng thương hiệu · Quan hệ công chúng · Sự kiện ra mắt',
           period: '2015',
           desc: 'Giải pháp truyền thông tích hợp cho dự án bất động sản cao cấp: xây dựng hệ thống nhận diện, thiết kế Presskit, PR báo chí và tổ chức sự kiện khởi công, ra mắt dự án.',
         },

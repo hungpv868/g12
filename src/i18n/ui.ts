@@ -17,7 +17,7 @@ export const ui = {
     'nav.about': 'Về Chúng Tôi',
     'nav.projects': 'Dự Án',
     'nav.services': 'Dịch Vụ',
-    'nav.blog': 'Blog',
+    'nav.blog': 'Bài Viết',
     'nav.contact': 'Liên Hệ',
     'nav.menu': 'Mở menu',
     'nav.close': 'Đóng menu',
@@ -25,6 +25,7 @@ export const ui = {
     'a11y.toggleTheme': 'Chuyển giao diện sáng/tối',
     'a11y.switchLang': 'Chuyển ngôn ngữ',
     'a11y.skipToContent': 'Bỏ qua, tới nội dung chính',
+    'a11y.mainNav': 'Điều hướng chính',
 
     'cta.consult': 'Liên Hệ Tư Vấn',
     'cta.learnMore': 'Tìm hiểu',
@@ -39,7 +40,7 @@ export const ui = {
 
     'home.meta.title': 'G12 Media — Đối tác Marketing phát triển bền vững',
     'home.meta.description':
-      'G12 Media cung cấp giải pháp Marketing trọn gói: quản trị Fanpage & quảng cáo, content social & TikTok, thiết kế và sản xuất media cho doanh nghiệp Việt.',
+      'G12 Media cung cấp giải pháp Marketing trọn gói: quản trị Fanpage & quảng cáo, nội dung mạng xã hội & TikTok, thiết kế và sản xuất media cho doanh nghiệp Việt.',
 
     'services.meta.title': 'Dịch Vụ Marketing Trọn Gói — G12 Media',
     'projects.meta.title': 'Dự Án Tiêu Biểu — G12 Media',
@@ -51,7 +52,7 @@ export const ui = {
     'home.hero.check1': 'Quản trị Fanpage & Quảng cáo',
     'home.hero.check2': 'Thiết kế sáng tạo & Sản xuất Media',
     'home.hero.check3': 'Tư vấn chiến lược thương hiệu & Marketing',
-    'home.hero.check4': 'Content Social Media & Video TikTok/Reels',
+    'home.hero.check4': 'Nội dung mạng xã hội & Video TikTok/Reels',
 
     'home.services.title1': 'DỊCH VỤ',
     'home.services.title2': 'NỔI BẬT',
@@ -61,8 +62,8 @@ export const ui = {
     'home.services.s1.i1': 'Tư vấn chiến lược thương hiệu',
     'home.services.s1.i2': 'Lập kế hoạch Marketing',
     'home.services.s1.i3': 'Định vị sản phẩm & khách hàng mục tiêu',
-    'home.services.s2.title': 'CONTENT SOCIAL & TIKTOK',
-    'home.services.s2.i1': 'Xây dựng concept kênh',
+    'home.services.s2.title': 'NỘI DUNG MẠNG XÃ HỘI & TIKTOK',
+    'home.services.s2.i1': 'Xây dựng ý tưởng kênh',
     'home.services.s2.i2': 'Sản xuất video TikTok/Reels',
     'home.services.s2.i3': 'Kịch bản, quay dựng, tối ưu xu hướng',
     'home.services.s3.title': 'QUẢN LÝ FANPAGE & QUẢNG CÁO',
@@ -70,7 +71,7 @@ export const ui = {
     'home.services.s3.i2': 'Chạy Facebook Ads / TikTok Ads',
     'home.services.s3.i3': 'Tối ưu chi phí – tăng đơn hàng',
     'home.services.s4.title': 'THIẾT KẾ & SẢN XUẤT MEDIA',
-    'home.services.s4.i1': 'Chụp ảnh, quay TVC, viral video',
+    'home.services.s4.i1': 'Chụp ảnh, quay TVC, video viral',
     'home.services.s4.i2': 'Livestream bán hàng',
     'home.services.s4.i3': 'Thiết kế ấn phẩm truyền thông',
 
@@ -111,16 +112,18 @@ export const ui = {
     'footer.connect2': 'Kết Nối',
     'footer.connect3': 'Với Chúng Tôi',
     'footer.contact': 'Liên Hệ',
+    'footer.address': '431 Tam Trinh, Vĩnh Hưng, Hoàng Mai, Hà Nội',
     'footer.newsletter': 'Nhận thông tin mới nhất',
     'footer.emailPlaceholder': 'Địa chỉ email',
     'footer.subscribe': 'Đăng ký nhận tin',
+    'footer.copyright': 'Bản quyền ©',
     'footer.rights': 'G12 Media. Mọi quyền được bảo lưu',
     'footer.terms': 'Điều khoản sử dụng',
     'footer.privacy': 'Chính sách bảo mật',
 
     'about.meta.title': 'Về Chúng Tôi — G12 Media',
     'about.meta.description':
-      'G12 Media — đơn vị tiên phong cung cấp các giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam.',
+      'G12 Media — đơn vị tiên phong cung cấp các giải pháp quảng cáo, truyền thông và marketing trọn gói tại Việt Nam.',
     'about.story.title': 'Câu Chuyện Của Chúng Tôi',
     'about.story.script': 'Hành trình bắt đầu từ đam mê',
     'about.story.since': 'Từ 2012',
@@ -135,7 +138,7 @@ export const ui = {
     'about.vision.quote':
       'Chúng tôi tin rằng giải pháp Marketing toàn diện chỉ thực sự có ý nghĩa khi mang lại kết quả đo lường được và góp phần thúc đẩy sự phát triển tích cực của thương hiệu và cộng đồng.',
     'about.vision.sign': '_ G12 MEDIA',
-    'about.allinone': 'GIẢI PHÁP ALL-IN-ONE',
+    'about.allinone': 'GIẢI PHÁP TRỌN GÓI',
     'about.core.title': 'Giá Trị Cốt Lõi',
     'about.core.v1': 'Con người',
     'about.core.v1Desc':
@@ -159,9 +162,9 @@ export const ui = {
     'about.commit.c3': 'cộng đồng',
     'about.commit.c3Desc': 'lan tỏa giá trị',
 
-    'blog.meta.title': 'Blog Marketing & Case Study — G12 Media',
+    'blog.meta.title': 'Bài Viết Marketing & Dự Án Thực Tế — G12 Media',
     'blog.meta.description':
-      'Case study, kiến thức đào tạo, tin tức marketing và câu chuyện nội bộ từ đội ngũ G12 Media.',
+      'Dự án thực tế, kiến thức đào tạo, tin tức marketing và câu chuyện nội bộ từ đội ngũ G12 Media.',
     'blog.all': 'TẤT CẢ',
     'blog.recent': 'BÀI VIẾT MỚI',
     'blog.categories': 'CHUYÊN MỤC',
@@ -194,6 +197,7 @@ export const ui = {
     'a11y.toggleTheme': 'Toggle light/dark theme',
     'a11y.switchLang': 'Switch language',
     'a11y.skipToContent': 'Skip to main content',
+    'a11y.mainNav': 'Main navigation',
 
     'cta.consult': 'Get a Consultation',
     'cta.learnMore': 'Learn more',
@@ -274,15 +278,17 @@ export const ui = {
     'home.trust.title2': 'WHO USE OUR SERVICES',
 
     'home.posts.title': 'FEATURED ARTICLES',
-    'home.callus.title': 'Call us if you need',
+    'home.callus.title': 'Call us whenever you need',
 
     'footer.connect1': "Let's",
     'footer.connect2': 'Connect',
-    'footer.connect3': 'There',
+    'footer.connect3': 'With Us',
     'footer.contact': 'Contact',
+    'footer.address': '431 Tam Trinh, Vinh Hung, Hoang Mai, Hanoi',
     'footer.newsletter': 'Get the latest information',
     'footer.emailPlaceholder': 'Email address',
     'footer.subscribe': 'Subscribe',
+    'footer.copyright': 'Copyright ©',
     'footer.rights': 'G12 Media. All Rights Reserved',
     'footer.terms': 'Terms of use',
     'footer.privacy': 'Privacy policy',

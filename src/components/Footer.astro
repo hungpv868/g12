@@ -24,7 +24,7 @@ const contacts = [
   { name: 'globe' as const, text: site.url, href: `https://${site.url}` },
   {
     name: 'mapPin' as const,
-    text: site.address,
+    text: t('footer.address'),
     href: `https://maps.google.com/?q=${encodeURIComponent(site.address)}`,
   },
 ];
@@ -138,7 +138,7 @@ const contacts = [
     <div
       class="container-g12 flex flex-col gap-3 py-4 text-xs sm:flex-row sm:items-center sm:justify-between md:py-[38px]"
     >
-      <p>Copyright © {year} {t('footer.rights')}</p>
+      <p>{t('footer.copyright')} {year} {t('footer.rights')}</p>
       <div class="flex gap-6">
         <a href={localizePath('/terms', lang)} class="transition hover:opacity-75">
           {t('footer.terms')}

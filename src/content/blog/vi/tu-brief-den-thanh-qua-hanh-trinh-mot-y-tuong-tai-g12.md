@@ -28,7 +28,7 @@ Bạn có bao giờ thắc mắc một chiến dịch truyền thông bài bản
 
 ## BƯỚC 5: TỐI ƯU
 
-![Bước 5 — Tối ưu: vận hành và tinh chỉnh hiệu suất, A/B Testing liên tục, tái phân bổ ngân sách theo real-time data. Output: Campaign hiệu quả cao](../_assets/nd-buoc-5.jpg)
+![Bước 5 — Tối ưu: vận hành và tinh chỉnh hiệu suất, A/B Testing liên tục, tái phân bổ ngân sách theo dữ liệu thời gian thực — cho ra chiến dịch hiệu quả cao](../_assets/nd-buoc-5.jpg)
 
 ## BƯỚC 6: ĐO LƯỜNG
 

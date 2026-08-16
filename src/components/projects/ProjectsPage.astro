@@ -206,7 +206,7 @@ const extraImgs: Record<string, string | undefined> = {
         <section
           id={`case-${cs.key}`}
           class="relative scroll-mt-24 overflow-hidden py-10 md:py-14"
-          aria-label={`Case study ${cs.name}`}
+          aria-label={lang === 'vi' ? `Dự án ${cs.name}` : `Case study ${cs.name}`}
         >
           <Glow side={ci % 2 ? 'right' : 'left'} top="5%" size="600px" />
           <Glow side={ci % 2 ? 'left' : 'right'} top="55%" size="700px" strong />
@@ -217,7 +217,7 @@ const extraImgs: Record<string, string | undefined> = {
               <span class="block text-[#f7a225]">
                 {cs.no}. {cs.name}
               </span>
-              <span class="block text-ink-strong">Project</span>
+              <span class="block text-ink-strong">{lang === 'vi' ? 'Dự Án' : 'Project'}</span>
             </h2>
 
             <div class="mt-7 grid items-stretch gap-8 lg:mt-8 lg:grid-cols-[690fr_970fr] lg:gap-12">
@@ -273,8 +273,8 @@ const extraImgs: Record<string, string | undefined> = {
             {/* ── BEFORE / AFTER — side label | pill + checkerboard mosaic ── */}
             {(
               [
-                ['before', SL.before, cs.before, 'Before'] as const,
-                ['after', SL.after, cs.after, 'After'] as const,
+                ['before', SL.before, cs.before, lang === 'vi' ? 'Trước' : 'Before'] as const,
+                ['after', SL.after, cs.after, lang === 'vi' ? 'Sau' : 'After'] as const,
               ]
             ).map(([kind, label, section, pillText]) => (
               <div class="mt-12 md:mt-14 lg:grid lg:grid-cols-[190px_1fr] lg:gap-8">
