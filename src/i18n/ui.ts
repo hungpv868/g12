@@ -123,7 +123,7 @@ export const ui = {
       'G12 Media — đơn vị tiên phong cung cấp các giải pháp quảng cáo, truyền thông và marketing all-in-one tại Việt Nam.',
     'about.story.title': 'Câu Chuyện Của Chúng Tôi',
     'about.story.script': 'Hành trình bắt đầu từ đam mê',
-    'about.story.since': 'Từ 2016',
+    'about.story.since': 'Từ 2012',
     'about.story.p1':
       'Xuất phát điểm là một nhóm những người trẻ đam mê marketing, sáng tạo nội dung và am hiểu nền tảng số, G12 Media được thành lập với khát vọng trở thành một agency trẻ – sáng tạo – bắt kịp xu hướng.',
     'about.story.p2':
@@ -136,21 +136,19 @@ export const ui = {
       'Chúng tôi tin rằng giải pháp Marketing toàn diện chỉ thực sự có ý nghĩa khi mang lại kết quả đo lường được và góp phần thúc đẩy sự phát triển tích cực của thương hiệu và cộng đồng.',
     'about.vision.sign': '_ G12 MEDIA',
     'about.allinone': 'GIẢI PHÁP ALL-IN-ONE',
-    'about.diff.title1': 'Điều Gì Khiến G12 Media',
-    'about.diff.title2': 'Khác Biệt',
-    'about.diff.title3': 'So Với Phần Còn Lại?',
-    'about.diff.real': 'REAL',
-    'about.diff.realDesc':
-      'Chúng tôi cam kết mang lại kết quả có tác động thực tế, từ chiến lược đến thực thi.',
-    'about.diff.human': 'HUMAN',
-    'about.diff.humanDesc':
-      'Nâng cao năng lực chuyên môn nhằm mang đến chất lượng dịch vụ tốt nhất cho quý khách hàng',
-    'about.diff.expansion': 'EXPANSION',
-    'about.diff.expansionDesc':
-      'Mang đến giải pháp Digital Marketing toàn diện trên hành trình xây dựng và phát triển thương hiệu trong môi trường số.',
-    'about.diff.innovation': 'INNOVATION',
-    'about.diff.innovationDesc':
-      'Cập nhật xu hướng mới giúp thương hiệu thích ứng nhanh, giữ vững lợi thế cạnh tranh và không bị tụt lại phía sau',
+    'about.core.title': 'Giá Trị Cốt Lõi',
+    'about.core.v1': 'Con người',
+    'about.core.v1Desc':
+      'Chúng tôi tin rằng những dự án tốt luôn bắt đầu từ sự lắng nghe và hợp tác. Vì vậy, G12 xây dựng môi trường làm việc cởi mở, tôn trọng và đề cao tinh thần đồng đội.',
+    'about.core.v2': 'Sáng tạo',
+    'about.core.v2Desc':
+      'Sáng tạo không chỉ là ý tưởng mới, mà còn là tìm ra cách làm phù hợp và hiệu quả nhất cho từng doanh nghiệp.',
+    'about.core.v3': 'Hiệu quả',
+    'about.core.v3Desc':
+      'Mọi giải pháp đều hướng đến mục tiêu cụ thể. Chúng tôi ưu tiên những gì mang lại giá trị thực thay vì những ý tưởng chỉ đẹp trên bản trình bày.',
+    'about.core.v4': 'Đồng hành',
+    'about.core.v4Desc':
+      'Chúng tôi không chỉ hoàn thành một dự án rồi kết thúc. G12 luôn sẵn sàng đồng hành cùng khách hàng trong quá trình vận hành, tối ưu và phát triển lâu dài.',
     'about.commit.title1': 'Cam Kết Của Chúng Tôi',
     'about.commit.title2': '"GROW TOGETHER"',
     'about.commit.with': 'cùng',
@@ -294,7 +292,7 @@ export const ui = {
       'G12 Media — a pioneering agency delivering all-in-one advertising, communications and marketing solutions in Vietnam.',
     'about.story.title': 'Our Story',
     'about.story.script': 'A journey that began with passion',
-    'about.story.since': 'Since 2016',
+    'about.story.since': 'Since 2012',
     'about.story.p1':
       'Starting out as a group of young people passionate about marketing, content creation and digital platforms, G12 Media was founded with the ambition of becoming a young, creative, trend-savvy agency.',
     'about.story.p2':
@@ -307,21 +305,19 @@ export const ui = {
       'We believe an all-in-one marketing solution is only truly meaningful when it delivers measurable results and contributes to the positive growth of both brands and the community.',
     'about.vision.sign': '_ G12 MEDIA',
     'about.allinone': 'ALL-IN-ONE SOLUTION',
-    'about.diff.title1': 'What Make G12 Media',
-    'about.diff.title2': 'Different',
-    'about.diff.title3': 'From Other?',
-    'about.diff.real': 'REAL',
-    'about.diff.realDesc':
-      'We commit to results with real-world impact, from strategy through to execution.',
-    'about.diff.human': 'HUMAN',
-    'about.diff.humanDesc':
-      'We continuously sharpen our expertise to deliver the best possible service quality to our clients.',
-    'about.diff.expansion': 'EXPANSION',
-    'about.diff.expansionDesc':
-      'We provide comprehensive digital marketing solutions throughout the journey of building and growing brands in the digital space.',
-    'about.diff.innovation': 'INNOVATION',
-    'about.diff.innovationDesc':
-      'We stay on top of new trends so brands adapt fast, keep their competitive edge and never fall behind.',
+    'about.core.title': 'Core Values',
+    'about.core.v1': 'People',
+    'about.core.v1Desc':
+      'We believe good projects always start with listening and collaboration, so G12 fosters an open, respectful workplace built on team spirit.',
+    'about.core.v2': 'Creativity',
+    'about.core.v2Desc':
+      'Creativity is not just about new ideas — it is about finding the approach that fits and works best for each business.',
+    'about.core.v3': 'Results',
+    'about.core.v3Desc':
+      'Every solution serves a concrete goal. We prioritize what delivers real value over ideas that only look good in a slide deck.',
+    'about.core.v4': 'Partnership',
+    'about.core.v4Desc':
+      'We do not simply finish a project and walk away. G12 stays with clients through operation, optimization and long-term growth.',
     'about.commit.title1': 'Our Commitment',
     'about.commit.title2': '"GROW TOGETHER"',
     'about.commit.with': 'with our',

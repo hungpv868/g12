@@ -11,6 +11,10 @@ import quotes from '~/assets/about/quotes.png';
 import num1 from '~/assets/about/num-1.png';
 import num2 from '~/assets/about/num-2.png';
 import num3 from '~/assets/about/num-3.png';
+import core1 from '~/assets/about/core-1-people.jpg';
+import core2 from '~/assets/about/core-2-creativity.jpg';
+import core3 from '~/assets/about/core-3-results.jpg';
+import core4 from '~/assets/about/core-4-partnership.jpg';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
@@ -23,11 +27,14 @@ import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const diffs = [
-  { title: t('about.diff.real'), desc: t('about.diff.realDesc') },
-  { title: t('about.diff.human'), desc: t('about.diff.humanDesc') },
-  { title: t('about.diff.expansion'), desc: t('about.diff.expansionDesc') },
-  { title: t('about.diff.innovation'), desc: t('about.diff.innovationDesc') },
+// Core Values — Company Profile pages 6–7. Client feedback (16/08, confirmed):
+// the Figma REAL/HUMAN/EXPANSION/INNOVATION cards are replaced by this
+// content; photos are the profile's own, extracted from the PDF.
+const cores = [
+  { img: core1, title: t('about.core.v1'), desc: t('about.core.v1Desc') },
+  { img: core2, title: t('about.core.v2'), desc: t('about.core.v2Desc') },
+  { img: core3, title: t('about.core.v3'), desc: t('about.core.v3Desc') },
+  { img: core4, title: t('about.core.v4'), desc: t('about.core.v4Desc') },
 ];
 
 const commits = [
@@ -80,7 +87,7 @@ const commits = [
             sizes="(min-width: 1024px) 560px, 100vw"
             class="w-full"
           />
-          <!-- Orange ellipse base + Since 2016 label (Figma: Ellipse 3621/3622) -->
+          <!-- Orange ellipse base + Since 2012 label (year per Company Profile; Figma said 2016) -->
           <div
             class="absolute bottom-1 left-1/2 -z-10 h-[38%] w-[92%] -translate-x-1/2 rounded-[50%] bg-linear-to-b from-brand-yellow to-brand-orange"
             aria-hidden="true"
@@ -145,33 +152,42 @@ const commits = [
 
   <Marquee variant="gold" items={[t('about.allinone')]} />
 
-  <!-- What make G12 different -->
+  <!-- Core Values — replaces the Figma REAL/HUMAN/EXPANSION/INNOVATION cards
+       per confirmed client feedback; cards highlight on hover, none statically -->
   <section class="relative overflow-hidden py-12 md:py-16">
     <Glow side="right" top="10%" size="700px" strong />
     <div class="container-g12">
       <h2
         class="reveal mx-auto max-w-[907px] text-center text-2xl leading-snug font-bold text-ink-strong md:text-[2rem]"
       >
-        {t('about.diff.title1')}{' '}
-        <span class="text-brand-accent">{t('about.diff.title2')}</span>{' '}
-        {t('about.diff.title3')}
+        {t('about.core.title')}
       </h2>
 
-      <!-- Figma: 4 cards 285×335 at x 114/421/724/1028 -->
-      <ul class="mt-10 grid gap-5 sm:grid-cols-2 md:mt-[102px] xl:grid-cols-4">
+      <ul class="mt-10 grid gap-5 sm:grid-cols-2 md:mt-14 xl:grid-cols-4">
         {
-          /* Client feedback: no statically highlighted card — every card is
-             cream and takes the Figma HUMAN gradient on hover */
-          diffs.map((d) => (
-            <li
-              class="group reveal flex min-h-[240px] flex-col rounded-[20px] bg-linear-to-b/srgb from-[#fef2c8] to-[#fef2c8] p-7 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 hover:from-[#ffecb9] hover:to-[#ea4f26] xl:min-h-[335px]"
-            >
-              <h3 class="text-2xl font-extrabold text-brand-deep uppercase transition-colors duration-300 group-hover:text-white">
-                {d.title}
-              </h3>
-              <p class="mt-4 text-sm leading-relaxed text-black transition-colors duration-300 group-hover:text-white dark:text-black">
-                {d.desc}
-              </p>
+          /* hover gradient matches the home services cards — the paler Figma
+             #ffecb9 start washed out the white text (client feedback) */
+          cores.map((c, i) => (
+            <li class="group reveal flex flex-col overflow-hidden rounded-[20px] bg-linear-to-b/srgb from-[#fef2c8] to-[#fef2c8] shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 hover:from-[#ff9d4e] hover:to-[#f2703a]">
+              <Image
+                src={c.img}
+                alt=""
+                widths={[400, 800]}
+                sizes="(min-width: 1280px) 285px, (min-width: 640px) 50vw, 100vw"
+                loading="lazy"
+                class="aspect-[3/2] w-full object-cover"
+              />
+              <div class="flex flex-1 flex-col gap-1.5 p-6">
+                <p class="text-brand-gradient text-3xl font-extrabold transition duration-300 group-hover:[-webkit-text-fill-color:#fff]">
+                  0{i + 1}.
+                </p>
+                <h3 class="text-xl font-bold text-ink-strong transition-colors duration-300 group-hover:text-white">
+                  {c.title}
+                </h3>
+                <p class="text-sm leading-relaxed text-black transition-colors duration-300 group-hover:text-white dark:text-black">
+                  {c.desc}
+                </p>
+              </div>
             </li>
           ))
         }
