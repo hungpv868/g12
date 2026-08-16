@@ -4,7 +4,7 @@ import type { ImageMetadata } from 'astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Marquee from '../Marquee.astro';
 import Glow from '../Glow.astro';
-import { caseLabels, caseStudies } from '~/data/projects';
+import { caseLabels, caseStudies, industries, industryLabels } from '~/data/projects';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 import strip from '~/assets/projects-page/strip.jpg';
@@ -57,6 +57,9 @@ const sideLabels: Record<string, { before: [string, boolean][]; after: [string, 
 };
 const SL = sideLabels[lang]!;
 
+const IL = industryLabels[lang];
+const inds = industries[lang];
+
 const caseImages = import.meta.glob<{ default: ImageMetadata }>(
   '~/assets/projects-page/case/*.jpg',
   { eager: true },
@@ -64,6 +67,16 @@ const caseImages = import.meta.glob<{ default: ImageMetadata }>(
 const img = (name: string): ImageMetadata => {
   const hit = Object.entries(caseImages).find(([path]) => path.endsWith(`/${name}.jpg`));
   if (!hit) throw new Error(`Missing case image: ${name}`);
+  return hit[1].default;
+};
+
+const industryImages = import.meta.glob<{ default: ImageMetadata }>(
+  '~/assets/projects-page/industries/*.jpg',
+  { eager: true },
+);
+const indImg = (name: string): ImageMetadata => {
+  const hit = Object.entries(industryImages).find(([path]) => path.endsWith(`/${name}.jpg`));
+  if (!hit) throw new Error(`Missing industry image: ${name}`);
   return hit[1].default;
 };
 
@@ -119,11 +132,80 @@ const extraImgs: Record<string, string | undefined> = {
 
   <Marquee variant="gold" />
 
+  <!-- ── Projects by industry — Company Profile section III (feedback: chia
+       4 ngành hàng, mỗi ngành 1-3 dự án). New content with no Figma frame,
+       so it follows the site's card language. ── -->
+  <section class="relative overflow-hidden py-12 md:py-16">
+    <Glow side="right" top="10%" size="640px" />
+    <Glow side="left" top="60%" size="700px" strong />
+    <div class="container-g12">
+      <h2 class="reveal text-center text-3xl leading-tight font-bold text-ink-strong uppercase sm:text-4xl">
+        {IL.title}
+      </h2>
+
+      {
+        inds.map((ind) => (
+          <div class="mt-12 first-of-type:mt-10 md:mt-14">
+            <div class="reveal flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <span class="text-4xl font-extrabold text-[#f7a225] md:text-5xl">{ind.no}</span>
+              <h3 class="text-2xl font-extrabold text-ink-strong uppercase md:text-3xl">
+                {ind.title}
+              </h3>
+            </div>
+            <p class="reveal mt-3 max-w-[900px] text-sm leading-relaxed md:text-[15px]">
+              {ind.intro}
+            </p>
+
+            <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {ind.projects.map((p) => (
+                <li class="reveal flex flex-col overflow-hidden rounded-[20px] bg-surface-raised shadow-[var(--shadow-card)] transition duration-300 hover:-translate-y-1">
+                  <Image
+                    src={indImg(p.img)}
+                    alt={p.name}
+                    widths={[420, 840]}
+                    sizes="(min-width: 1024px) 375px, (min-width: 640px) 50vw, 100vw"
+                    loading="lazy"
+                    class="aspect-[3/2] w-full object-cover"
+                  />
+                  <div class="flex flex-1 flex-col gap-2 p-6">
+                    <h4 class="text-xl leading-snug font-bold text-ink-strong">{p.name}</h4>
+                    <p class="text-xs font-medium text-[#b8860b] uppercase dark:text-brand-yellow">
+                      {p.services}
+                    </p>
+                    <p class="text-xs font-bold text-ink-muted">{p.period}</p>
+                    <p class="text-sm leading-relaxed">{p.desc}</p>
+                    {p.caseAnchor && (
+                      <a
+                        href={`#${p.caseAnchor}`}
+                        class="mt-auto inline-flex w-fit items-center gap-2 pt-2 text-sm font-bold text-brand-orange transition hover:gap-3"
+                      >
+                        {IL.viewCase} ↓
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <Marquee variant="gold" />
+
+  <div class="container-g12 pt-12 md:pt-16">
+    <h2 class="reveal text-center text-3xl leading-tight font-bold text-ink-strong uppercase sm:text-4xl">
+      {IL.caseTitle}
+    </h2>
+  </div>
+
   {
     cases.map((cs, ci) => (
       <>
         <section
-          class="relative overflow-hidden py-10 md:py-14"
+          id={`case-${cs.key}`}
+          class="relative scroll-mt-24 overflow-hidden py-10 md:py-14"
           aria-label={`Case study ${cs.name}`}
         >
           <Glow side={ci % 2 ? 'right' : 'left'} top="5%" size="600px" />

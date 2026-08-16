@@ -363,3 +363,259 @@ export const caseStudies: Record<Lang, CaseStudy[]> = {
     },
   ],
 };
+
+/* ─────────────────────────────────────────────────────────────────
+   Projects by industry — Company Profile section III (pages 18–29),
+   client feedback 16/08: "Chia thành các ngành hàng như sau —
+   mỗi mục lấy 1-3 dự án". Picks follow the profile's own ordering
+   (first 3 per industry). VI copy condensed from the profile text;
+   EN is a draft by Claude — G12 must review it before production.
+   ───────────────────────────────────────────────────────────────── */
+
+export interface IndustryProject {
+  /** matches an image in assets/projects-page/industries/<img>.jpg */
+  img: string;
+  name: string;
+  /** service tags, kept in English exactly as printed in the profile */
+  services: string;
+  period: string;
+  desc: string;
+  /** anchor of a detailed case study further down the page */
+  caseAnchor?: string;
+}
+
+export interface Industry {
+  no: string;
+  title: string;
+  intro: string;
+  projects: IndustryProject[];
+}
+
+export const industryLabels: Record<Lang, { title: string; caseTitle: string; viewCase: string }> = {
+  vi: {
+    title: 'Dự Án Theo Ngành Hàng',
+    caseTitle: 'Case Study Nổi Bật',
+    viewCase: 'Xem case study',
+  },
+  en: {
+    title: 'Projects by Industry',
+    caseTitle: 'Featured Case Studies',
+    viewCase: 'View case study',
+  },
+};
+
+export const industries: Record<Lang, Industry[]> = {
+  vi: [
+    {
+      no: '3.1',
+      title: 'Giáo Dục & Đào Tạo',
+      intro:
+        'G12 Media có kinh nghiệm triển khai truyền thông cho các trường học, cơ sở đào tạo và dự án giáo dục trong nước, quốc tế — tập trung vào xây dựng hình ảnh, truyền thông tuyển sinh, sản xuất nội dung và video dự án.',
+      projects: [
+        {
+          img: 'cgd-victory',
+          name: 'CGD Victory School',
+          services: 'Brand Communications · Creative Design · Content Production',
+          period: '2016 – 2021',
+          desc: 'Đồng hành cùng CGD School trong xây dựng hình ảnh và truyền thông nhà trường: xây dựng nội dung, thiết kế ấn phẩm tuyển sinh và phát triển hình ảnh môi trường học tập, trải nghiệm của học sinh.',
+        },
+        {
+          img: 'tieu-hoc-cngd',
+          name: 'Trường Tiểu Học Công Nghệ Giáo Dục',
+          services: 'Brand Communications · Creative Design · Content Production',
+          period: '2015 – 2017, 2024 – 2026',
+          desc: 'Triển khai quảng cáo, truyền thông nhà trường — truyền tải thông tin rõ ràng, xây dựng hình ảnh chuyên nghiệp, gần gũi và tăng cường kết nối nhà trường – học sinh – phụ huynh.',
+        },
+        {
+          img: 'vnen-srpp',
+          name: 'Dự Án VNEN & SRPP',
+          services: 'Media Production · Project Communications',
+          period: '2015 – 2017',
+          desc: 'Sản xuất nội dung truyền thông cho hai dự án thuộc Bộ Giáo dục & Đào tạo với sự hỗ trợ của Ngân hàng Thế giới: kịch bản, quay dựng chuỗi video phóng sự, tài liệu về mô hình giáo dục tại các địa phương.',
+        },
+      ],
+    },
+    {
+      no: '3.2',
+      title: 'Sức Khỏe, Fitness & Làm Đẹp',
+      intro:
+        'Giải pháp truyền thông cho các thương hiệu thể thao, chăm sóc sức khỏe và làm đẹp — nội dung xây dựng theo đặc thù từng thương hiệu, tập trung vào trải nghiệm khách hàng, chất lượng dịch vụ và uy tín trên thị trường.',
+      projects: [
+        {
+          img: 'moroccanoil-tigi',
+          name: 'Moroccanoil & TIGI Haircare',
+          services: 'Brand Communications · Product Content · Media Production',
+          period: '2017 – 2018',
+          desc: 'Đồng hành cùng hai thương hiệu chăm sóc tóc chuyên nghiệp toàn cầu trong phát triển nội dung số, quảng cáo và quảng bá thương hiệu đến đông đảo người tiêu dùng tại Việt Nam.',
+        },
+        {
+          img: 'jin-fitness',
+          name: 'Jin Fitness',
+          services: 'Integrated Marketing · Social Media · Media Production · Digital Ads',
+          period: '2025 – 2026',
+          desc: 'Đối tác chiến lược cung cấp giải pháp marketing tổng thể (Full-stack Marketing): hoạch định chiến lược, quản trị Fanpage, sản xuất nội dung đa phương tiện và tối ưu quảng cáo số.',
+          caseAnchor: 'case-jin',
+        },
+        {
+          img: 'chois-pilates',
+          name: "Choi's Pilates",
+          services: 'Integrated Marketing · Social Media · Media Production · Digital Ads',
+          period: '2025 – 2026',
+          desc: 'Đối tác marketing tổng thể, đồng thời tư vấn định hướng thông điệp báo chí và xử lý rủi ro truyền thông (Crisis Communications) cho thương hiệu.',
+          caseAnchor: 'case-chois',
+        },
+      ],
+    },
+    {
+      no: '3.3',
+      title: 'Công Nghệ & Tài Chính',
+      intro:
+        'G12 Media từng thực hiện các dự án truyền thông cho doanh nghiệp công nghệ, viễn thông và tài chính: truyền thông sản phẩm, quan hệ báo chí, nội dung số, sản xuất media và tổ chức sự kiện giới thiệu giải pháp.',
+      projects: [
+        {
+          img: 'imou',
+          name: 'IMOU Vietnam',
+          services: 'Digital Communications · Content Production',
+          period: '2021 – 2023',
+          desc: 'Quảng cáo và hỗ trợ chiến dịch Digital Marketing: truyền thông giải pháp camera thông minh, làm nổi bật tính năng công nghệ và lan tỏa các chương trình khuyến mãi bán hàng.',
+        },
+        {
+          img: 'lockin',
+          name: 'Lockin Việt Nam',
+          services: 'Brand Communications · Creative Design · Content Production',
+          period: '2016 – 2021',
+          desc: 'Phát triển và duy trì các kênh mạng xã hội của thương hiệu khóa thông minh: xây dựng nội dung, thiết kế hình ảnh, sản xuất video và vận hành truyền thông trên các nền tảng số.',
+        },
+        {
+          img: 'mcredit',
+          name: 'Mcredit',
+          services: 'Brand Communications · Content Production',
+          period: '2019 – 2021',
+          desc: 'Đối tác thực thi truyền thông và marketing tích hợp đa kênh cho thương hiệu tài chính tiêu dùng: sản xuất nội dung, thiết kế ấn phẩm số và triển khai các chiến dịch quảng bá.',
+        },
+      ],
+    },
+    {
+      no: '3.4',
+      title: 'Bất Động Sản & Nghỉ Dưỡng',
+      intro:
+        'Nền tảng kinh nghiệm truyền thông dự án bất động sản, khu đô thị, trung tâm thương mại và nghỉ dưỡng — kết hợp xây dựng nhận diện, thiết kế tài liệu bán hàng, PR báo chí và tổ chức sự kiện.',
+      projects: [
+        {
+          img: 'five-star-garden',
+          name: 'Five Star Garden',
+          services: 'Branding · Public Relations · Launch Event',
+          period: '2015',
+          desc: 'Giải pháp truyền thông tích hợp cho dự án bất động sản cao cấp: xây dựng hệ thống nhận diện, thiết kế Presskit, PR báo chí và tổ chức sự kiện khởi công, ra mắt dự án.',
+        },
+      ],
+    },
+  ],
+
+  en: [
+    {
+      no: '3.1',
+      title: 'Education & Training',
+      intro:
+        'G12 Media has deep experience running communications for schools, training institutions and education projects at home and abroad — brand building, admissions campaigns, content production and project films.',
+      projects: [
+        {
+          img: 'cgd-victory',
+          name: 'CGD Victory School',
+          services: 'Brand Communications · Creative Design · Content Production',
+          period: '2016 – 2021',
+          desc: "Partnering with CGD School on brand image and school communications: content, admissions collateral and imagery showcasing the learning environment and student experience.",
+        },
+        {
+          img: 'tieu-hoc-cngd',
+          name: 'CGD Primary School',
+          services: 'Brand Communications · Creative Design · Content Production',
+          period: '2015 – 2017, 2024 – 2026',
+          desc: 'Advertising and school communications — clear information delivery, a professional yet friendly image, and a stronger school–student–parent connection.',
+        },
+        {
+          img: 'vnen-srpp',
+          name: 'VNEN & SRPP Projects',
+          services: 'Media Production · Project Communications',
+          period: '2015 – 2017',
+          desc: 'Producing communications content for two Ministry of Education & Training projects backed by the World Bank: scripting and shooting documentary video series about new education models nationwide.',
+        },
+      ],
+    },
+    {
+      no: '3.2',
+      title: 'Health, Fitness & Beauty',
+      intro:
+        'Communications solutions for sports, wellness and beauty brands — content tailored to each brand, centered on customer experience, service quality and market credibility.',
+      projects: [
+        {
+          img: 'moroccanoil-tigi',
+          name: 'Moroccanoil & TIGI Haircare',
+          services: 'Brand Communications · Product Content · Media Production',
+          period: '2017 – 2018',
+          desc: 'Partnering with two global professional haircare brands on digital content, advertising and brand promotion to Vietnamese consumers.',
+        },
+        {
+          img: 'jin-fitness',
+          name: 'Jin Fitness',
+          services: 'Integrated Marketing · Social Media · Media Production · Digital Ads',
+          period: '2025 – 2026',
+          desc: 'Strategic full-stack marketing partner: strategy planning, fanpage operations, multimedia content production and performance-ad optimization.',
+          caseAnchor: 'case-jin',
+        },
+        {
+          img: 'chois-pilates',
+          name: "Choi's Pilates",
+          services: 'Integrated Marketing · Social Media · Media Production · Digital Ads',
+          period: '2025 – 2026',
+          desc: 'Full-stack marketing partner, also advising on press messaging and crisis communications for the brand.',
+          caseAnchor: 'case-chois',
+        },
+      ],
+    },
+    {
+      no: '3.3',
+      title: 'Technology & Finance',
+      intro:
+        'Communications projects for technology, telecom and finance businesses: product communications, press relations, digital content, media production and solution-launch events.',
+      projects: [
+        {
+          img: 'imou',
+          name: 'IMOU Vietnam',
+          services: 'Digital Communications · Content Production',
+          period: '2021 – 2023',
+          desc: 'Advertising and digital-marketing support: promoting smart-camera solutions, spotlighting technology features and amplifying sales promotions.',
+        },
+        {
+          img: 'lockin',
+          name: 'Lockin Vietnam',
+          services: 'Brand Communications · Creative Design · Content Production',
+          period: '2016 – 2021',
+          desc: "Building and running the smart-lock brand's social channels: content, visual design, video production and day-to-day digital communications.",
+        },
+        {
+          img: 'mcredit',
+          name: 'Mcredit',
+          services: 'Brand Communications · Content Production',
+          period: '2019 – 2021',
+          desc: 'Executing integrated multi-channel communications and marketing for the consumer-finance brand: content production, digital collateral and promotional campaigns.',
+        },
+      ],
+    },
+    {
+      no: '3.4',
+      title: 'Real Estate & Hospitality',
+      intro:
+        'Experience across real-estate, urban, retail and hospitality projects — combining brand identity, sales collateral, press PR and event production.',
+      projects: [
+        {
+          img: 'five-star-garden',
+          name: 'Five Star Garden',
+          services: 'Branding · Public Relations · Launch Event',
+          period: '2015',
+          desc: 'End-to-end communications for a premium real-estate project: brand identity, presskit design, press PR and the groundbreaking / launch events.',
+        },
+      ],
+    },
+  ],
+};
