@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import choisImg from '~/assets/posts/chois-glow-up.jpg';
 import matiliaImg from '~/assets/posts/matilia-mommy.jpg';
+import { categories } from '~/data/blog';
 import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
 /**
@@ -16,7 +17,7 @@ const t = useTranslations(lang);
 const posts = [
   {
     img: choisImg,
-    category: 'Case Study',
+    category: categories.casestudy.label[lang],
     title:
       lang === 'vi'
         ? 'BẬT MÍ CÔNG THỨC "GLOW-UP" HÌNH ẢNH THƯƠNG HIỆU CHO CHOI\'S PILATES'
@@ -25,7 +26,7 @@ const posts = [
   },
   {
     img: matiliaImg,
-    category: 'Case Study',
+    category: categories.casestudy.label[lang],
     title:
       lang === 'vi'
         ? 'ĐỊNH HÌNH VỊ THẾ SỮA BẦU CAO CẤP CHO MATILIA MOMMY'

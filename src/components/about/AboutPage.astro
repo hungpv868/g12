@@ -24,10 +24,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const diffs = [
-  { title: t('about.diff.real'), desc: t('about.diff.realDesc'), featured: false },
-  { title: t('about.diff.human'), desc: t('about.diff.humanDesc'), featured: true },
-  { title: t('about.diff.expansion'), desc: t('about.diff.expansionDesc'), featured: false },
-  { title: t('about.diff.innovation'), desc: t('about.diff.innovationDesc'), featured: false },
+  { title: t('about.diff.real'), desc: t('about.diff.realDesc') },
+  { title: t('about.diff.human'), desc: t('about.diff.humanDesc') },
+  { title: t('about.diff.expansion'), desc: t('about.diff.expansionDesc') },
+  { title: t('about.diff.innovation'), desc: t('about.diff.innovationDesc') },
 ];
 
 const commits = [
@@ -160,29 +160,16 @@ const commits = [
       <!-- Figma: 4 cards 285×335 at x 114/421/724/1028 -->
       <ul class="mt-10 grid gap-5 sm:grid-cols-2 md:mt-[102px] xl:grid-cols-4">
         {
+          /* Client feedback: no statically highlighted card — every card is
+             cream and takes the Figma HUMAN gradient on hover */
           diffs.map((d) => (
             <li
-              class:list={[
-                'reveal flex min-h-[240px] flex-col rounded-[20px] p-7 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 xl:min-h-[335px]',
-                d.featured
-                  ? 'bg-linear-to-b/srgb from-[#ffecb9] to-[#ea4f26]'
-                  : 'bg-linear-to-b from-[#fef2c8] to-[#fef2c8]',
-              ]}
+              class="group reveal flex min-h-[240px] flex-col rounded-[20px] bg-linear-to-b/srgb from-[#fef2c8] to-[#fef2c8] p-7 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 hover:from-[#ffecb9] hover:to-[#ea4f26] xl:min-h-[335px]"
             >
-              <h3
-                class:list={[
-                  'text-2xl font-extrabold uppercase',
-                  d.featured ? 'text-white' : 'text-brand-deep',
-                ]}
-              >
+              <h3 class="text-2xl font-extrabold text-brand-deep uppercase transition-colors duration-300 group-hover:text-white">
                 {d.title}
               </h3>
-              <p
-                class:list={[
-                  'mt-4 text-sm leading-relaxed',
-                  d.featured ? 'text-white' : 'text-black dark:text-black',
-                ]}
-              >
+              <p class="mt-4 text-sm leading-relaxed text-black transition-colors duration-300 group-hover:text-white dark:text-black">
                 {d.desc}
               </p>
             </li>
@@ -202,7 +189,9 @@ const commits = [
         </span>
       </h2>
 
-      <ul class="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-6 md:mt-[140px]">
+      {/* Client feedback: the Figma 140px heading→items gap reads as a design
+          mistake — tightened to 56px */}
+      <ul class="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-6 md:mt-14">
         {
           commits.map((c) => (
             <li class="reveal flex items-start gap-4">
@@ -216,7 +205,7 @@ const commits = [
               />
               <div class="text-white">
                 <p class="text-sm">{t('about.commit.with')}</p>
-                <p class="text-2xl font-bold md:text-[28px]">{c.title}</p>
+                <p class="text-2xl font-bold uppercase md:text-[28px]">{c.title}</p>
                 <p class="mt-1 text-sm text-white/90">{c.desc}</p>
               </div>
             </li>

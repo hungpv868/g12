@@ -44,9 +44,11 @@
   --color-surface-peach-end: #ffdcb8; /* hero gradient end */
   --color-surface-inverse: #1a1512;
 
-  --color-ink: #020763; /* navy body text (per Figma) */
+  /* Figma uses navy #020763 for body text, but the client asked for plain
+     black content text (feedback 16/08) — keep headings/black in sync */
+  --color-ink: #111111;
   --color-ink-strong: #000000; /* heading */
-  --color-ink-muted: #4a4f7a;
+  --color-ink-muted: #4d4d4d;
   --color-ink-on-brand: #ffffff;
 
   --color-line: #00076312;
