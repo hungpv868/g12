@@ -4,94 +4,105 @@ import type { ImageMetadata } from 'astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Marquee from '../Marquee.astro';
 import Glow from '../Glow.astro';
+import { caseLabels, caseStudies } from '~/data/projects';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 import strip from '~/assets/projects-page/strip.jpg';
-import b01 from '~/assets/projects-page/b01.jpg';
-import b02 from '~/assets/projects-page/b02.jpg';
-import b03 from '~/assets/projects-page/b03.jpg';
-import b04 from '~/assets/projects-page/b04.jpg';
-import b05 from '~/assets/projects-page/b05.jpg';
-import b06 from '~/assets/projects-page/b06.jpg';
-import b07 from '~/assets/projects-page/b07.jpg';
-import b08 from '~/assets/projects-page/b08.jpg';
-import b09 from '~/assets/projects-page/b09.jpg';
-import b10 from '~/assets/projects-page/b10.jpg';
-import b11 from '~/assets/projects-page/b11.jpg';
-import b12 from '~/assets/projects-page/b12.jpg';
-import b13 from '~/assets/projects-page/b13.jpg';
-import b14 from '~/assets/projects-page/b14.jpg';
 
 /**
- * Projects — Figma frame 1:1351 (Desktop-11, 1440×9522), geo/projects.txt.
+ * Projects — real HTML rebuild of the Figma artworks (client feedback 16/08:
+ * no more screenshot caps; desktop must match the Figma design, mobile may
+ * adapt). Copy lives in src/data/projects.ts (vi/en); photos were cropped out
+ * of the original 1920px artworks into assets/projects-page/case/.
  *
- * In Figma all 3 case studies are pre-composed artwork (node "10 1"…"23 1"),
- * not text layouts — so this page shows those exact artworks, cropped
- * whole from the export. Alt text carries the content for SEO/a11y.
- * Structure: 3 cases (Matilia → Choi's → Jin), each case: intro → BEFORE →
- * AFTER → stats row; separated by marquees.
+ * Desktop geometry is measured off the artworks (1920-wide, content span 1735):
+ *  - header: banner 40% | meta column 56%; heading ≈59px
+ *  - BEFORE/AFTER: 190px stacked side label | mosaic; pill #f7a225 with BLACK
+ *    text; 3 checkerboard columns of square tiles (panel = photo height);
+ *    badge #e94b23 planted on the col-2/col-3 seam (69% across, mid-height)
+ *  - results row: stats + stacked proof shots LEFT, highlight block RIGHT —
+ *    the frame really places artworks 13|14 and 18|19 side by side; Jin has
+ *    no highlight, so its results run full width
+ *  - flat #f7a225 accents, square corners (artworks use no radius/gradients)
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const L = caseLabels[lang];
+const cases = caseStudies[lang];
 
-interface Row {
-  imgs: { src: ImageMetadata; alt: string }[];
-}
-interface CaseStudy {
-  name: string;
-  rows: Row[];
-}
+/** side labels split into lines: [word, accent] — accent renders #f7a225 */
+const sideLabels: Record<string, { before: [string, boolean][]; after: [string, boolean][] }> = {
+  vi: {
+    before: [
+      ['Phân', false],
+      ['Tích', false],
+      ['Bối', true],
+      ['Cảnh', true],
+    ],
+    after: [
+      ['Giải', true],
+      ['Pháp', true],
+    ],
+  },
+  en: {
+    before: [
+      ['Context', false],
+      ['Analysis', true],
+    ],
+    after: [
+      ['Our', true],
+      ['Solution', true],
+    ],
+  },
+};
+const SL = sideLabels[lang]!;
 
-const cases: CaseStudy[] = [
-  {
-    name: 'Matilia Mommy',
-    rows: [
-      { imgs: [{ src: b01, alt: '01. Matilia Mommy Project — FMCG, dinh dưỡng Mẹ và Bé. Nền tảng triển khai: Facebook, TikTok. Mong muốn: xây dựng hình ảnh dòng sữa bầu cao cấp, đáng tin cậy và thấu hiểu mẹ bầu.' }] },
-      { imgs: [{ src: b02, alt: 'BEFORE — Phân tích bối cảnh: nội dung mang tính chuyên môn cao, khô khan; hình ảnh chưa thể hiện rõ định vị cao cấp; trải nghiệm chưa nhất quán.' }] },
-      { imgs: [{ src: b03, alt: 'AFTER — Giải pháp: nội dung gần gũi theo hành trình làm mẹ; hình ảnh chuẩn hóa cao cấp từ Pháp; trải nghiệm nhất quán trên các nền tảng.' }] },
-      { imgs: [
-        { src: b04, alt: 'Kết quả: 4000+ đơn hàng chốt trong các phiên Megalive; hơn 3 triệu lượt xem trên TikTok và Facebook.' },
-        { src: b05, alt: 'Vận hành trơn chu: đội ngũ chuyên môn đầy đủ từ quảng cáo, media, thiết kế đến nội dung, đảm bảo chiến dịch diễn ra trơn chu và hiệu quả.' },
-      ] },
-    ],
-  },
-  {
-    name: "Choi's Pilates",
-    rows: [
-      { imgs: [{ src: b06, alt: "02. Choi's Pilates Project — Fitness, Pilates, chăm sóc sức khỏe. Nền tảng: Facebook, TikTok. Mong muốn: hình ảnh studio hiện đại hướng tới phụ nữ, tôn vinh vóc dáng và lối sống lành mạnh." }] },
-      { imgs: [{ src: b07, alt: 'BEFORE — Nội dung chưa nổi bật giá trị và lợi ích của Pilates; hình ảnh thương hiệu trên mạng xã hội chưa thể hiện không gian hiện đại; khách hàng tiềm năng chưa hiểu rõ trải nghiệm tập luyện.' }] },
-      { imgs: [{ src: b08, alt: 'AFTER — Nội dung chia sẻ về lợi ích của Pilates, cải thiện vóc dáng; hệ thống visual chuyên nghiệp, hiện đại, sang trọng; feedback học viên tạo dựng niềm tin.' }] },
-      { imgs: [
-        { src: b09, alt: 'Kết quả: 100+ học viên mới thông qua chiến dịch Marketing trên Facebook, TikTok và chạy quảng cáo; hơn 1 triệu lượt xem.' },
-        { src: b10, alt: "Có cộng đồng Pilates riêng: phát triển cộng đồng học viên Pilates, tăng sự gắn kết và giữ chân khách hàng thông qua các hoạt động tương tác và chương trình quà tặng." },
-      ] },
-    ],
-  },
-  {
-    name: 'Jin Fitness',
-    rows: [
-      { imgs: [{ src: b11, alt: '03. Jin Fitness Project — Gym, thể hình, chăm sóc sức khỏe. Nền tảng: Facebook, TikTok. Mong muốn: tăng nhận diện thương hiệu phòng gym, thu hút hội viên mới, hình ảnh phòng tập năng động có huấn luyện viên riêng.' }] },
-      { imgs: [{ src: b12, alt: 'BEFORE — Nội dung chưa thể hiện rõ thế mạnh và chương trình tập luyện; hình ảnh phòng tập chưa nổi bật so với đối thủ; cần gia tăng sự quan tâm và tương tác từ khách hàng mục tiêu.' }] },
-      { imgs: [{ src: b13, alt: 'AFTER — Nội dung về tập luyện, dinh dưỡng và hành trình thay đổi vóc dáng của học viên; hệ thống visual mạnh mẽ, năng động; quay chụp các buổi tập và hoạt động tại phòng gym nhằm tăng tính chân thật.' }] },
-      { imgs: [{ src: b14, alt: 'Kết quả: 100+ thành viên mới qua các chiến dịch Marketing trên Facebook, TikTok và chạy quảng cáo; hơn 1 triệu lượt xem trên TikTok và Facebook, gia tăng độ nhận diện đến khách hàng tiềm năng.' }] },
-    ],
-  },
+const caseImages = import.meta.glob<{ default: ImageMetadata }>(
+  '~/assets/projects-page/case/*.jpg',
+  { eager: true },
+);
+const img = (name: string): ImageMetadata => {
+  const hit = Object.entries(caseImages).find(([path]) => path.endsWith(`/${name}.jpg`));
+  if (!hit) throw new Error(`Missing case image: ${name}`);
+  return hit[1].default;
+};
+
+/**
+ * Figma mosaic order: data columns are [Nội Dung, Hình Ảnh, Trải nghiệm] but the
+ * artwork places Hình Ảnh photo-top on the LEFT, Nội Dung panel-top in the
+ * MIDDLE, Trải nghiệm photo-top on the RIGHT — photos keep their 1/2/3 slots.
+ */
+const mosaic = (cols: { title: string; text: string }[]) => [
+  { col: cols[1]!, imgNo: 1, panelTop: false },
+  { col: cols[0]!, imgNo: 2, panelTop: true },
+  { col: cols[2]!, imgNo: 3, panelTop: false },
 ];
+
+/** result-proof screenshots per case (split collages where the artwork had gaps) */
+const resultImgs: Record<string, string[]> = {
+  matilia: ['matilia-result-1', 'matilia-result-2'],
+  chois: ['chois-result-1a', 'chois-result-1b', 'chois-result-2'],
+  jin: ['jin-result-1a', 'jin-result-1b', 'jin-result-2'],
+};
+const extraImgs: Record<string, string | undefined> = {
+  matilia: 'matilia-ops',
+  chois: 'chois-community',
+  jin: undefined,
+};
 ---
 
-<BaseLayout
-  title={t('projects.meta.title')}
-  description={t('home.projects.desc')}
->
+<BaseLayout title={t('projects.meta.title')} description={t('home.projects.desc')}>
   <section class="relative overflow-hidden pt-10 md:pt-16">
     <Glow side="left" top="0%" size="420px" strong />
     <h1
-      class="reveal container-g12 text-center text-3xl leading-tight font-bold text-ink-strong uppercase sm:text-4xl md:text-5xl"
+      class="reveal container-g12 text-center text-3xl leading-tight font-bold text-ink-strong uppercase sm:text-4xl md:text-[4rem]"
     >
       {t('home.projects.title1')}{' '}
       <span class="text-brand-accent">{t('home.projects.title2')}</span>
     </h1>
-    <p class="reveal container-g12 mx-auto mt-4 max-w-[760px] text-center text-sm text-ink-muted md:text-base">
+    <p
+      class="reveal container-g12 mx-auto mt-4 max-w-[873px] text-center text-sm text-ink-muted md:text-[15px]"
+    >
       {t('home.projects.desc')}
     </p>
 
@@ -111,31 +122,220 @@ const cases: CaseStudy[] = [
   {
     cases.map((cs, ci) => (
       <>
-        <section class="relative overflow-hidden py-8 md:py-12" aria-label={`Case study ${cs.name}`}>
-          <Glow side={ci % 2 ? 'right' : 'left'} top="10%" size="600px" />
-          <Glow side={ci % 2 ? 'left' : 'right'} top="60%" size="700px" strong />
+        <section
+          class="relative overflow-hidden py-10 md:py-14"
+          aria-label={`Case study ${cs.name}`}
+        >
+          <Glow side={ci % 2 ? 'right' : 'left'} top="5%" size="600px" />
+          <Glow side={ci % 2 ? 'left' : 'right'} top="55%" size="700px" strong />
 
-          <div class="container-g12 flex flex-col gap-6 md:gap-10">
-            {cs.rows.map((row) => (
-              <div
-                class:list={[
-                  row.imgs.length === 1
-                    ? 'reveal'
-                    : 'reveal grid items-start gap-6 sm:grid-cols-2 md:gap-8',
-                ]}
-              >
-                {row.imgs.map((img) => (
+          <div class="container-g12">
+            {/* ── Case header — Figma: heading, then banner 40% | meta 56% ── */}
+            <h2 class="reveal text-4xl leading-[1.1] font-extrabold uppercase sm:text-5xl lg:text-[3.6rem]">
+              <span class="block text-[#f7a225]">
+                {cs.no}. {cs.name}
+              </span>
+              <span class="block text-ink-strong">Project</span>
+            </h2>
+
+            <div class="mt-7 grid items-stretch gap-8 lg:mt-8 lg:grid-cols-[690fr_970fr] lg:gap-12">
+              <Image
+                src={img(`${cs.key}-intro-1`)}
+                alt={`${cs.name} — key visual`}
+                widths={[520, 1040]}
+                sizes="(min-width: 1024px) 480px, 100vw"
+                loading={ci === 0 ? 'eager' : 'lazy'}
+                class="reveal w-full self-start"
+              />
+
+              <div class="reveal flex flex-col">
+                <div class="flex items-center gap-4">
+                  <span class="shrink-0 rounded-full bg-[#f7a225] px-7 py-2.5 text-xl font-bold text-black md:text-2xl">
+                    {L.industry}
+                  </span>
+                  <span class="border-l-[3px] border-black pl-4 text-lg leading-snug font-bold text-ink-strong md:text-xl dark:border-ink-strong">
+                    {cs.industry}
+                  </span>
+                </div>
+
+                <div class="mt-5 flex flex-col gap-1.5 text-[15px] leading-relaxed md:text-[17px]">
+                  <p>
+                    <strong class="font-bold text-ink-strong">{L.platforms}:</strong> {cs.platforms}
+                  </p>
+                  <p class="text-justify">
+                    <strong class="font-bold text-ink-strong">{L.goal}:</strong> {cs.goal}
+                  </p>
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 gap-5 lg:mt-auto lg:pt-6">
                   <Image
-                    src={img.src}
-                    alt={img.alt}
-                    widths={[640, 1280]}
-                    sizes="(min-width: 1024px) 1196px, 100vw"
-                    loading={ci === 0 ? 'eager' : 'lazy'}
-                    class="w-full"
+                    src={img(`${cs.key}-intro-2`)}
+                    alt=""
+                    widths={[420, 840]}
+                    sizes="(min-width: 1024px) 300px, 50vw"
+                    loading="lazy"
+                    class="w-full object-cover"
                   />
-                ))}
+                  <Image
+                    src={img(`${cs.key}-intro-3`)}
+                    alt=""
+                    widths={[420, 840]}
+                    sizes="(min-width: 1024px) 300px, 50vw"
+                    loading="lazy"
+                    class="w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* ── BEFORE / AFTER — side label | pill + checkerboard mosaic ── */}
+            {(
+              [
+                ['before', SL.before, cs.before, 'Before'] as const,
+                ['after', SL.after, cs.after, 'After'] as const,
+              ]
+            ).map(([kind, label, section, pillText]) => (
+              <div class="mt-12 md:mt-14 lg:grid lg:grid-cols-[190px_1fr] lg:gap-8">
+                <h3 class="reveal text-4xl leading-[1.15] font-extrabold uppercase lg:self-center lg:text-[2.25rem]">
+                  {label.map(([word, accent]) => (
+                    <span class:list={['lg:block', accent ? 'text-[#f7a225]' : 'text-ink-strong']}>
+                      {word}{' '}
+                    </span>
+                  ))}
+                </h3>
+
+                <div class="mt-6 lg:mt-0">
+                  <div class="reveal flex justify-center">
+                    <span class="rounded-full bg-[#f7a225] px-14 py-3 text-2xl font-extrabold tracking-wide text-black uppercase md:px-20 md:text-[2.1rem]">
+                      {pillText}
+                    </span>
+                  </div>
+
+                  <div class="relative mt-6 grid gap-5 md:grid-cols-3 md:gap-2">
+                    <span
+                      class="absolute top-1/2 left-[69%] z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[#e94b23] px-5 py-2.5 text-xl font-extrabold whitespace-nowrap text-white uppercase shadow-md md:block"
+                      aria-hidden="true"
+                    >
+                      {section.badge}
+                    </span>
+
+                    {mosaic(section.columns).map(({ col, imgNo, panelTop }) => (
+                      <div
+                        class:list={['reveal flex flex-col', panelTop && 'md:flex-col-reverse']}
+                      >
+                        <Image
+                          src={img(`${cs.key}-${kind}-${imgNo}`)}
+                          alt=""
+                          widths={[440, 880]}
+                          sizes="(min-width: 768px) 380px, 100vw"
+                          loading="lazy"
+                          class="aspect-square w-full object-cover object-top"
+                        />
+                        <div
+                          class:list={[
+                            'flex flex-1 flex-col gap-3 p-6 md:p-7 lg:aspect-square',
+                            kind === 'before' ? 'bg-black text-white' : 'bg-[#f7a225] text-black',
+                          ]}
+                        >
+                          <h4 class="text-2xl font-bold md:text-[1.7rem]">{col.title}</h4>
+                          <p class="text-[15px] leading-relaxed">{col.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                    <span
+                      class="-mt-1 inline-block w-fit rounded-lg bg-[#e94b23] px-3 py-1.5 text-sm font-bold text-white uppercase md:hidden"
+                      aria-hidden="true"
+                    >
+                      {section.badge}
+                    </span>
+                  </div>
+                </div>
               </div>
             ))}
+
+            {/* ── Results (+ highlight) — Figma places them side by side ── */}
+            {cs.extra ? (
+              <div class="mt-12 grid gap-12 md:mt-16 lg:grid-cols-[58fr_42fr] lg:gap-14">
+                {/* stats + stacked proof shots */}
+                <div class="reveal grid gap-8 sm:grid-cols-[45fr_55fr] sm:items-center">
+                  <div class="flex flex-col gap-9">
+                    <h3 class="sr-only">
+                      {L.results} — {cs.name}
+                    </h3>
+                    {cs.stats.map((s) => (
+                      <div>
+                        <p class="inline-block border-b-[6px] border-[#f7a225] pr-2 pb-1 text-5xl font-extrabold tracking-tight whitespace-nowrap text-[#f7a225] uppercase lg:text-6xl">
+                          {s.value}
+                        </p>
+                        <p class="mt-3 text-[15px] leading-relaxed">{s.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div class="flex flex-col gap-4">
+                    {resultImgs[cs.key]!.map((name) => (
+                      <Image
+                        src={img(name)}
+                        alt={`${cs.name} — ${L.results.toLowerCase()}`}
+                        widths={[400, 800]}
+                        sizes="(min-width: 1024px) 370px, 100vw"
+                        loading="lazy"
+                        class="w-full object-cover"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* highlight block */}
+                <div class="reveal lg:pt-10">
+                  <h3 class="inline-block border-b-[5px] border-[#f7a225] pb-1 text-3xl font-extrabold text-[#f7a225] md:text-4xl">
+                    {cs.extra.title}
+                  </h3>
+                  <p class="mt-4 text-[15px] leading-relaxed text-ink-strong">{cs.extra.text}</p>
+                  {extraImgs[cs.key] && (
+                    <Image
+                      src={img(extraImgs[cs.key]!)}
+                      alt={cs.extra.title}
+                      widths={[540, 1080]}
+                      sizes="(min-width: 1024px) 470px, 100vw"
+                      loading="lazy"
+                      class="mt-5 w-full"
+                    />
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div class="mt-12 grid items-center gap-10 md:mt-16 lg:grid-cols-[42fr_58fr] lg:gap-14">
+                <div class="reveal flex flex-col gap-10">
+                  <h3 class="sr-only">
+                    {L.results} — {cs.name}
+                  </h3>
+                  {cs.stats.map((s) => (
+                    <div>
+                      <p class="inline-block border-b-[6px] border-[#f7a225] pr-2 pb-1 text-6xl font-extrabold tracking-tight whitespace-nowrap text-[#f7a225] uppercase lg:text-7xl">
+                        {s.value}
+                      </p>
+                      <p class="mt-4 max-w-[430px] text-base leading-relaxed md:text-lg">{s.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div class="reveal grid grid-cols-2 gap-4">
+                  {resultImgs[cs.key]!.map((name, i, arr) => (
+                    <Image
+                      src={img(name)}
+                      alt={`${cs.name} — ${L.results.toLowerCase()}`}
+                      widths={[660, 1320]}
+                      sizes="(min-width: 1024px) 640px, 100vw"
+                      loading="lazy"
+                      class:list={[
+                        'w-full object-cover',
+                        i === arr.length - 1 && arr.length % 2 === 1 && 'col-span-2',
+                      ]}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
