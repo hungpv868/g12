@@ -9,19 +9,18 @@ import { site } from '~/config/site';
 
 /**
  * Root layout for EVERY page. Header and Footer are declared only here —
- * child pages must not rebuild them, they only pick the footer variant via prop.
+ * child pages must not rebuild them.
  */
 interface Props {
   title: string;
   description: string;
-  footerVariant?: 'full' | 'compact';
   /** Page-specific OG image path; falls back to the brand card */
   ogImage?: string;
   /** Set for blog posts: switches og:type to article and emits BlogPosting JSON-LD */
   article?: { published: Date };
 }
 
-const { title, description, footerVariant = 'full', ogImage, article } = Astro.props;
+const { title, description, ogImage, article } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -111,7 +110,7 @@ if (article) {
     <main id="main">
       <slot />
     </main>
-    <Footer variant={footerVariant} />
+    <Footer />
 
     <script>
       // Reveal .reveal blocks once when they enter the viewport
