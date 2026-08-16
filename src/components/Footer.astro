@@ -62,13 +62,15 @@ const contacts = [
       ]}
     >
       <div class="flex flex-col gap-4">
-        {/* Figma: logo footer 302×165 */}
+        {/* Figma: logo footer 302×165. Width is the pinned axis (h-auto keeps
+            the ratio) — with a pinned height + w-auto, lazy-loaded images can
+            stretch to the container width and squash the logo flat. */}
         <Image
           src={logoWhite}
           alt="G12 Media"
           width={302}
           densities={[1, 2]}
-          class="h-16 w-auto md:h-[165px]"
+          class="h-auto w-[180px] md:w-[302px]"
         />
         <div class="flex gap-3">
           {
