@@ -1,24 +1,32 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Marquee from '../Marquee.astro';
 import Glow from '../Glow.astro';
-import sv1 from '~/assets/services/sv-1.jpg';
-import sv2 from '~/assets/services/sv-2.jpg';
-import sv3 from '~/assets/services/sv-3.jpg';
-import sv4 from '~/assets/services/sv-4.jpg';
-import { serviceBlocks } from '~/data/services';
+import { serviceBlocks, serviceLabels } from '~/data/services';
 import { getLangFromUrl, useTranslations } from '~/i18n/utils';
 
 /**
- * Services — Figma frame 1:1430 (Desktop-12, 1440×4087), geo/services.txt.
- * 4 text + square image (~490px) blocks alternating right/left, separated by
- * yellow marquees. Images cropped from the Figma export (Drive lacks this set).
+ * Services — the SIX categories from Company Profile section II (2.1–2.6),
+ * per client feedback 16/08 (replaces the old 4 Figma blocks). The client
+ * asked to keep the ORIGINAL Figma block design — accent title, intro
+ * paragraph, plain bullet list, alternating square image, gold marquees —
+ * so only the content changed, not the form.
  */
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const L = serviceLabels[lang];
 const blocks = serviceBlocks[lang];
-const images = [sv1, sv2, sv3, sv4];
+
+const images = import.meta.glob<{ default: ImageMetadata }>('~/assets/services/*.jpg', {
+  eager: true,
+});
+const img = (name: string): ImageMetadata => {
+  const hit = Object.entries(images).find(([path]) => path.endsWith(`/${name}.jpg`));
+  if (!hit) throw new Error(`Missing service image: ${name}`);
+  return hit[1].default;
+};
 ---
 
 <BaseLayout title={t('services.meta.title')} description={t('home.services.desc')}>
@@ -29,8 +37,8 @@ const images = [sv1, sv2, sv3, sv4];
       {t('home.services.title1')}{' '}
       <span class="text-brand-deep">{t('home.services.title2')}</span>
     </h1>
-    <p class="reveal mx-auto mt-4 max-w-[760px] text-center text-sm text-ink-muted md:text-base">
-      {t('home.services.desc')}
+    <p class="reveal mx-auto mt-4 max-w-[873px] text-center text-sm text-ink-muted md:text-[15px]">
+      {L.intro}
     </p>
   </section>
 
@@ -51,27 +59,23 @@ const images = [sv1, sv2, sv3, sv4];
                 {block.title}
               </h2>
               <div class="mt-4 flex flex-col gap-1 text-sm leading-relaxed md:text-[15px]">
-                {block.intro.map((p) => (
-                  <p>{p}</p>
-                ))}
+                <p>{block.intro}</p>
               </div>
               <ul class="mt-5 flex list-disc flex-col gap-2.5 ps-5 text-sm leading-relaxed marker:text-ink-strong md:text-[15px]">
                 {block.items.map((item) => (
-                  <li>
-                    <strong class="font-bold text-ink-strong">{item.label}</strong> {item.text}
-                  </li>
+                  <li>{item}</li>
                 ))}
               </ul>
             </div>
 
             <div class:list={['reveal', i % 2 === 1 && 'lg:order-1']}>
               <Image
-                src={images[i]!}
+                src={img(block.img)}
                 alt={block.title}
                 widths={[494, 988]}
                 sizes="(min-width: 1024px) 494px, 100vw"
                 loading={i === 0 ? 'eager' : 'lazy'}
-                class="mx-auto w-full max-w-[494px] rounded-[24px] shadow-[var(--shadow-card)]"
+                class="mx-auto w-full max-w-[494px] rounded-[24px] object-cover shadow-[var(--shadow-card)]"
               />
             </div>
           </div>

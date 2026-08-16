@@ -1,219 +1,227 @@
 import type { Lang } from '~/i18n/ui';
 
 /**
- * Content for the 4 blocks on the Services page — copied verbatim from Figma frame 1:1430.
+ * Services page content — the SIX categories from Company Profile section II
+ * "Our Services" (pages 10–15), per client feedback 16/08: the old 4 Figma
+ * blocks are replaced by 2.1–2.6 exactly as the profile presents them.
+ * VI copy is transcribed verbatim from the profile; category titles and the
+ * tag lines stay in English exactly as printed there.
  * The EN version is a draft by Claude; G12 must review it before production.
+ *
+ * `img` maps to a file in src/assets/services/: 2.1/2.2/2.4/2.5 use the
+ * profile's own images; 2.3 and 2.6 use G12's branded social graphics from
+ * the original Figma set (the profile has no photo for 2.6).
  */
 export interface ServiceBlock {
+  no: string;
   title: string;
-  intro: string[];
-  items: { label: string; text: string }[];
+  intro: string;
+  items: string[];
+  /** tag line, kept in English exactly as printed in the profile */
+  tags: string;
+  img: string;
 }
+
+export const serviceLabels: Record<Lang, { included: string; intro: string }> = {
+  vi: {
+    included: 'Dịch vụ gồm',
+    intro:
+      'Mỗi doanh nghiệp có những mục tiêu truyền thông và kinh doanh khác nhau. Vì vậy, G12 Media cung cấp các dịch vụ từ xây dựng thương hiệu, thiết kế, sản xuất nội dung, quảng cáo số đến phát triển và vận hành các kênh bán hàng trực tuyến. Tùy theo nhu cầu của từng doanh nghiệp, chúng tôi tư vấn và triển khai giải pháp phù hợp nhằm giúp thương hiệu tiếp cận đúng khách hàng và phát triển hiệu quả.',
+  },
+  en: {
+    included: 'Services include',
+    intro:
+      'Every business has its own communication and commercial goals. G12 Media covers the full range — brand building, design, content production, digital advertising, and building and running online sales channels. We advise on and deliver the mix that fits each business, so the brand reaches the right customers and grows effectively.',
+  },
+};
 
 export const serviceBlocks: Record<Lang, ServiceBlock[]> = {
   vi: [
     {
-      title: 'MARKETING TỔNG THỂ',
-      intro: [
-        'Xây dựng nền móng vững chắc cho hành trình vươn xa.',
-        'Chúng tôi giúp doanh nghiệp trả lời câu hỏi: "Bạn là ai và tại sao khách hàng phải chọn bạn?" bằng một bản đồ chiến lược bài bản, thay vì những hoạt động marketing rời rạc.',
-      ],
+      no: '2.1',
+      title: 'Brand Identity & Creative Design',
+      intro:
+        'G12 Media đồng hành cùng doanh nghiệp trong việc xây dựng hình ảnh thương hiệu chuyên nghiệp và thống nhất trên mọi kênh truyền thông.',
       items: [
-        {
-          label: 'Tư vấn chiến lược thương hiệu:',
-          text: 'Định vị thương hiệu, xây dựng câu chuyện thương hiệu (Brand Story) và bộ nhận diện giá trị cốt lõi.',
-        },
-        {
-          label: 'Lập kế hoạch Marketing tổng thể:',
-          text: 'Nghiên cứu thị trường, phân tích đối thủ và lập lộ trình triển khai theo từng giai đoạn (ngắn hạn & dài hạn).',
-        },
-        {
-          label: 'Định vị khách hàng mục tiêu:',
-          text: 'Vẽ chân dung khách hàng chuẩn xác để tối ưu hóa thông điệp truyền thông.',
-        },
-        {
-          label: 'Giá trị nhận được:',
-          text: 'Thương hiệu có bản sắc riêng, nhất quán và khai thác đúng thị trường ngách để phát triển bền vững.',
-        },
+        'Thiết kế logo',
+        'Thiết kế bộ nhận diện thương hiệu',
+        'Thiết kế Key Visual cho các chiến dịch',
+        'Thiết kế bao bì, nhãn mác và POSM',
+        'Thiết kế ấn phẩm truyền thông trên mạng xã hội',
       ],
+      tags: 'Logo · Brand Identity · Key Visual · Packaging · POSM · Social Media Design',
+      img: 'pr-21-brand',
     },
     {
-      title: 'CONTENT SOCIAL & TIKTOK',
-      intro: [
-        'Sáng tạo nội dung "chạm" cảm xúc – Dẫn đầu xu hướng.',
-        'Trong kỷ nguyên số, nội dung là "vũ khí" để kết nối. G12 Media giúp thương hiệu của bạn không chỉ xuất hiện mà còn để lại dấu ấn sâu sắc trong tâm trí khách hàng.',
-      ],
+      no: '2.2',
+      title: 'Digital Marketing',
+      intro:
+        'G12 Media tư vấn và triển khai các hoạt động quảng cáo trên nền tảng số, giúp doanh nghiệp tiếp cận đúng khách hàng, tăng hiệu quả truyền thông và tối ưu chi phí quảng cáo.',
       items: [
-        {
-          label: 'Xây dựng Concept kênh:',
-          text: 'Định hình phong cách nội dung độc bản cho Facebook, TikTok, Instagram.',
-        },
-        {
-          label: 'Sản xuất Video ngắn (TikTok/Reels/Shorts):',
-          text: 'Quy trình trọn gói từ lên ý tưởng, viết kịch bản, quay dựng đến tối ưu hóa theo thuật toán xu hướng.',
-        },
-        {
-          label: 'Nội dung đa mục tiêu:',
-          text: 'Kết hợp hài hòa giữa nội dung chia sẻ giá trị, nội dung tương tác và nội dung thúc đẩy bán hàng.',
-        },
-        {
-          label: 'Giá trị nhận được:',
-          text: 'Tăng độ nhận diện thương hiệu tự nhiên, thu hút tệp khách hàng trẻ và tạo ra các nội dung có khả năng "viral".',
-        },
+        'Quảng cáo Facebook',
+        'Quảng cáo TikTok',
+        'Quảng cáo Google',
+        'Tối ưu tìm kiếm Google (SEO)',
+        'Quảng cáo theo mục tiêu chuyển đổi (Performance Marketing)',
       ],
+      tags: 'Facebook Marketing · TikTok Marketing · Google Ads · SEO · Performance Marketing',
+      img: 'pr-22-digital',
     },
     {
-      title: 'QUẢN LÝ FANPAGE & QUẢNG CÁO',
-      intro: [
-        'Vận hành chuyên nghiệp – Tối ưu chuyển đổi.',
-        'Chúng tôi biến Fanpage của bạn thành một "cửa hàng" chuyên nghiệp hoạt động 24/7 và dùng quảng cáo để đưa cửa hàng đó đến đúng người đang có nhu cầu.',
-      ],
+      no: '2.3',
+      title: 'Social Media Management',
+      intro:
+        'G12 Media xây dựng và quản lý nội dung trên các nền tảng mạng xã hội, giúp doanh nghiệp duy trì hình ảnh thương hiệu và kết nối thường xuyên với khách hàng.',
       items: [
-        {
-          label: 'Vận hành Fanpage trọn gói:',
-          text: 'Lên kế hoạch nội dung hàng tháng, thiết kế hình ảnh, chăm sóc tương tác và báo cáo chỉ số định kỳ.',
-        },
-        {
-          label: 'Quảng cáo Facebook & TikTok Ads:',
-          text: 'Thiết lập chiến dịch quảng cáo tối ưu tệp đối tượng, ngân sách và mẫu quảng cáo.',
-        },
-        {
-          label: 'Tối ưu hóa phễu chuyển đổi:',
-          text: 'Theo dõi sát sao chỉ số để điều chỉnh, nhằm giảm chi phí trên mỗi đơn hàng/khách hàng tiềm năng.',
-        },
-        {
-          label: 'Giá trị nhận được:',
-          text: 'Tiết kiệm thời gian quản lý, duy trì sự hiện diện chuyên nghiệp và gia tăng doanh số thực tế.',
-        },
+        'Xây dựng kế hoạch nội dung',
+        'Viết nội dung và thiết kế hình ảnh',
+        'Quản lý Fanpage',
+        'Quản lý cộng đồng và tương tác khách hàng',
+        'Triển khai các chiến dịch truyền thông trên mạng xã hội',
       ],
+      tags: 'Content Strategy · Content Creation · Fanpage Management · Community Management · Viral Campaign',
+      img: 'sv-3',
     },
     {
-      title: 'THIẾT KẾ & SẢN XUẤT MEDIA',
-      intro: [
-        'Số hóa hình ảnh – Nâng tầm chuyên nghiệp.',
-        'Hình ảnh đẹp là lời chào cao cấp nhất. G12 Media sở hữu đội ngũ Media trẻ trung, biến những giá trị vô hình của sản phẩm thành những khung hình sống động.',
-      ],
+      no: '2.4',
+      title: 'Media Production',
+      intro:
+        'G12 Media sản xuất hình ảnh và video phục vụ hoạt động truyền thông, quảng bá thương hiệu và bán hàng.',
       items: [
-        {
-          label: 'Sản xuất hình ảnh/Video:',
-          text: 'Chụp ảnh sản phẩm, quay TVC giới thiệu doanh nghiệp, Video viral.',
-        },
-        {
-          label: 'Thiết kế ấn phẩm truyền thông:',
-          text: 'Logo, POSM, Banner quảng cáo, Profile doanh nghiệp.',
-        },
-        {
-          label: 'Dịch vụ Livestream:',
-          text: 'Hỗ trợ kỹ thuật và kịch bản livestream bán hàng chuyên nghiệp.',
-        },
-        {
-          label: 'Giá trị nhận được:',
-          text: 'Hình ảnh thương hiệu chỉn chu, cao cấp, tăng tính thuyết phục và độ tin cậy đối với khách hàng ngay từ cái nhìn đầu tiên.',
-        },
+        'Quay TVC và video quảng cáo',
+        'Sản xuất video TikTok, Facebook Reels',
+        'Quay chụp sản phẩm',
+        'Quay phim doanh nghiệp',
+        'Livestream bán hàng và sự kiện',
+        'Biên tập và hậu kỳ video',
       ],
+      tags: 'TVC · Viral Video · TikTok Video · Livestream · Product Photography',
+      img: 'pr-24-media',
+    },
+    {
+      no: '2.5',
+      title: 'Website & Landing Page',
+      intro:
+        'G12 Media thiết kế và phát triển website, landing page đáp ứng nhu cầu giới thiệu doanh nghiệp, quảng bá sản phẩm và hỗ trợ bán hàng trực tuyến.',
+      items: [
+        'Thiết kế giao diện',
+        'Thiết kế website doanh nghiệp',
+        'Thiết kế Landing Page',
+        'Thiết kế website bán hàng',
+        'Bảo trì và cập nhật website',
+      ],
+      tags: 'UI/UX · Corporate Website · E-commerce Website · Landing Page · Maintenance',
+      img: 'pr-25-web',
+    },
+    {
+      no: '2.6',
+      title: 'E-commerce Solutions',
+      intro:
+        'G12 Media hỗ trợ doanh nghiệp xây dựng và phát triển hoạt động kinh doanh trên các sàn thương mại điện tử.',
+      items: [
+        'Thiết lập gian hàng',
+        'Thiết kế và tối ưu gian hàng',
+        'Đăng tải sản phẩm',
+        'Quản lý và vận hành gian hàng',
+        'Lập kế hoạch các chương trình khuyến mại',
+        'Quảng cáo trên Shopee, TikTok Shop và các sàn thương mại điện tử',
+      ],
+      tags: 'Shopee · TikTok Shop · Lazada · Tiki · Store Operation · Campaign Planning · Marketplace Ads',
+      img: 'sv-4',
     },
   ],
 
   en: [
     {
-      title: 'FULL-SERVICE MARKETING',
-      intro: [
-        'A solid foundation for the journey ahead.',
-        'We help businesses answer the question: "Who are you, and why should customers choose you?" — with a methodical strategic roadmap instead of scattered marketing activities.',
-      ],
+      no: '2.1',
+      title: 'Brand Identity & Creative Design',
+      intro:
+        'G12 Media partners with businesses to build a professional brand image that stays consistent across every communication channel.',
       items: [
-        {
-          label: 'Brand strategy consulting:',
-          text: 'Brand positioning, brand storytelling and a core-value identity system.',
-        },
-        {
-          label: 'Full marketing planning:',
-          text: 'Market research, competitor analysis and a phased rollout roadmap (short and long term).',
-        },
-        {
-          label: 'Target audience profiling:',
-          text: 'Accurate customer personas to sharpen every marketing message.',
-        },
-        {
-          label: 'What you get:',
-          text: 'A distinctive, consistent brand that wins its niche and grows sustainably.',
-        },
+        'Logo design',
+        'Brand identity systems',
+        'Campaign Key Visuals',
+        'Packaging, labels and POSM',
+        'Social media communication assets',
       ],
+      tags: 'Logo · Brand Identity · Key Visual · Packaging · POSM · Social Media Design',
+      img: 'pr-21-brand',
     },
     {
-      title: 'SOCIAL CONTENT & TIKTOK',
-      intro: [
-        'Content that connects — leading the trend.',
-        "In the digital era, content is the weapon of connection. G12 Media makes your brand not just visible, but memorable in your customers' minds.",
-      ],
+      no: '2.2',
+      title: 'Digital Marketing',
+      intro:
+        'We plan and run advertising across digital platforms — reaching the right customers, lifting communication performance and optimizing ad spend.',
       items: [
-        {
-          label: 'Channel concept development:',
-          text: 'A signature content style for Facebook, TikTok and Instagram.',
-        },
-        {
-          label: 'Short-form video (TikTok/Reels/Shorts):',
-          text: 'End-to-end production from ideation and scripting to filming, editing and trend-algorithm optimisation.',
-        },
-        {
-          label: 'Multi-goal content:',
-          text: 'A balanced mix of value-sharing, engagement and sales-driving content.',
-        },
-        {
-          label: 'What you get:',
-          text: 'Organic brand awareness, a younger audience and content built to go viral.',
-        },
+        'Facebook advertising',
+        'TikTok advertising',
+        'Google advertising',
+        'Search engine optimization (SEO)',
+        'Conversion-driven Performance Marketing',
       ],
+      tags: 'Facebook Marketing · TikTok Marketing · Google Ads · SEO · Performance Marketing',
+      img: 'pr-22-digital',
     },
     {
-      title: 'FANPAGE & ADS MANAGEMENT',
-      intro: [
-        'Professional operations — optimised conversion.',
-        'We turn your fanpage into a professional storefront that runs 24/7, and use advertising to put that storefront in front of people who are ready to buy.',
-      ],
+      no: '2.3',
+      title: 'Social Media Management',
+      intro:
+        'We build and manage content across social platforms, keeping the brand image alive and the conversation with customers going.',
       items: [
-        {
-          label: 'End-to-end fanpage operations:',
-          text: 'Monthly content planning, visual design, community care and regular performance reports.',
-        },
-        {
-          label: 'Facebook & TikTok Ads:',
-          text: 'Campaigns optimised across audiences, budgets and creatives.',
-        },
-        {
-          label: 'Conversion funnel optimisation:',
-          text: 'Close metric tracking and adjustment to cut cost per order and per lead.',
-        },
-        {
-          label: 'What you get:',
-          text: 'Less time managing, a consistently professional presence and real sales growth.',
-        },
+        'Content planning',
+        'Copywriting and visual design',
+        'Fanpage management',
+        'Community management and customer engagement',
+        'Social media campaign execution',
       ],
+      tags: 'Content Strategy · Content Creation · Fanpage Management · Community Management · Viral Campaign',
+      img: 'sv-3',
     },
     {
-      title: 'DESIGN & MEDIA PRODUCTION',
-      intro: [
-        'Digitised visuals — elevated professionalism.',
-        'Beautiful imagery is the finest first impression. Our young media team turns the intangible value of your product into vivid frames.',
-      ],
+      no: '2.4',
+      title: 'Media Production',
+      intro:
+        'We produce the photography and video that power communications, brand promotion and sales.',
       items: [
-        {
-          label: 'Photo & video production:',
-          text: 'Product photography, corporate TVCs and viral video.',
-        },
-        {
-          label: 'Communication collateral design:',
-          text: 'Logos, POSM, ad banners and company profiles.',
-        },
-        {
-          label: 'Livestream services:',
-          text: 'Technical support and scripts for professional live selling.',
-        },
-        {
-          label: 'What you get:',
-          text: 'A polished, premium brand image that earns trust at first sight.',
-        },
+        'TVC and ad video production',
+        'TikTok and Facebook Reels videos',
+        'Product photography and filming',
+        'Corporate films',
+        'Sales and event livestreams',
+        'Editing and post-production',
       ],
+      tags: 'TVC · Viral Video · TikTok Video · Livestream · Product Photography',
+      img: 'pr-24-media',
+    },
+    {
+      no: '2.5',
+      title: 'Website & Landing Page',
+      intro:
+        'We design and build websites and landing pages for company introduction, product promotion and online sales.',
+      items: [
+        'UI design',
+        'Corporate websites',
+        'Landing pages',
+        'E-commerce websites',
+        'Website maintenance and updates',
+      ],
+      tags: 'UI/UX · Corporate Website · E-commerce Website · Landing Page · Maintenance',
+      img: 'pr-25-web',
+    },
+    {
+      no: '2.6',
+      title: 'E-commerce Solutions',
+      intro: 'We help businesses build and grow their sales on e-commerce marketplaces.',
+      items: [
+        'Store setup',
+        'Store design and optimization',
+        'Product listing',
+        'Store operation and management',
+        'Promotion campaign planning',
+        'Advertising on Shopee, TikTok Shop and other marketplaces',
+      ],
+      tags: 'Shopee · TikTok Shop · Lazada · Tiki · Store Operation · Campaign Planning · Marketplace Ads',
+      img: 'sv-4',
     },
   ],
 };
