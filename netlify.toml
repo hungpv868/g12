@@ -9,6 +9,13 @@
   # DELETE this line once the real domain is connected.
   SITE = "https://g12media.netlify.app"
 
+# English 404: misses under /en/* get the English page (the root 404.html
+# is Vietnamese). Netlify only applies this when no real file matches.
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404"
+  status = 404
+
 # Astro pre-generates static files, so only hashed assets need caching
 [[headers]]
   for = "/_astro/*"

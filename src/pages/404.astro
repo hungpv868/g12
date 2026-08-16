@@ -3,24 +3,25 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Button from '~/components/Button.astro';
 
 /**
- * Single 404 for both languages (Netlify serves the root 404.html for every
- * missing path, so the page carries both languages with lang-tagged sections).
+ * Vietnamese 404. English misses under /en/* are routed to /en/404 by the
+ * netlify.toml redirect rule, so each language gets a clean single-language
+ * page (the old shared 404 mixed both languages — client feedback).
  */
 ---
 
-<BaseLayout
-  title="404 — G12 Media"
-  description="Trang không tồn tại — Page not found."
->
-  <section class="container-g12 flex min-h-[55vh] flex-col items-center justify-center py-16 text-center">
+<BaseLayout title="404 — G12 Media" description="Trang bạn tìm không tồn tại.">
+  <section
+    class="container-g12 flex min-h-[55vh] flex-col items-center justify-center py-16 text-center"
+  >
     <p class="text-brand-gradient text-[6rem] leading-none font-extrabold md:text-[9rem]">404</p>
-    <h1 class="mt-4 text-xl font-bold text-ink-strong md:text-2xl" lang="vi">
+    <h1 class="mt-4 text-xl font-bold text-ink-strong md:text-2xl">
       Trang bạn tìm không tồn tại
     </h1>
-    <p class="mt-1 text-sm text-ink-muted" lang="en">The page you're looking for doesn't exist.</p>
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <Button href="/">Trang Chủ</Button>
-      <Button href="/en/" variant="ghost">English Home</Button>
+    <p class="mt-1 text-sm text-ink-muted">
+      Đường dẫn có thể đã bị đổi hoặc không còn nữa.
+    </p>
+    <div class="mt-8">
+      <Button href="/">Về Trang Chủ</Button>
     </div>
   </section>
 </BaseLayout>
