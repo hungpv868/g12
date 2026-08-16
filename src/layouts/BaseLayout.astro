@@ -43,6 +43,13 @@ const jsonLd: object[] = [
     url: Astro.site?.href,
     logo: new URL('/og-default.jpg', Astro.site).href,
     email: site.email,
+    telephone: site.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '431 Tam Trinh, Vĩnh Hưng',
+      addressLocality: 'Hoàng Mai, Hà Nội',
+      addressCountry: 'VN',
+    },
     sameAs: [site.social.facebook, site.social.tiktok],
   },
 ];

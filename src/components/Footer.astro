@@ -22,6 +22,11 @@ const contacts = [
   { name: 'phone' as const, text: site.phone, href: `tel:${site.phone.replace(/[^\d+]/g, '')}` },
   { name: 'mail' as const, text: site.email, href: `mailto:${site.email}` },
   { name: 'globe' as const, text: site.url, href: `https://${site.url}` },
+  {
+    name: 'mapPin' as const,
+    text: site.address,
+    href: `https://maps.google.com/?q=${encodeURIComponent(site.address)}`,
+  },
 ];
 ---
 
