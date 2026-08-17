@@ -146,12 +146,9 @@ const extraImgs: Record<string, string | undefined> = {
       {
         inds.map((ind) => (
           <div class="mt-12 first-of-type:mt-10 md:mt-14">
-            <div class="reveal flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              <span class="text-4xl font-extrabold text-[#f7a225] md:text-5xl">{ind.no}</span>
-              <h3 class="text-2xl font-extrabold text-ink-strong uppercase md:text-3xl">
-                {ind.title}
-              </h3>
-            </div>
+            <h3 class="reveal text-2xl font-extrabold text-ink-strong uppercase md:text-3xl">
+              {ind.title}
+            </h3>
             <p class="reveal mt-3 max-w-[900px] text-sm leading-relaxed md:text-[15px]">
               {ind.intro}
             </p>

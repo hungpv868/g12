@@ -15,7 +15,7 @@ import core1 from '~/assets/about/core-1-people.jpg';
 import core2 from '~/assets/about/core-2-creativity.jpg';
 import core3 from '~/assets/about/core-3-results.jpg';
 import core4 from '~/assets/about/core-4-partnership.jpg';
-import { getLangFromUrl, useTranslations } from '~/i18n/utils';
+import { getLangFromUrl, localizePath, routes, useTranslations } from '~/i18n/utils';
 
 /**
  * About Us — Figma frame 1:433 (Desktop-1, 1440×6048), geo/aboutus.txt.
@@ -108,7 +108,7 @@ const commits = [
 
           <!-- Hero-style gradient pill with the arrow circle tucked against the right edge -->
           <a
-            href="#story"
+            href={localizePath(routes.projects, lang)}
             class="group mt-4 inline-flex h-[52px] w-fit items-center gap-4 rounded-full bg-linear-to-r from-brand-yellow via-[#ff9f17] to-brand-orange py-1 pr-1 pl-7 text-sm font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:brightness-105 md:h-[62px] md:pl-8"
           >
             {t('about.story.cta')}
@@ -181,7 +181,7 @@ const commits = [
                 <p class="text-brand-gradient text-3xl font-extrabold transition duration-300 group-hover:[-webkit-text-fill-color:#fff]">
                   0{i + 1}.
                 </p>
-                <h3 class="text-xl font-bold text-ink-strong transition-colors duration-300 group-hover:text-white">
+                <h3 class="text-xl font-bold text-black transition-colors duration-300 group-hover:text-white dark:text-black">
                   {c.title}
                 </h3>
                 <p class="text-sm leading-relaxed text-black transition-colors duration-300 group-hover:text-white dark:text-black">
